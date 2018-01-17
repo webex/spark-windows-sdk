@@ -137,7 +137,7 @@ Here are some examples of how to use the Windows SDK in your application. More d
 	RegisterCallEvent();
 	
 	// answer current call  
-currentCall.answer(MediaOption.audioVideo(curCallView.LocalViewHandle, curCallView.RemoteViewHandle), result =>
+	currentCall.answer(MediaOption.audioVideo(curCallView.LocalViewHandle, curCallView.RemoteViewHandle), result =>
 	{
 		if (!result.Success)
 		{
