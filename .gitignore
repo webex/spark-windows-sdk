@@ -5,3 +5,5 @@ bin/
 obj/
 binary/
 *.obj
+.vs
+packages
