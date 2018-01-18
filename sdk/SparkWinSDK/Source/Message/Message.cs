@@ -30,61 +30,61 @@ namespace SparkSDK
     /// <summary>
     /// The struct of a Message on Cisco Spark.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class Message
     {
         /// <summary>
         /// The identifier of this message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Id { get; set; }
 
         /// <summary>
         /// The identifier of the person who sent this message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string PersonId { get; set; }
 
         /// <summary>
         /// The email address of the person who sent this message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string PersonEmail { get; set; }
 
         /// <summary>
         /// The identifier of the room where this message was posted.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string RoomId { get; set; }
 
         /// <summary>
         /// The content of the message in plain text. This can be the alternate text if markdown is specified.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Text { get; set; }
 
         /// <summary>
         /// A array of public URLs of the attachments in the message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public List<string> Files { get; set; }
 
         /// <summary>
         /// The identifier of the recipient when sending a private 1:1 message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string ToPersonId { get; set; }
 
         /// <summary>
         /// The email address of the recipient when sending a private 1:1 message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string ToPersonEmail { get; set; }
 
         /// <summary>
         /// The timestamp that the message being created.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public DateTime Created { get; set; }
     }
 }

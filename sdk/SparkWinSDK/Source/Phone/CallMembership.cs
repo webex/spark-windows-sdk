@@ -30,45 +30,45 @@ namespace SparkSDK
     /// <summary>
     /// A data type represents a relationship between *Call* and *Person* at Cisco Spark cloud.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class CallMembership
     {
 
         /// <summary>
         /// The enumeration of the status of the person in the membership.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public enum CallState
         {
             /// <summary>
             /// The person status is unknown.
             /// </summary>
-            /// Since: 0.1.0
+            /// <remarks>Since: 0.1.0</remarks>
             Unknown,
             /// <summary>
             /// The person is idle w/o any call.
             /// </summary>
-            /// Since: 0.1.0
+            /// <remarks>Since: 0.1.0</remarks>
             Idle,
             /// <summary>
             /// The person has been notified about the call.
             /// </summary>
-            /// Since: 0.1.0
+            /// <remarks>Since: 0.1.0</remarks>
             Notified,
             /// <summary>
             /// The person has joined the call.
             /// </summary>
-            /// Since: 0.1.0
+            /// <remarks>Since: 0.1.0</remarks>
             Joined,
             /// <summary>
             /// The person has left the call.
             /// </summary>
-            /// Since: 0.1.0
+            /// <remarks>Since: 0.1.0</remarks>
             Left,
             /// <summary>
             /// The person has declined the call.
             /// </summary>
-            /// Since: 0.1.0
+            /// <remarks>Since: 0.1.0</remarks>
             Declined,
         }
 
@@ -78,7 +78,7 @@ namespace SparkSDK
         /// <value>
         ///   <c>true</c> if this person is initiator; otherwise, <c>false</c>.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsInitiator { get; set; }
 
 
@@ -88,7 +88,7 @@ namespace SparkSDK
         /// <value>
         /// The preson identifier.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string PersonId { get; set; }
 
 
@@ -98,7 +98,7 @@ namespace SparkSDK
         /// <value>
         /// The state.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public CallState State { get; set; }
 
 
@@ -108,7 +108,7 @@ namespace SparkSDK
         /// <value>
         /// The email.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Email { get; set; }
 
 
@@ -118,7 +118,7 @@ namespace SparkSDK
         /// <value>
         /// The SIP address.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string SipUrl { get; set; }
 
 
@@ -128,26 +128,26 @@ namespace SparkSDK
         /// <value>
         /// The phone number.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string PhoneNumber { get; set; }
 
         /// <summary>
         /// True if the CallMembership is sending video. Otherwise, false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSendingVideo { get; set; }
 
 
         /// <summary>
         /// True if the CallMembership is sending audio. Otherwise, false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSendingAudio { get; set; }
 
         /// <summary>
         /// True if the CallMembership is sending  share. Otherwise, false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSendingShare { get; set; }
 
 

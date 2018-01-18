@@ -31,20 +31,20 @@ namespace SparkSDK
     /// <summary>
     /// Base class for the event of a call.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public abstract class CallEvent
     {
         /// <summary>
         /// current call instance.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         protected Call call;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CallEvent"/> class.
         /// </summary>
         /// <param name="call">current call instance.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         protected CallEvent(Call call)
         {
             this.call = call;
@@ -53,7 +53,7 @@ namespace SparkSDK
         /// <summary>
         /// Get current call instance.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public Call Call
         {
             get { return call; }
@@ -63,14 +63,14 @@ namespace SparkSDK
     /// <summary>
     /// The media change event.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public abstract class MediaChangedEvent : CallEvent
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaChangedEvent"/> class.
         /// </summary>
         /// <param name="call">current call instance.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         protected MediaChangedEvent(Call call)
             : base(call)
         {
@@ -80,7 +80,7 @@ namespace SparkSDK
     /// <summary>
     /// The call membership changed event.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public abstract class CallMembershipChangedEvent : CallEvent
     {
         private CallMembership callMembership;
@@ -90,7 +90,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="call">current call instance.</param>
         /// <param name="callMembership">This callmemership.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         protected CallMembershipChangedEvent(Call call, CallMembership callMembership)
             : base(call)
         {
@@ -100,7 +100,7 @@ namespace SparkSDK
         /// <summary>
         /// Get this callmembership.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public CallMembership CallMembership
         {
             get { return callMembership; }
@@ -110,14 +110,14 @@ namespace SparkSDK
     /// <summary>
     /// The call disconnect event.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public abstract class CallDisconnectedEvent : CallEvent
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallDisconnectedEvent"/> class.
         /// </summary>
         /// <param name="call">current call instance.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         protected CallDisconnectedEvent(Call call)
             : base(call)
         {
@@ -127,14 +127,14 @@ namespace SparkSDK
     /// <summary>
     /// The capabilities of a call.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public abstract class Capabilities : CallEvent
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Capabilities"/> class.
         /// </summary>
         /// <param name="call">current call instance.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         protected Capabilities(Call call)
             : base(call)
         {
@@ -145,7 +145,7 @@ namespace SparkSDK
     /// This is triggered when ready for show remote video. 
     /// If you haven't set the remote view handle, you can set it by calling <see cref="Call.SetRemoteView(IntPtr)"/> now.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class RemoteVideoReadyEvent : MediaChangedEvent
     {
         internal RemoteVideoReadyEvent(Call call)
@@ -158,7 +158,7 @@ namespace SparkSDK
     /// This is triggered when ready for show local video. 
     /// If you haven't set the local view handle, you can set it by calling <see cref="Call.SetLocalView(IntPtr)"/> now.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class LocalVideoReadyEvent : MediaChangedEvent
     {
         internal LocalVideoReadyEvent(Call call)
@@ -170,7 +170,7 @@ namespace SparkSDK
     /// <summary>
     /// This might be triggered when the remote party muted or unmuted the video.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class RemoteSendingVideoEvent : MediaChangedEvent
     {
         private bool isSending;
@@ -183,7 +183,7 @@ namespace SparkSDK
         /// <summary>
         /// True if the remote party now is sending video. Otherwise false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSending
         {
             get { return isSending; }
@@ -193,7 +193,7 @@ namespace SparkSDK
     /// <summary>
     /// This might be triggered when the remote party muted or unmuted the audio.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class RemoteSendingAudioEvent : MediaChangedEvent
     {
         private bool isSending;
@@ -207,7 +207,7 @@ namespace SparkSDK
         /// <summary>
         /// True if the remote party now is sending audio. Otherwise false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSending
         {
             get { return isSending; }
@@ -217,7 +217,7 @@ namespace SparkSDK
     /// <summary>
     /// This might be triggered when the local party muted or unmuted the video.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class SendingVideoEvent : MediaChangedEvent
     {
         private bool isSending;
@@ -231,7 +231,7 @@ namespace SparkSDK
         /// <summary>
         /// True if the local party now is sending video. Otherwise false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSending
         {
             get { return isSending; }
@@ -241,7 +241,7 @@ namespace SparkSDK
     /// <summary>
     /// This might be triggered when the local party muted or unmuted the audio.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class SendingAudioEvent : MediaChangedEvent
     {
         private bool isSending;
@@ -255,7 +255,7 @@ namespace SparkSDK
         /// <summary>
         /// True if the local party now is sending aduio. Otherwise false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSending
         {
             get { return isSending; }
@@ -265,7 +265,7 @@ namespace SparkSDK
     /// <summary>
     /// This might be triggered when the local party muted or unmuted the video.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class ReceivingVideoEvent : MediaChangedEvent
     {
         private bool isReceiving;
@@ -278,7 +278,7 @@ namespace SparkSDK
         /// <summary>
         /// True if the local party now is receiving video. Otherwise false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsReceiving
         {
             get { return isReceiving; }
@@ -288,7 +288,7 @@ namespace SparkSDK
     /// <summary>
     /// This might be triggered when the local party muted or unmuted the audio.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class ReceivingAudioEvent : MediaChangedEvent
     {
         private bool isReceiving;
@@ -301,7 +301,7 @@ namespace SparkSDK
         /// <summary>
         /// True if the local party now is receiving audio. Otherwise false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsReceiving
         {
             get { return isReceiving; }
@@ -311,7 +311,7 @@ namespace SparkSDK
     /// <summary>
     /// This might be triggered when the selected camera switched.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class CameraSwitchedEvent : MediaChangedEvent
     {
         AVIODevice camera;
@@ -324,7 +324,7 @@ namespace SparkSDK
         /// <summary>
         /// The selected camera.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public AVIODevice Camera
         {
             get { return camera; }
@@ -334,7 +334,7 @@ namespace SparkSDK
     /// <summary>
     /// This might be triggered when the selected speaker switched.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class SpeakerSwitchedEvent : MediaChangedEvent
     {
         AVIODevice speaker;
@@ -347,7 +347,7 @@ namespace SparkSDK
         /// <summary>
         /// The selected speaker.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public AVIODevice Speaker
         {
             get { return speaker; }
@@ -357,7 +357,7 @@ namespace SparkSDK
     /// <summary>
     /// Local video rendering view size has changed.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class LocalVideoViewSizeChangedEvent : MediaChangedEvent
     {
         internal LocalVideoViewSizeChangedEvent(Call call)
@@ -369,7 +369,7 @@ namespace SparkSDK
     /// <summary>
     /// Remote video rendering view size has changed.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class RemoteVideoViewSizeChangedEvent : MediaChangedEvent
     {
         internal RemoteVideoViewSizeChangedEvent(Call call)
@@ -381,7 +381,7 @@ namespace SparkSDK
     /// <summary>
     /// Remote share rendering view size has changed.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class RemoteShareViewSizeChangedEvent : MediaChangedEvent
     {
         internal RemoteShareViewSizeChangedEvent(Call call)
@@ -393,7 +393,7 @@ namespace SparkSDK
     /// <summary>
     /// This might be triggered when the local party muted or unmuted the video
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class ReceivingShareEvent : MediaChangedEvent
     {
         private bool isReceiving;
@@ -406,7 +406,7 @@ namespace SparkSDK
         /// <summary>
         /// True if the local party now is receiving share. Otherwise false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsReceiving
         {
             get { return isReceiving; }
@@ -417,7 +417,7 @@ namespace SparkSDK
     /// This might be triggered when the remote party started or stopped share stream.
     /// If you haven't set the share view handle, you can set it by calling <see cref="Call.SetRemoteShareView(IntPtr)"/> now.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class RemoteSendingShareEvent : MediaChangedEvent
     {
         private bool isSending;
@@ -430,7 +430,7 @@ namespace SparkSDK
         /// <summary>
         /// True if the share now is receiving. Otherwise false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSending
         {
             get { return isSending; }
@@ -441,7 +441,7 @@ namespace SparkSDK
     /// <summary>
     /// The person in the membership joined this call.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class CallMembershipJoinedEvent : CallMembershipChangedEvent
     {
         internal CallMembershipJoinedEvent(Call call, CallMembership callMembership)
@@ -452,7 +452,7 @@ namespace SparkSDK
     /// <summary>
     /// The person in the membership left this call.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class CallMembershipLeftEvent : CallMembershipChangedEvent
     {
         internal CallMembershipLeftEvent(Call call, CallMembership callMembership)
@@ -463,7 +463,7 @@ namespace SparkSDK
     /// <summary>
     /// The person in the membership declined this call.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class CallMembershipDeclinedEvent : CallMembershipChangedEvent
     {
         internal CallMembershipDeclinedEvent(Call call, CallMembership callMembership)
@@ -474,7 +474,7 @@ namespace SparkSDK
     /// <summary>
     /// The person in the membership started sending video.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class CallMembershipSendingVideoEvent : CallMembershipChangedEvent
     {
         internal CallMembershipSendingVideoEvent(Call call, CallMembership callMembership)
@@ -485,7 +485,7 @@ namespace SparkSDK
     /// <summary>
     /// The person in the membership started sending audio.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class CallMembershipSendingAudioEvent : CallMembershipChangedEvent
     {
         internal CallMembershipSendingAudioEvent(Call call, CallMembership callMembership)
@@ -496,7 +496,7 @@ namespace SparkSDK
     /// <summary>
     /// The person in the membership started sharing.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class CallMembershipSendingShareEvent : CallMembershipChangedEvent
     {
         internal CallMembershipSendingShareEvent(Call call, CallMembership callMembership)
@@ -507,7 +507,7 @@ namespace SparkSDK
     /// <summary>
     /// The local party has left the call.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class LocalLeft : CallDisconnectedEvent
     {
         internal LocalLeft(Call call)
@@ -519,7 +519,7 @@ namespace SparkSDK
     /// The local party has declined the call.
     /// This is only applicable when the direction of the call is *incoming*.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class LocalDecline : CallDisconnectedEvent
     {
         internal LocalDecline(Call call)
@@ -531,7 +531,7 @@ namespace SparkSDK
     /// The local party has cancelled the call.
     /// This is only applicable when the direction of the call is *outgoing*.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class LocalCancel : CallDisconnectedEvent
     {
         internal LocalCancel(Call call)
@@ -542,7 +542,7 @@ namespace SparkSDK
     /// <summary>
     /// The remote party has left the call.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class RemoteLeft : CallDisconnectedEvent
     {
         internal RemoteLeft(Call call)
@@ -554,7 +554,7 @@ namespace SparkSDK
     /// The remote party has declined the call.
     /// This is only applicable when the direction of the call is *outgoing*.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class RemoteDecline : CallDisconnectedEvent
     {
         internal RemoteDecline(Call call)
@@ -566,7 +566,7 @@ namespace SparkSDK
     /// The remote party has cancelled the call.
     /// This is only applicable when the direction of the call is *incoming*.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class RemoteCancel : CallDisconnectedEvent
     {
         internal RemoteCancel(Call call)
@@ -578,7 +578,7 @@ namespace SparkSDK
     /// One of the other phones of the authenticated user has answered the call.
     /// This is only applicable when the direction of the call is *incoming*.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class OtherConnected : CallDisconnectedEvent
     {
         internal OtherConnected(Call call)
@@ -590,7 +590,7 @@ namespace SparkSDK
     /// One of the other phones of the authenticated user has declined the call.
     /// This is only applicable when the direction of the call is *incoming*.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class OtherDeclined : CallDisconnectedEvent
     {
         internal OtherDeclined(Call call)
@@ -602,7 +602,7 @@ namespace SparkSDK
     /// <summary>
     /// Unknown error
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class CallError : CallDisconnectedEvent
     {
         private SparkError error;
@@ -614,7 +614,7 @@ namespace SparkSDK
         /// <summary>
         /// <see cref="SparkError"/>
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public SparkError Error
         {
             get { return error; }
@@ -624,7 +624,7 @@ namespace SparkSDK
     /// <summary>
     /// The DTMF capability of this call.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class CapabilitieDTMF : Capabilities
     {
         private bool isEnabled;
@@ -636,7 +636,7 @@ namespace SparkSDK
         /// <summary>
         /// If True, this call can send and receive DTMF. Otherwise false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsEnabled
         {
             get { return isEnabled; }

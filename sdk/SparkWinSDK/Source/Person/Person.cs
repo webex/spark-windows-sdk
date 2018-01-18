@@ -30,37 +30,37 @@ namespace SparkSDK
     /// <summary>
     /// Person contents. 
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class Person
     {
         /// <summary>
         /// The id of this person.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Id { get; set; }
 
         /// <summary>
         /// The emails of this person.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public List<string> Emails { get; set; }
 
         /// <summary>
         /// The display name of this person.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string DisplayName { get; set; }
 
         /// <summary>
         /// The avatar name of this person.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Avatar { get; set; }
 
         /// <summary>
         /// The timestamp that this person being created.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public DateTime Created { get; set; }
     }
 }

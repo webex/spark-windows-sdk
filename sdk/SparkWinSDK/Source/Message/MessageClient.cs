@@ -32,7 +32,7 @@ namespace SparkSDK
     /// Messages are how we communicate in a room. In Spark, each message is displayed on its own line along with a timestamp and sender information. 
     /// Use this API to list, create, and delete messages. Message can contain plain text, rich text, and a file attachment.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class MessageClient
     {
         readonly IAuthenticator authenticator;
@@ -40,14 +40,14 @@ namespace SparkSDK
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageClient"/> class.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public MessageClient() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageClient"/> class.
         /// </summary>
         /// <param name="authenticator">The authenticator.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public MessageClient(IAuthenticator authenticator )
         {
             this.authenticator = authenticator;
@@ -73,7 +73,7 @@ namespace SparkSDK
         /// <param name="beforeMessage">if not null, only list messages sent only before this message by id.</param>
         /// <param name="max">The maximum number of messages in the response.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void List(string roomId, string before, string beforeMessage, int? max, Action<SparkApiEventArgs<List<Message>>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -94,7 +94,7 @@ namespace SparkSDK
         /// <param name="text">The plain text message to be posted to the room.</param>
         /// <param name="files">A public URL that Cisco Spark can use to fetch attachments. Currently supports only a single URL. Cisco Spark downloads the content from the URL one time shortly after the message is created and automatically converts it to a format that all Cisco Spark clients can render.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void PostToRoom(string roomId, string text, string files = null, Action<SparkApiEventArgs<Message>> completionHandler = null)
         {
             Post(roomId, null, null, text, files, completionHandler);
@@ -107,7 +107,7 @@ namespace SparkSDK
         /// <param name="text">The plain text message to post to the recipient.</param>
         /// <param name="files">A public URL that Cisco Spark can use to fetch attachments. Currently supports only a single URL. Cisco Spark  downloads the content from the URL one time shortly after the message is created and automatically converts it to a format that all Cisco Spark clients can render.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void PostToPersonByID(string toPersonId, string text, string files = null, Action<SparkApiEventArgs<Message>> completionHandler = null)
         {
             Post(null, toPersonId, null, text, files, completionHandler);
@@ -120,7 +120,7 @@ namespace SparkSDK
         /// <param name="text">The plain text message to post to the room.</param>
         /// <param name="files">A public URL that Spark can use to fetch attachments. Currently supports only a single URL. The Spark Cloud downloads the content one time shortly after the message is created and automatically converts it to a format that all Spark clients can render.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void PostToPerson(string toPersonEmail, string text, string files = null, Action<SparkApiEventArgs<Message>> completionHandler = null)
         {
             Post(null, null, toPersonEmail, text, files, completionHandler);
@@ -144,7 +144,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="messageId">The identifier of the message.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Get(string messageId, Action<SparkApiEventArgs<Message>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -159,7 +159,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="messageId">The identifier of the message.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Delete(string messageId, Action<SparkApiEventArgs> completionHandler)
         {
             ServiceRequest request = BuildRequest();

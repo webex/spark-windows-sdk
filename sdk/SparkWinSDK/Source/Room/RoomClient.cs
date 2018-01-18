@@ -32,7 +32,7 @@ namespace SparkSDK
     /// Class RoomClient contains APIs which are used to manage the rooms themselves. 
     /// Rooms are created and deleted with this API. You can also update a room to change its title 
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class RoomClient
     {
         readonly IAuthenticator authenticator;
@@ -41,7 +41,7 @@ namespace SparkSDK
         /// Initializes a new instance of the <see cref="RoomClient"/> class.
         /// </summary>
         /// <param name="authenticator">The authenticator.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public RoomClient(IAuthenticator authenticator )
         {
             this.authenticator = authenticator;
@@ -63,7 +63,7 @@ namespace SparkSDK
         /// <param name="max">The maximum number of rooms in the response. If null, all rooms are listed.</param>
         /// <param name="type">If not null, only list the rooms of this type. Otherwise all rooms are listed.</param>
         /// <param name="completionHandler">The completion handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void List(string teamId, int? max, RoomType? type, Action<SparkApiEventArgs<List<Room>>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -83,7 +83,7 @@ namespace SparkSDK
         /// <param name="title">A user-friendly name for the room.</param>
         /// <param name="teamId">If not null, this room will be associated with the team by team id. Otherwise, this room is not associated with any team.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Create( string title, string teamId, Action<SparkApiEventArgs<Room>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -99,7 +99,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="roomId">The identifier of the room.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Get(string roomId, Action<SparkApiEventArgs<Room>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -115,7 +115,7 @@ namespace SparkSDK
         /// <param name="roomId">The identifier of the room.</param>
         /// <param name="title">A user-friendly name for the room.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Update(string roomId, string title, Action<SparkApiEventArgs<Room>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -131,7 +131,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="roomId">The identifier of the room.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Delete(string roomId, Action<SparkApiEventArgs> completionHandler)
         {
             ServiceRequest request = BuildRequest();

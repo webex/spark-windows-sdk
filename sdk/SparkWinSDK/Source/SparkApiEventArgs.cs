@@ -33,7 +33,7 @@ namespace SparkSDK
     /// Represents the Spark SDK api event args.
     /// </summary>
     /// <seealso cref="System.EventArgs" />
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class SparkApiEventArgs : EventArgs
     {
         protected readonly bool isSuccess;
@@ -42,7 +42,7 @@ namespace SparkSDK
         /// <summary>
         /// Initializes a new instance of the <see cref="SparkApiEventArgs"/> class.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public SparkApiEventArgs() : this(false, null)
         {
 
@@ -53,7 +53,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="isSuccess">if set to <c>true</c> [success].</param>
         /// <param name="error">The error value if the successis is false, `null` otherwise. <see cref="SparkError"/></param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public SparkApiEventArgs(bool isSuccess, SparkError error)
         {
             this.isSuccess = isSuccess;
@@ -66,7 +66,7 @@ namespace SparkSDK
         /// <value>
         ///   <c>true</c> if success; otherwise, <c>false</c>.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSuccess
         {
             get { return this.isSuccess; }
@@ -78,7 +78,7 @@ namespace SparkSDK
         /// <value>
         /// The error.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public SparkError Error
         {
             get { return this.error; }
@@ -89,7 +89,7 @@ namespace SparkSDK
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <seealso cref="SparkApiEventArgs" />
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class SparkApiEventArgs<T> : SparkApiEventArgs
     {
         private readonly T data;
@@ -97,7 +97,7 @@ namespace SparkSDK
         /// <summary>
         /// Initializes a new instance of the <see cref="SparkApiEventArgs{T}"/> class.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public SparkApiEventArgs() : this(false, null, default(T))
         {
         }
@@ -108,20 +108,20 @@ namespace SparkSDK
         /// <param name="isSuccess">if set to <c>true</c> [success].</param>
         /// <param name="error">The error value if the successis is false, `null` otherwise. <see cref="SparkError"/></param>
         /// <param name="data">The data if the successis is true, 'null' otherwise.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public SparkApiEventArgs(bool isSuccess, SparkError error, T data):base(isSuccess,error)
         {
             this.data = data;
         }
 
         /// <summary>
-        /// Gets the data, if the success is true, otherwise is null.
+        /// Gets the data, if the success is true, otherwise is default value of T type.
         /// The type of data is T.
         /// </summary>
         /// <value>
         /// The data.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public T Data
         {
             get { return this.data; }

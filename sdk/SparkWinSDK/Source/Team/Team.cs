@@ -30,25 +30,25 @@ namespace SparkSDK
     /// <summary>
     /// A data type represents a Team at Cisco Spark cloud.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class Team
     {
         /// <summary>
         /// The identifier of this team.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Id { get; set; }
 
         /// <summary>
         /// The name of this team
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Name { get; set; }
 
         /// <summary>
         /// The timestamp that this team being created.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public DateTime Created { get; set; }
     }
 }

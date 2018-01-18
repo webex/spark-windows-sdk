@@ -31,42 +31,42 @@ namespace SparkSDK
     /// <summary>
     /// A protocol for logging in the SDK.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public interface ILogger
     {
         /// <summary>
         /// log a message.
         /// </summary>
         /// <param name="msg">the mesage to be logged</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         void Log(string msg);
     }
 
     /// <summary>
     /// The enumeration of log message level.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public enum LogLevel
     {
         /// <summary>
         /// this is a trace message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Trace = 1,
         /// <summary>
         /// this is a detail message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Detail = 2,
         /// <summary>
         /// this is a debug message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Debug = 3,
         /// <summary>
         /// this is an infomation message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Info = 4,
         /// <summary>
         /// this is a warning message.
@@ -75,7 +75,7 @@ namespace SparkSDK
         /// <summary>
         /// this is an error message.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Error = 6,
     }
 

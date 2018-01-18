@@ -76,7 +76,7 @@ namespace SparkSDK
                 {
                     string httpRspMsg = response.StatusCode + ":" + response.StatusDescription;
                     SDKLogger.Instance.Error($"http response error: {httpRspMsg}");
-                    completedhandler?.Invoke(new SparkApiEventArgs<T>(false, new SparkError(SparkErrorCode.serviceFailed, httpRspMsg), default(T)));
+                    completedhandler?.Invoke(new SparkApiEventArgs<T>(false, new SparkError(SparkErrorCode.ServiceFailed, httpRspMsg), default(T)));
                     return;
                 }
 

@@ -31,7 +31,7 @@ namespace SparkSDK
     /// <summary>
     /// WebhookClient allow your app to be notified via HTTP when a specific event occurs on Spark. For example, your app can register a webhook to be notified when a new message is posted into a specific room
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class WebhookClient
     {
         readonly IAuthenticator authenticator;
@@ -40,7 +40,7 @@ namespace SparkSDK
         /// Initializes a new instance of the <see cref="WebhookClient"/> class.
         /// </summary>
         /// <param name="authenticator">The authenticator.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public WebhookClient(IAuthenticator authenticator)
         {
             this.authenticator = authenticator;
@@ -60,7 +60,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="max">The maximum number of webhooks in the response.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void List(int? max, Action<SparkApiEventArgs<List<Webhook>>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -81,7 +81,7 @@ namespace SparkSDK
         /// <param name="filter">The filter that defines the webhook scope.</param>
         /// <param name="secret">Secret use to generate payload signiture</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Create(string name, string targetUrl, string resource, string eventType, string filter, string secret, Action<SparkApiEventArgs<Webhook>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -101,7 +101,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="webhookId">The identifier of  the webhook.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Get(string webhookId, Action<SparkApiEventArgs<Webhook>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -118,7 +118,7 @@ namespace SparkSDK
         /// <param name="name">A user-friendly name for this webhook.</param>
         /// <param name="targetUrl">The URL that receives POST requests for each event.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Update(string webhookId, string name, string targetUrl, Action<SparkApiEventArgs<Webhook>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -135,7 +135,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="webhookId">The identifier of  the webhook.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Delete(string webhookId, Action<SparkApiEventArgs> completionHandler)
         {
             ServiceRequest request = BuildRequest();

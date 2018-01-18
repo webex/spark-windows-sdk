@@ -31,7 +31,7 @@ namespace SparkSDK
     /// Class TeamClient contains APIs which are used to manage the teams themselves. 
     /// Teams are created and deleted with this API. You can also update a team to change its title 
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class TeamClient
     {
         readonly IAuthenticator authenticator;
@@ -40,7 +40,7 @@ namespace SparkSDK
         /// Initializes a new instance of the <see cref="TeamClient"/> class.
         /// </summary>
         /// <param name="authenticator">The authenticator.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public TeamClient(IAuthenticator authenticator)
         {
             this.authenticator = authenticator;
@@ -60,7 +60,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="max">The maximum number of teams in the response. if null, list all teams.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void List(int? max, Action<SparkApiEventArgs<List<Team>>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -77,7 +77,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="name">A user-friendly name for the team.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Create(string name, Action<SparkApiEventArgs<Team>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -93,7 +93,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="teamId">The identifier of the team.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Get(string teamId, Action<SparkApiEventArgs<Team>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -109,7 +109,7 @@ namespace SparkSDK
         /// <param name="teamId">The team id.</param>
         /// <param name="name">A user-friendly name for the team.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Update(string teamId, string name, Action<SparkApiEventArgs<Team>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -125,7 +125,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="teamId">The team id.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Delete(string teamId, Action<SparkApiEventArgs> completionHandler)
         {
             ServiceRequest request = BuildRequest();

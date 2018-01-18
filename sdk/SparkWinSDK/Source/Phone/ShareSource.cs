@@ -31,71 +31,71 @@ namespace SparkSDK
     /// <summary>
     /// share source types.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public enum ShareSourceType
     {
         /// <summary>
         /// unknown type.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Unknown = 0,
         /// <summary>
         /// share the whole desktop.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Desktop = 1,
         /// <summary>
         /// share an application.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Application = 2,
         /// <summary>
         /// share a scope of content.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Content = 3
     }
 
     /// <summary>
     /// Share source.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class ShareSource
     {
         /// <summary>
         /// the source ID.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string SourceId;
         /// <summary>
         /// the name of the shared source.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Name;
         /// <summary>
         /// if this source has sharrd.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsShared;
         /// <summary>
         /// the width of the scope of the content
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public int Width;
         /// <summary>
         /// the height of the scope of the content.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public int Height;
         /// <summary>
         /// the position of the start point.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public int X;
         /// <summary>
         /// the position of the start point.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public int Y;
     }
 }

@@ -25,26 +25,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+/// <summary>
+/// The Cisco Spark Windows SDK makes it easy to integrate secure and convenient Cisco Spark messaging and calling features in your apps.
+/// </summary>
 namespace SparkSDK
 {
     /// <summary>
     /// Spark object is the entry point to use this Cisco Spark .Net SDK. A Spark object must be created with one of the following Authenticator.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class Spark
     {
 
         /// <summary>
         /// The version number of this Cisco Spark .Net SDK. 
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public const string Version = "0.1.0";
 
 
         /// <summary>
         /// The logger for this SDK.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public ILogger Logger
         {
             set { SDKLogger.Instance.Logger = value; }
@@ -56,7 +59,7 @@ namespace SparkSDK
         /// <value>
         /// The log level.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public LogLevel ConsoleLogger
         {
             get { return SDKLogger.Instance.Console; }
@@ -67,7 +70,7 @@ namespace SparkSDK
         /// This is the Authenticator object from the application when constructing this Spark object.
         /// It can be used to check and modify authentication state. 
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public IAuthenticator Authenticator
         {
             get;
@@ -77,12 +80,12 @@ namespace SparkSDK
 
         /// <summary>
         /// Gets the phone, which is an instance of <see cref="Phone"/>.
-        /// Phone represents a calling device in Cisco Spark iOS SDK.
+        /// Phone represents a calling device in Cisco Spark Windows SDK.
         /// </summary>
         /// <value>
         /// The phone.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public Phone Phone
         {
             get { return Phone.GetInstance(Authenticator); }
@@ -96,7 +99,7 @@ namespace SparkSDK
         /// <value>
         /// The rooms.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public RoomClient Rooms
         {
             get { return new RoomClient(Authenticator); }
@@ -110,7 +113,7 @@ namespace SparkSDK
         /// <value>
         /// The people.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public PersonClient People
         {
             get { return new PersonClient(Authenticator); }
@@ -127,7 +130,7 @@ namespace SparkSDK
         /// </value>
         /// - see: Rooms API about how to manage rooms.
         /// - see: Messages API about how post or otherwise manage the content in a room.
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public MembershipClient Memberships
         {
             get { return new MembershipClient(Authenticator); }
@@ -143,7 +146,7 @@ namespace SparkSDK
         /// </value>
         /// - see: Rooms API about how to manage rooms.
         /// - see: Memberships API about how to manage people in a room.
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public MessageClient Messages
         {
             get { return new MessageClient(Authenticator); }
@@ -158,7 +161,7 @@ namespace SparkSDK
         /// </value>
         /// <example>a new message is posted into a specific room.</example>
         /// Use Webhooks to create and manage the webhooks for specific events.
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public WebhookClient Webhooks
         {
             get { return new WebhookClient(Authenticator); }
@@ -174,7 +177,7 @@ namespace SparkSDK
         /// </value>
         /// - see: Team Memberships API about how to manage people in a team.
         /// - see: Memberships API about how to manage people in a room.
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public TeamClient Teams
         {
             get { return new TeamClient(Authenticator); }
@@ -190,7 +193,7 @@ namespace SparkSDK
         /// </value>
         /// - see: Teams API about how to manage teams.
         /// - see: Rooms API about how to manage rooms.
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public TeamMembershipClient TeamMemberships
         {
             get { return new TeamMembershipClient(Authenticator); }
@@ -202,7 +205,7 @@ namespace SparkSDK
         /// Initializes a new instance of the <see cref="Spark"/>,with an Authenticator class.
         /// </summary>
         /// <param name="authenticator">The authenticator strategy for this SDK</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public Spark(IAuthenticator authenticator)
         {
             this.Authenticator = authenticator;
@@ -211,7 +214,7 @@ namespace SparkSDK
 
     }
 
-    class SCFCore
+    internal class SCFCore
     {
         private static volatile SCFCore instance = null;
         private static readonly object lockHelper = new object();

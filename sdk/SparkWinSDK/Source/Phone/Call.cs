@@ -32,7 +32,7 @@ namespace SparkSDK
     /// A Call represents a media call on Cisco Spark.
     /// The application can create an outgoing call by calling phone.dial function.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class Call
     {
         internal string CallId { get; set; }
@@ -95,71 +95,71 @@ namespace SparkSDK
         /// <summary>
         /// The enumeration of directions of a call
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public enum CallDirection
         {
             /// <summary>
             /// The local party is a recipient of the call.
             /// </summary>
-            /// Since: 0.1.0
+            /// <remarks>Since: 0.1.0</remarks>
             Incoming,
 
             /// <summary>
             /// The local party is an initiator of the call.
             /// </summary>
-            /// Since: 0.1.0
+            /// <remarks>Since: 0.1.0</remarks>
             Outgoing
         }
 
         /// <summary>
         /// video render view dimensions.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public struct VideoDimensions
         {
             /// <summary>
             /// the width of the video render view dimensions.
             /// </summary>
-            /// Since: 0.1.0
+            /// <remarks>Since: 0.1.0</remarks>
             public uint Width;
             /// <summary>
             /// the height of video render view dimensions.
             /// </summary>
-            /// Since: 0.1.0
+            /// <remarks>Since: 0.1.0</remarks>
             public uint Height;
         }
 
         /// <summary>
         /// Callback when remote participant(s) is ringing.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public event Action<Call> OnRinging;
         /// <summary>
         /// Callback when remote participant(s) answered and this call is connected.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public event Action<Call> OnConnected;
         /// <summary>
         /// Callback when this call is disconnected (hangup, cancelled, get declined or other self device pickup the call).
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public event Action<CallDisconnectedEvent> OnDisconnected;
 
         /// <summary>
         /// Callback when the memberships of this call have changed.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public event Action<CallMembershipChangedEvent> OnCallMembershipChanged;
         /// <summary>
         /// Callback when the media types of this call have changed.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public event Action<MediaChangedEvent> OnMediaChanged;
 
         /// <summary>
         /// Callback when the capabilities of this call have changed.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public event Action<Capabilities> OnCapabilitiesChanged;
 
 
@@ -171,7 +171,7 @@ namespace SparkSDK
         /// <value>
         /// The status. <see cref="CallStatus"/>
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public CallStatus Status
         {
             get { return this.status; }
@@ -189,7 +189,7 @@ namespace SparkSDK
         /// <value>
         /// The direction. <see cref="CallDirection"/>
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public CallDirection Direction
         {
             get { return this.direction; }
@@ -211,7 +211,7 @@ namespace SparkSDK
         /// <value>
         ///   <c>true</c> if [sending DTMF enabled]; otherwise, <c>false</c>.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSendingDTMFEnabled
         {
             get
@@ -231,7 +231,7 @@ namespace SparkSDK
         /// <value>
         ///   <c>true</c> if [remote sending video]; otherwise, <c>false</c>.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsRemoteSendingVideo
         {
             get
@@ -247,7 +247,7 @@ namespace SparkSDK
         /// <value>
         ///   <c>true</c> if [remote sending audio]; otherwise, <c>false</c>.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsRemoteSendingAudio
         {
             get
@@ -260,7 +260,7 @@ namespace SparkSDK
         /// <summary>
         /// True if the remote party of this call is sending  share. Otherwise, false.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsRemoteSendingShare
         {
             get
@@ -276,7 +276,7 @@ namespace SparkSDK
         /// <value>
         ///   <c>true</c> if [sending video]; otherwise, <c>false</c>.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSendingVideo
         {
             get
@@ -297,7 +297,7 @@ namespace SparkSDK
         /// <value>
         ///   <c>true</c> if [sending audio]; otherwise, <c>false</c>.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsSendingAudio
         {
             get
@@ -318,7 +318,7 @@ namespace SparkSDK
         /// <value>
         ///   <c>true</c> if [receiving video]; otherwise, <c>false</c>.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsReceivingVideo
         {
             get
@@ -339,7 +339,7 @@ namespace SparkSDK
         /// <value>
         ///   <c>true</c> if [receiving audio]; otherwise, <c>false</c>.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsReceivingAudio
         {
             get
@@ -360,7 +360,7 @@ namespace SparkSDK
         /// <value>
         ///   <c>true</c> if [receiving  share]; otherwise, <c>false</c>.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsReceivingShare
         {
             get
@@ -378,7 +378,7 @@ namespace SparkSDK
         /// <summary>
         /// The local video render view dimensions (points) of this call.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public VideoDimensions LocalVideoViewSize
         {
             get
@@ -394,7 +394,7 @@ namespace SparkSDK
         /// <summary>
         /// The remote video render view dimensions (points) of this call.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public VideoDimensions RemoteVideoViewSize
         {
             get
@@ -410,7 +410,7 @@ namespace SparkSDK
         /// <summary>
         /// The remote share render view dimensions (points) of this call.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public VideoDimensions RemoteShareViewSize
         {
             get
@@ -429,7 +429,7 @@ namespace SparkSDK
         /// <value>
         /// The memberships.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public List<CallMembership> Memberships
         {
             get { return memberships; }
@@ -443,7 +443,7 @@ namespace SparkSDK
         /// <value>
         /// The membership.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public CallMembership From
         {
             get
@@ -461,7 +461,7 @@ namespace SparkSDK
         /// <value>
         /// The membership.
         /// </value>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public CallMembership To {
             get
             {
@@ -484,7 +484,7 @@ namespace SparkSDK
         /// Will cause the initiator's Call instance to emit the ringing event.
         /// </summary>
         /// <param name="completedHandler">The completed event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Acknowledge(Action<SparkApiEventArgs> completedHandler)
         {
             SDKLogger.Instance.Info($"[{CallId}]");
@@ -499,19 +499,19 @@ namespace SparkSDK
         /// </summary>
         /// <param name="option">Intended media options - audio only or audio and video - for the call.</param>
         /// <param name="completedHandler">The completed event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Answer(MediaOption option, Action<SparkApiEventArgs> completedHandler)
         {
             if (Direction != CallDirection.Incoming)
             {
                 SDKLogger.Instance.Error($"[{CallId}]: Failure: Unsupport function for outgoing call.");
-                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.illegalOperation, "Unsupport function for outgoing call")));
+                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.IllegalOperation, "Unsupport function for outgoing call")));
             }
 
             if (Status > CallStatus.Ringing)
             {
                 SDKLogger.Instance.Error($"[{CallId}]: Already connected, status:{Status.ToString()}");
-                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.illegalStatus, "Already connected")));
+                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.IllegalStatus, "Already connected")));
             }
             SDKLogger.Instance.Info($"[{CallId}]: mediaOption:{option.MediaOptionType.ToString()}");
 
@@ -544,19 +544,19 @@ namespace SparkSDK
         /// This can only be invoked when this call is incoming and in ringing status.
         /// </summary>
         /// <param name="completedHandler">The completed event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Reject(Action<SparkApiEventArgs> completedHandler)
         {
             if (Direction != CallDirection.Incoming)
             {
                 SDKLogger.Instance.Error($"[{CallId}]: Unsupport function for outgoing call");
-                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.illegalOperation, "Unsupport function for outgoing call")));
+                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.IllegalOperation, "Unsupport function for outgoing call")));
             }
 
             if (Status > CallStatus.Ringing)
             {
                 SDKLogger.Instance.Error($"[{CallId}]: Already connected");
-                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.illegalStatus, "Already connected")));
+                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.IllegalStatus, "Already connected")));
             }
 
             SDKLogger.Instance.Info($"{CallId}");
@@ -571,13 +571,13 @@ namespace SparkSDK
         /// This can only be invoked when this call is in answered status.
         /// </summary>
         /// <param name="completedHandler">The completed event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Hangup(Action<SparkApiEventArgs> completedHandler)
         {
             if (Status == CallStatus.Disconnected)
             {
                 SDKLogger.Instance.Error($"[{CallId}]: Already disconnected");
-                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.illegalStatus, "Already disconnected")));
+                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.IllegalStatus, "Already disconnected")));
             }
 
             SDKLogger.Instance.Info($"{CallId}");
@@ -593,7 +593,7 @@ namespace SparkSDK
         /// <param name="rating">The rating of the quality of this call between 1 and 5 where 5 means excellent quality.</param>
         /// <param name="comments">The comments for this call.</param>
         /// <param name="includeLogs">if set to <c>true</c> [include logs], default is false.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void SendFeedbackWith(int rating, string comments = null, bool includeLogs = false)
         {
             SDKLogger.Instance.Debug($"rating[{rating}], comments[{comments}], includeLogs[{includeLogs}]");
@@ -605,21 +605,21 @@ namespace SparkSDK
         /// </summary>
         /// <param name="dtmf">any combination of valid DTMF events matching regex mattern "^[0-9#\*abcdABCD]+$"</param>
         /// <param name="completedHandler">The completed event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void SendDtmf(string dtmf, Action<SparkApiEventArgs> completedHandler)
         {
             string strValidDtmf = "";
             if (IsSendingDTMFEnabled != true)
             {
                 SDKLogger.Instance.Info($"this call[{CallId}] is not support dtmf");
-                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.unsupportedDTMF,"")));
+                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.UnsupportedDTMF,"")));
                 return;
             }
             SDKLogger.Instance.Info($"{CallId}");
             strValidDtmf = m_core_telephoneService.sendDTMF(this.CallId, dtmf);
             if (strValidDtmf != dtmf)
             {
-                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.invalidDTMF,"")));
+                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.InvalidDTMF,"")));
                 return;
             }
             completedHandler?.Invoke(new SparkApiEventArgs(true, null));
@@ -629,7 +629,7 @@ namespace SparkSDK
         /// Set remote video to display
         /// </summary>
         /// <param name="handle"> the video dispaly window handle</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void SetRemoteView(IntPtr handle)
         {
             SDKLogger.Instance.Debug($"handle:{handle}");
@@ -640,7 +640,7 @@ namespace SparkSDK
         /// Set local view to display.
         /// </summary>
         /// <param name="handle">the local video dispaly window handle</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void SetLocalView(IntPtr handle)
         {
             SDKLogger.Instance.Debug($"handle:{handle}");
@@ -651,7 +651,7 @@ namespace SparkSDK
         /// Set local share view to display.
         /// </summary>
         /// <param name="handle">the local share dispaly window handle</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         //public void SetLoalShareView(IntPtr handle)
         //{
         //    SDKLogger.Instance.Debug($"handle:{handle}");
@@ -662,7 +662,7 @@ namespace SparkSDK
         /// Set remote share view to display.
         /// </summary>
         /// <param name="handle">the remote share dispaly window handle</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void SetRemoteShareView(IntPtr handle)
         {
             SDKLogger.Instance.Debug($"handle:{handle}");
@@ -673,7 +673,7 @@ namespace SparkSDK
         /// Update remote video to display when video window is resized.
         /// </summary>
         /// <param name="handle"> the video dispaly window handle</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void UpdateRemoteView(IntPtr handle)
         {
             SDKLogger.Instance.Debug($"handle:{handle}");
@@ -684,7 +684,7 @@ namespace SparkSDK
         /// Update local view to display when video window is resized.
         /// </summary>
         /// <param name="handle">the local video dispaly window handle</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void UpdateLocalView(IntPtr handle)
         {
             SDKLogger.Instance.Debug($"handle:{handle}");
@@ -695,7 +695,7 @@ namespace SparkSDK
         /// Update local share view to display when video window is resized.
         /// </summary>
         /// <param name="handle">the local share dispaly window handle</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         //public void UpdateLoalShareView(IntPtr handle)
         //{
         //    SDKLogger.Instance.Debug($"handle:{handle}");
@@ -706,7 +706,7 @@ namespace SparkSDK
         /// Update remote share view to display when video window is resized.
         /// </summary>
         /// <param name="handle">the remote share dispaly window handle</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void UpdateRemoteShareView(IntPtr handle)
         {
             SDKLogger.Instance.Debug($"handle:{handle}");
@@ -719,7 +719,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="sourceType">share source type.</param>
         /// <param name="completedHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         //public void SelectShareSource(ShareSourceType sourceType, Action<SparkApiEventArgs<List<ShareSource>>> completedHandler)
         //{
         //    if (Status != CallStatus.Connected)
@@ -741,7 +741,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="source">the selected share source</param>
         /// <param name="completedHandler">The completed event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         //public void StartShare(ShareSource source, Action<SparkApiEventArgs> completedHandler)
         //{
         //    if (Status != CallStatus.Connected)
@@ -766,7 +766,7 @@ namespace SparkSDK
         /// Stop share .
         /// </summary>
         /// <param name="completedHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         //public void StopShare(Action<SparkApiEventArgs> completedHandler)
         //{
         //    if (Status != CallStatus.Connected)

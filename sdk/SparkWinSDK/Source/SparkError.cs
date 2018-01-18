@@ -31,15 +31,15 @@ namespace SparkSDK
     /// <summary>
     /// A data type represents a error.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class SparkError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SparkError"/> class.
-        /// <param name="errorCode"><see cref="ErrorCode"/></param>
-        /// <param name="reason">the detail reason of the error.</param>
         /// </summary>
-        /// Since: 0.1.0
+        /// <param name="errorCode"><see cref="SparkErrorCode"/></param>
+        /// <param name="reason">the detail reason of the error.</param>
+        /// <remarks>Since: 0.1.0</remarks>
         public SparkError(SparkErrorCode errorCode, string reason)
         {
             this.ErrorCode = errorCode;
@@ -47,9 +47,9 @@ namespace SparkSDK
         }
 
         /// <summary>
-        /// The error code <see cref="ErrorCode"/>
+        /// The error code <see cref="SparkErrorCode"/>
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public SparkErrorCode ErrorCode
         {
             get;
@@ -59,7 +59,7 @@ namespace SparkSDK
         /// <summary>
         /// The reason of error.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Reason
         {
             get;
@@ -70,44 +70,44 @@ namespace SparkSDK
     /// <summary>
     /// The enumeration of error types.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public enum SparkErrorCode
     {
 
         /// <summary>
         /// A service request to Cisco Spark cloud has failed.
         /// </summary>
-        /// Since: 0.1.0
-        serviceFailed,
+        /// <remarks>Since: 0.1.0</remarks>
+        ServiceFailed,
         /// <summary>
         /// The Phone has not been registered.
         /// </summary>
-        /// Since: 0.1.0
-        unregistered,
+        /// <remarks>Since: 0.1.0</remarks>
+        Unregistered,
         /// <summary>
         /// The media requires H.264 codec.
         /// </summary>
-        /// Since: 0.1.0
-        requireH264,
+        /// <remarks>Since: 0.1.0</remarks>
+        RequireH264,
         /// <summary>
         /// The DTMF is invalid.
         /// </summary>
-        /// Since: 0.1.0
-        invalidDTMF,
+        /// <remarks>Since: 0.1.0</remarks>
+        InvalidDTMF,
         /// <summary>
         /// The DTMF is unsupported.
         /// </summary>
-        /// Since: 0.1.0
-        unsupportedDTMF,
+        /// <remarks>Since: 0.1.0</remarks>
+        UnsupportedDTMF,
         /// <summary>
         /// The service request is illegal.
         /// </summary>
-        /// Since: 0.1.0
-        illegalOperation,
+        /// <remarks>Since: 0.1.0</remarks>
+        IllegalOperation,
         /// <summary>
         /// The service is in an illegal status.
         /// </summary>
-        /// Since: 0.1.0
-        illegalStatus,
+        /// <remarks>Since: 0.1.0</remarks>
+        IllegalStatus,
     }
 }

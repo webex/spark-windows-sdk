@@ -34,8 +34,8 @@ namespace SparkSDK
     /// A [JSON Web Token](https://jwt.io/introduction) (JWT) based authentication strategy
     /// is to be used to authenticate a guest user on Cisco Spark. 
     /// </summary>
-    /// <seealso cref="SparkSDK.Authenticator" />
-    /// Since: 0.1.0
+    /// <seealso cref="IAuthenticator" />
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class JWTAuthenticator : IAuthenticator
     {
         private bool hasRegsterToCore = false;
@@ -52,7 +52,7 @@ namespace SparkSDK
         /// <summary>
         /// Initializes a new instance of the <see cref="JWTAuthenticator"/> class.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public JWTAuthenticator()
         {
             this.hasRegsterToCore = false;
@@ -93,7 +93,7 @@ namespace SparkSDK
         /// further user interaction.
         /// </summary>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Authorized(Action<SparkApiEventArgs> completionHandler)
         {
             if (SCFCore.Instance.m_core.getValue("jwtKey", ref this.jwt) == false
@@ -109,9 +109,9 @@ namespace SparkSDK
         /// <summary>
         /// JWT Authenticate
         /// </summary>
-        /// <param name="jwt"></param>
-        /// <param name="completionHandler"></param>
-        /// Since: 0.1.0
+        /// <param name="jwt">The new JSON Web Token to use</param>
+        /// <param name="completionHandler">The completion event handler.</param>
+        /// <remarks>Since: 0.1.0</remarks>
         public void AuthorizeWith(string jwt, Action<SparkApiEventArgs> completionHandler = null)
         {
             // store jwt
@@ -148,7 +148,7 @@ namespace SparkSDK
         /// <summary>
         /// Deauthorizes the current user and clears any persistent state with regards to the current user.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Deauthorize()
         {
             jwtAccessTokenStore = null;
@@ -166,7 +166,7 @@ namespace SparkSDK
         /// If the access token could not be retrieved then the completion handler will be called with null.
         /// </summary>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void AccessToken(Action<SparkApiEventArgs<string>> completionHandler)
         {
             // access token is valid now, just return it.

@@ -33,7 +33,7 @@ namespace SparkSDK
     /// Viewing the list of all People in your Organization requires an administrator auth token with spark-admin:people_read scope. 
     /// Adding, updating, and removing People requires an administrator auth token with the spark-admin:people_write scope.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class PersonClient
     {
         readonly IAuthenticator authenticator;
@@ -42,7 +42,7 @@ namespace SparkSDK
         /// Initializes a new instance of the <see cref="PersonClient"/> class.
         /// </summary>
         /// <param name="authenticator">The authenticator.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public PersonClient(IAuthenticator authenticator)
         {
             this.authenticator = authenticator;
@@ -64,7 +64,7 @@ namespace SparkSDK
         /// <param name="displayName">if not null, only list people whose name starts with this string.</param>
         /// <param name="max">The maximum number of people in the response.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void List(string email, string displayName, int? max, Action<SparkApiEventArgs<List<Person>>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -82,7 +82,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="personId">The identifier of the person.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Get(string personId, Action<SparkApiEventArgs<Person>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -95,7 +95,7 @@ namespace SparkSDK
         /// Retrieves the details for the authenticated user.
         /// </summary>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void GetMe(Action<SparkApiEventArgs<Person>> completionHandler)
         {
             ServiceRequest request = BuildRequest();

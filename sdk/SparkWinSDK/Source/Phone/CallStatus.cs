@@ -30,33 +30,33 @@ namespace SparkSDK
     /// <summary>
     /// The status of a Call. 
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public enum CallStatus
     {
         /// <summary>
         /// For the outgoing call, the call has dialed.
         /// For the incoming call, the call has received.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Initiated,
 
         /// <summary>
         /// For the outgoing call, the call is ringing the remote party.
         /// For the incoming call, the call is ringing the local party.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Ringing,
 
         /// <summary>
         /// The call is answered.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Connected,
 
         /// <summary>
         /// The call is terminated.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Disconnected,
     }
 }

@@ -33,7 +33,7 @@ namespace SparkSDK
     /// Use this API to list members of any room that you're in or create memberships to invite someone to a room. 
     /// Memberships can also be updated to make someome a moderator or deleted to remove them from the room.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class MembershipClient
     {
         readonly IAuthenticator authenticator;
@@ -42,7 +42,7 @@ namespace SparkSDK
         /// Initializes a new instance of the <see cref="MembershipClient"/> class.
         /// </summary>
         /// <param name="authenticator">The authenticator.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public MembershipClient(IAuthenticator authenticator)
         {
             this.authenticator = authenticator;
@@ -62,7 +62,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="max">The maximum number of items in the response.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void List(int? max, Action<SparkApiEventArgs<List<Membership>>> completionHandler)
         {
             List(null,null,null,max, completionHandler);
@@ -74,7 +74,7 @@ namespace SparkSDK
         /// <param name="roomId">The identifier of the room where the membership belongs.</param>
         /// <param name="max">The maximum number of memberships in the response.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void List(string roomId, int? max, Action<SparkApiEventArgs<List<Membership>>> completionHandler)
         {
             List(roomId, null, null, max, completionHandler);
@@ -86,7 +86,7 @@ namespace SparkSDK
         /// <param name="roomId">The identifier of the room where the memberships belong.</param>
         /// <param name="personId">The identifier of the person who has the memberships.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void ListByPersonId(string roomId, string personId, Action<SparkApiEventArgs<List<Membership>>> completionHandler)
         {
             List(roomId, personId, null, null, completionHandler);
@@ -98,7 +98,7 @@ namespace SparkSDK
         /// <param name="roomId">The identifier of the room where the memberships belong.</param>
         /// <param name="personEmail">The email address of the person who has the memberships.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void ListByPersonEmail(string roomId, string personEmail, Action<SparkApiEventArgs<List<Membership>>> completionHandler)
         {
             List(roomId, null, personEmail, null, completionHandler);
@@ -126,7 +126,7 @@ namespace SparkSDK
         /// <param name="personId">The identifier of the person to be added.</param>
         /// <param name="isModerator">if set to <c>true</c> [is moderator of the room]. The default is false.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void CreateByPersonId(string roomId, string personId, bool? isModerator = false, Action<SparkApiEventArgs<Membership>> completionHandler = null)
         {
             ServiceRequest request = BuildRequest();
@@ -145,7 +145,7 @@ namespace SparkSDK
         /// <param name="personEmail">The email address of the person to be added.</param>
         /// <param name="isModerator">if set to <c>true</c> [is moderator of the room]. The default is false.</param>
         /// <param name="completionHandler">The completion handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void CreateByPersonEmail(string roomId, string personEmail, bool? isModerator = false, Action<SparkApiEventArgs<Membership>> completionHandler = null)
         {
             ServiceRequest request = BuildRequest();
@@ -162,7 +162,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="membershipId">The identifier of the membership.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Get(string membershipId, Action<SparkApiEventArgs<Membership>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -178,7 +178,7 @@ namespace SparkSDK
         /// <param name="membershipId">The identifier of the membership.</param>
         /// <param name="isModerator">if set to <c>true</c> [is moderator of the room]. The default is false.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Update(string membershipId, bool? isModerator, Action<SparkApiEventArgs<Membership>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -194,7 +194,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="membershipId">The identifier of the membership.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Delete(string membershipId, Action<SparkApiEventArgs> completionHandler)
         {
             ServiceRequest request = BuildRequest();

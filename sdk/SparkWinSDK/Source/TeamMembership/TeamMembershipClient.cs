@@ -33,7 +33,7 @@ namespace SparkSDK
     /// Use this API to list members of any team that you're in or create memberships to invite someone to a team. 
     /// Team memberships can also be updated to make someone a moderator or deleted to remove them from the team. 
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class TeamMembershipClient
     {
         readonly IAuthenticator authenticator;
@@ -42,7 +42,7 @@ namespace SparkSDK
         /// Initializes a new instance of the <see cref="TeamMembershipClient"/> class.
         /// </summary>
         /// <param name="authenticator">The authenticator.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public TeamMembershipClient(IAuthenticator authenticator)
         {
             this.authenticator = authenticator;
@@ -63,7 +63,7 @@ namespace SparkSDK
         /// <param name="teamId">Limit results to a specific team, by ID.</param>
         /// <param name="max">The maximum number of team memberships in the response.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void List(string teamId, int? max, Action<SparkApiEventArgs<List<TeamMembership>>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -83,7 +83,7 @@ namespace SparkSDK
         /// <param name="personId">The identifier of the person.</param>
         /// <param name="isModerator">if set to <c>true</c> [is moderator of the team]. The default is false.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void CreateById(string teamId, string personId, bool? isModerator = false, Action<SparkApiEventArgs<TeamMembership>> completionHandler = null)
         {
             ServiceRequest request = BuildRequest();
@@ -102,7 +102,7 @@ namespace SparkSDK
         /// <param name="personEmail">The email address of the person.</param>
         /// <param name="isModerator">if set to <c>true</c> [is moderator of the team]. The default is false.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void CreateByEmail(string teamId, string personEmail, bool? isModerator = false, Action<SparkApiEventArgs<TeamMembership>> completionHandler = null)
         {
             ServiceRequest request = BuildRequest();
@@ -120,7 +120,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="membershipId">The identifier of the membership.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Get(string membershipId, Action<SparkApiEventArgs<TeamMembership>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -136,7 +136,7 @@ namespace SparkSDK
         /// <param name="membershipId">The identifier of the membership.</param>
         /// <param name="isModerator">if set to <c>true</c> [is moderator of the team]. The default is false.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Update(string membershipId, bool? isModerator, Action<SparkApiEventArgs<TeamMembership>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
@@ -152,7 +152,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="membershipId">The identifier of the membership.</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Delete(string membershipId, Action<SparkApiEventArgs> completionHandler)
         {
             ServiceRequest request = BuildRequest();

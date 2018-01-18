@@ -31,64 +31,64 @@ namespace SparkSDK
     /// <summary>
     /// audio and video IO device type.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public enum AVIODeviceType
     {
         /// <summary>
         /// Invalid device.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Invalid = 0,
         /// <summary>
         /// This is microphone.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Microphone = 1,
         /// <summary>
         /// This is speaker.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Speaker = 2,
         /// <summary>
         /// This is camera.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Camera = 3,
         /// <summary>
         /// This is ringer.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         Ringer = 4
     }
 
     /// <summary>
     /// Audio and video IO device.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class AVIODevice
     {
         /// <summary>
         /// If this is default device.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool DefaultDevice { get; set; }
 
         /// <summary>
         /// IO device ID.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Id { get; set; }
 
         /// <summary>
         /// IO device name.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Name { get; set; }
 
         /// <summary>
         /// IO device type.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public AVIODeviceType Type { get; set; }
     }
 }

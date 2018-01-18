@@ -31,49 +31,49 @@ namespace SparkSDK
     /// <summary>
     /// A data type represents a relationship between Team and Person at Cisco Spark cloud.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class TeamMembership
     {
         /// <summary>
         /// The identifier of this team membership.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Id { get; set; }
 
         /// <summary>
         /// The identifier of the team.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string TeamId { get; set; }
 
         /// <summary>
         /// The identifier of the person.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string PersonId { get; set; }
 
         /// <summary>
         /// The email address of the person.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string PersonEmail { get; set; }
 
         /// <summary>
         /// The display name of the person.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string PersonDisplayName { get; set; }
 
         /// <summary>
         /// True if the person in this membership is a moderator of the team.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsModerator { get; set; }
 
         /// <summary>
         /// The timestamp that the team membership being created.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public DateTime Created { get; set; }
     }
 }

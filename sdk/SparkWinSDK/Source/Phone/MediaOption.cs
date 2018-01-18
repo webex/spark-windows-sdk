@@ -30,7 +30,7 @@ namespace SparkSDK
     /// <summary>
     /// The media options of a call.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class MediaOption
     {
         internal IntPtr? LocalViewPtr { get; set; }
@@ -60,7 +60,7 @@ namespace SparkSDK
         /// Constructs an audio only media option.
         /// </summary>
         /// <returns>An instance of media option.</returns>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public static MediaOption AudioOnly()
         {
             return new MediaOption(null,null,null,SparkNet.MediaOption.AudioOnly);
@@ -72,7 +72,7 @@ namespace SparkSDK
         /// <param name="localViewPtr">The local video view handle.</param>
         /// <param name="remoteViewPtr">The remote video view handle.</param>
         /// <returns>An instance of media option.</returns>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public static MediaOption AudioVideo(IntPtr? localViewPtr=null, IntPtr? remoteViewPtr=null)
         {
             return new MediaOption(localViewPtr, remoteViewPtr, null, SparkNet.MediaOption.All);
@@ -85,7 +85,7 @@ namespace SparkSDK
         /// <param name="remoteViewPtr">The remote video view handle.</param>
         /// <param name="remoteShareViewPtr">The share view handle.</param>
         /// <returns>An instance of media option.</returns>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public static MediaOption AudioVideoShare(IntPtr? localViewPtr=null, IntPtr? remoteViewPtr=null, IntPtr? remoteShareViewPtr=null)
         {
             return new MediaOption(localViewPtr, remoteViewPtr, remoteShareViewPtr, SparkNet.MediaOption.All);

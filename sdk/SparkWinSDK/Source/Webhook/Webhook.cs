@@ -34,50 +34,50 @@ namespace SparkSDK
     /// <remarks>
     /// see [Webhook Explained](https://developer.ciscospark.com/webhooks-explained.html)
     /// </remarks>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class Webhook
     {
 
         /// <summary>
         /// The identifier of this webhook.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Id { get; set; }
 
         /// <summary>
         /// A user-friendly name for this webhook.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Name { get; set; }
 
         /// <summary>
         /// The URL that receives POST requests for each event.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string TargetUrl { get; set; }
 
         /// <summary>
         /// The resource type for the webhook.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Resource { get; set; }
 
         /// <summary>
         /// The event type for the webhook.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string EventType { get; set; }
 
         /// <summary>
         /// The filter that defines the webhook scope.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Filter { get; set; }
 
         /// <summary>
         /// The timestamp that the webhook being created.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public DateTime Created { get; set; }
     }
 }

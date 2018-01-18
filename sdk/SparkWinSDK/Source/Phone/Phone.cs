@@ -36,7 +36,7 @@ namespace SparkSDK
     /// and use *phone* to call other Cisco Spark users or PSTN when enabled.
     /// The phone must be registered before it can make or receive calls.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class Phone
     {
         private bool hasRegsterToCore = false;
@@ -106,7 +106,7 @@ namespace SparkSDK
         /// <summary>
         /// The enumeration of common bandwidth choices.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public enum DefaultBandwidth
         {
             /// 177Kbps for 160x90 resolution
@@ -128,31 +128,31 @@ namespace SparkSDK
         /// <summary>
         /// The max bandwidth for audio in unit bps for the call.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public uint AudioMaxBandwidth { get; set; }
 
         /// <summary>
         /// The max bandwidth for video in unit bps for the call.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public uint VideoMaxBandwidth { get; set; }
 
         /// <summary>
         /// The max bandwidth for sharing in unit bps for the call.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public uint ShareMaxBandwidth { get; set; }
 
         /// <summary>
         /// Callback when call is incoming.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public event Action<Call> OnIncoming;
 
         /// <summary>
         /// Callback when request video codec activation
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public event Action OnRequestVideoCodecActivation;
 
 
@@ -174,7 +174,7 @@ namespace SparkSDK
         /// It also creates the websocket and connects to Cisco Spark cloud.
         /// </summary>
         /// <param name="completedHandler">The completed event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Register(Action<SparkApiEventArgs> completedHandler)
         {
             SDKLogger.Instance.Debug("");
@@ -197,7 +197,7 @@ namespace SparkSDK
         /// Subsequent invocations of this method behave as a no-op.
         /// </summary>
         /// <param name="completedHandler">The completed event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Deregister(Action<SparkApiEventArgs> completedHandler)
         {
             SDKLogger.Instance.Debug("");
@@ -226,34 +226,34 @@ namespace SparkSDK
         /// <param name="address">Intended recipient address in one of the supported formats.</param>
         /// <param name="option">Intended media options - audio only or audio and video - for the call.</param>
         /// <param name="completedHandler">The completed event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Dial(string address, MediaOption option, Action<SparkApiEventArgs<Call>> completedHandler)
         {
             if (address == null || address.Length == 0)
             {
                 SDKLogger.Instance.Error($"invalid parameter. address:{address}");
-                completedHandler?.Invoke(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.illegalOperation, "invalid address"), null));
+                completedHandler?.Invoke(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.IllegalOperation, "invalid address"), null));
                 return;
             }
 
             if (option == null || completedHandler == null)
             {
                 SDKLogger.Instance.Error($"invalid parameter. option or completedHandler is null");
-                completedHandler?.Invoke(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.illegalOperation, "option or completedHandler is null."), null));
+                completedHandler?.Invoke(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.IllegalOperation, "option or completedHandler is null."), null));
                 return;
             }
 
             if (isMercuryConnected == false)
             {
                 SDKLogger.Instance.Error("phone is not registered");
-                completedHandler(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.unregistered, "phone is not registered"), null));
+                completedHandler(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.Unregistered, "phone is not registered"), null));
                 return;
             }
 
             if (currentCall.IsUsed == true)
             {
                 SDKLogger.Instance.Error("Failure: There are other active calls");
-                completedHandler(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.illegalOperation, "There are other active calls"), currentCall));
+                completedHandler(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.IllegalOperation, "There are other active calls"), currentCall));
                 return;
             }
 
@@ -286,7 +286,7 @@ namespace SparkSDK
                         //currentCall.init();
                         currentCall = new Call(this);
                         SDKLogger.Instance.Error($"canMakeCall return false. address:{outputAddress}");
-                        completedHandler?.Invoke(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.illegalOperation, "maybe room id is invalid"), null));
+                        completedHandler?.Invoke(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.IllegalOperation, "maybe room id is invalid"), null));
                         return;
                     }
                     SDKLogger.Instance.Debug($"This is a room call. join call: {outputAddress}");
@@ -330,7 +330,7 @@ namespace SparkSDK
         /// Notify the end user to activate the use of H.264 codec license from Cisco Systems, Inc.
         /// Invoking this function is optional since the alert will appear automatically during the first video call.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void RequestVideoCodecActivation()
         {
             if (!prompter.Check())
@@ -344,7 +344,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="disable">True means disable otherwise false</param>
         /// - attention: The function is expected to be called only by Cisco internal applications. 3rd-party applications should NOT call this function.
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void DisableVideoCodecActivation(bool disable)
         {
             prompter.IsVideoLicenseActivationDisabled = disable;
@@ -354,7 +354,7 @@ namespace SparkSDK
         /// Response to onRequestVideoCodecActivation event.
         /// </summary>
         /// <param name="activate">True means accept otherwise false.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void ActivateVideoCodecLicense(bool activate)
         {
             prompter.IsVideoLicenseActivated = activate;
@@ -372,7 +372,7 @@ namespace SparkSDK
                 if (activate == false)
                 {
                     SDKLogger.Instance.Warn("reject video codec license");
-                    currentCall?.TrigerAnswerCompletedHandler(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.requireH264, "")));
+                    currentCall?.TrigerAnswerCompletedHandler(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.RequireH264, "")));
                     return;
                 }
                 if (currentCall.MediaOption != null)
@@ -393,7 +393,7 @@ namespace SparkSDK
                 {
                     SDKLogger.Instance.Warn("reject video codec license");
                     currentCall = new Call(this);
-                    DialCompletedHandler?.Invoke(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.requireH264, ""), null));
+                    DialCompletedHandler?.Invoke(new SparkApiEventArgs<Call>(false, new SparkError(SparkErrorCode.RequireH264, ""), null));
                     //currentCall.init();
                     return;
                 }
@@ -415,7 +415,7 @@ namespace SparkSDK
         /// Return the text of the H.264 codec license from Cisco Systems, Inc.
         /// </summary>
         /// <returns>the text of the H.264 codec license</returns>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string VideoCodecLicense
         {
             get
@@ -428,7 +428,7 @@ namespace SparkSDK
         /// Return the URL of the H.264 codec license from Cisco Systems, Inc.
         /// </summary>
         /// <returns>the URL of the H.264 codec license</returns>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string VideoCodecLicenseURL
         {
             get
@@ -440,7 +440,8 @@ namespace SparkSDK
         /// <summary>
         /// Render a preview of the local party before the call is answered.
         /// </summary>
-        /// Since: 0.1.0
+        /// <param name="handle">The preview dispaly window handle</param>
+        /// <remarks>Since: 0.1.0</remarks>
         public void StartPreview(IntPtr handle)
         {
             SDKLogger.Instance.Debug($"handle: {handle}");
@@ -457,7 +458,8 @@ namespace SparkSDK
         /// <summary>
         /// Stop rendering the preview of the local party.
         /// </summary>
-        /// Since: 0.1.0
+        /// <param name="handle">The preview dispaly window handle</param>
+        /// <remarks>Since: 0.1.0</remarks>
         public void StopPreview(IntPtr handle)
         {
             SDKLogger.Instance.Debug($"handle: {handle}");
@@ -468,7 +470,8 @@ namespace SparkSDK
         /// <summary>
         /// Update the preview when video window is resized.
         /// </summary>
-        /// Since: 0.1.0
+        /// <param name="handle">The preview dispaly window handle</param>
+        /// <remarks>Since: 0.1.0</remarks>
         public void UpdatePreview(IntPtr handle)
         {
             SDKLogger.Instance.Debug($"handle: {handle}");
@@ -480,7 +483,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="type">The type of audio/video IO device, such as microphone, speaker, camera, ringer. <see cref="AVIODeviceType"/></param>
         /// <returns>List of audio/video IO devices.</returns>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public List<SparkSDK.AVIODevice> GetAVIODevices(AVIODeviceType type)
         {
             SDKLogger.Instance.Debug($"get {type.ToString()} devices");
@@ -505,7 +508,7 @@ namespace SparkSDK
         /// </summary>
         /// <param name="device">the selected audio/video IO device. <see cref="AVIODevice"/></param>
         /// <returns>The result of select.True means select success, otherwise false.</returns>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool SelectAVIODevice(AVIODevice device)
         {
             SDKLogger.Instance.Debug($"select {device.Name}");
@@ -1205,7 +1208,7 @@ namespace SparkSDK
                     }
                     else
                     {
-                        result = new CallError(currentCall, new SparkError(SparkErrorCode.serviceFailed, reason));
+                        result = new CallError(currentCall, new SparkError(SparkErrorCode.ServiceFailed, reason));
                     }
                     break;
                 case "dialTimeoutReached":
@@ -1214,7 +1217,7 @@ namespace SparkSDK
                 case "wirelessShareTimeoutReached":
                 case "networkUnavailable":
                 default:
-                    result = new CallError(currentCall, new SparkError(SparkErrorCode.serviceFailed, reason));
+                    result = new CallError(currentCall, new SparkError(SparkErrorCode.ServiceFailed, reason));
                     break;
             }
             SDKLogger.Instance.Debug($"convert to {result.GetType().Name}");

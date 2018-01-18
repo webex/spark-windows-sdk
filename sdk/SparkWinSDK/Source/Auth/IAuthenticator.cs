@@ -31,7 +31,7 @@ namespace SparkSDK
     /// An interface for generic authentication strategies in Cisco Spark. Each authentication strategy
     /// is responsible for providing an accessToken used throughout this SDK.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public interface IAuthenticator
     {
         /// <summary>
@@ -41,13 +41,13 @@ namespace SparkSDK
         /// further user interaction.
         /// </summary>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         void Authorized(Action<SparkApiEventArgs> completionHandler);
 
         /// <summary>
         /// Deauthorizes the current user and clears any persistent state with regards to the current user.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         void Deauthorize();
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace SparkSDK
         /// If the access token could not be retrieved then the completion handler will be called with null.
         /// </summary>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         void AccessToken(Action<SparkApiEventArgs<string>> completionHandler);
 
     }

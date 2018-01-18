@@ -38,7 +38,7 @@ namespace SparkSDK
     /// </summary>
     /// - see: [Cisco Spark Integration](https://developer.ciscospark.com/authentication.html)
     /// <seealso cref="SparkSDK.IAuthenticator" />
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public sealed class OAuthAuthenticator : IAuthenticator
     {
         private SparkNet.CoreFramework m_core;
@@ -60,7 +60,7 @@ namespace SparkSDK
         /// further user interaction.
         /// </summary>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Authorized(Action<SparkApiEventArgs> completionHandler)
         {
             if(isAuthorized)
@@ -89,7 +89,7 @@ namespace SparkSDK
         /// <param name="scope">space-separated string representing which permissions the application needs</param>
         /// <param name="redirectUri">the redirect URI that will be called when completing the authentication. This must match the redirect URI registered to your clientId.</param>
         /// - see: [Cisco Spark Integration](https://developer.ciscospark.com/authentication.html)
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public OAuthAuthenticator(string clientId, string clientSecret, string scope, string redirectUri)
         {
             this.hasRegsterToCore = false;
@@ -105,7 +105,7 @@ namespace SparkSDK
         /// <summary>
         /// Get authorization url
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string AuthorizationUrl
         {
             get { return m_core.getAuthorizationUrl(""); }
@@ -114,9 +114,9 @@ namespace SparkSDK
         /// <summary>
         /// Authenticate process with authentication code, and browser is trigged by SDK users.
         /// </summary>
-        /// <param name="authCode"></param>
+        /// <param name="authCode">The authentication code</param>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Authorize(string authCode, Action<SparkApiEventArgs> completionHandler = null)
         {
             if (null == authCode)
@@ -141,7 +141,7 @@ namespace SparkSDK
         /// If the access token could not be retrieved then the completion handler will be called with null.
         /// </summary>
         /// <param name="completionHandler">The completion event handler.</param>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void AccessToken(Action<SparkApiEventArgs<string>> completionHandler)
         {    
             // access token is valid now, just return it.
@@ -162,7 +162,7 @@ namespace SparkSDK
         /// <summary>
         /// Deauthorizes the current user and clears any persistent state with regards to the current user.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public void Deauthorize()
         {
             this.accessTokenStore = null;

@@ -30,49 +30,49 @@ namespace SparkSDK
     /// <summary>
     /// Membership contents.
     /// </summary>
-    /// Since: 0.1.0
+    /// <remarks>Since: 0.1.0</remarks>
     public class Membership
     {
         /// <summary>
         /// The id of this membership.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string Id { get; set; }
 
         /// <summary>
         /// The id of the person.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string PersonId { get; set; }
 
         /// <summary>
         /// The email address of the person.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string PersonEmail { get; set; }
 
         /// <summary>
         /// The id of the room.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public string RoomId { get; set; }
 
         /// <summary>
         /// Moderator of a room.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsModerator { get; set; }
 
         /// <summary>
         /// Monitor of a room.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public bool IsMonitor { get; set; }
 
         /// <summary>
         /// The timestamp that the membership being created.
         /// </summary>
-        /// Since: 0.1.0
+        /// <remarks>Since: 0.1.0</remarks>
         public DateTime Created { get; set; }
     }
 }
