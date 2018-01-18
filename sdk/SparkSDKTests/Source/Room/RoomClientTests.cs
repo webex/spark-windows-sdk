@@ -75,7 +75,7 @@ namespace SparkSDK.Tests
             myRoomInfo = CreateRoom(roomTitle);
             Validate(myRoomInfo);
             Assert.AreEqual(roomTitle, myRoomInfo.Title);
-            Assert.AreEqual(RoomType.group, myRoomInfo.Type);
+            Assert.AreEqual(RoomType.Group, myRoomInfo.Type);
         }
 
         [TestMethod()]
@@ -251,7 +251,7 @@ namespace SparkSDK.Tests
             myRoomInfo = CreateRoom(roomTitle);
             Validate(myRoomInfo);
 
-            var lstRoom = ListRooms(null, null, RoomType.group);
+            var lstRoom = ListRooms(null, null, RoomType.Group);
             Assert.IsNotNull(lstRoom);
 
             Validate(lstRoom[0]);
