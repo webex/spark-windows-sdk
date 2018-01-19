@@ -33,152 +33,152 @@ Here are some examples of how to use the Windows SDK in your application. More d
 
 1. Create a new *Spark* instance using Spark ID authentication ([OAuth](https://oauth.net/)-based):  
 
-	``` c# 
-	string clientId = "your client id";  
-	string clientSecret = "your client secret";
-	string redirectUri = "KitchenSink://response/";
-	string scope = "spark:all";
-	var auth = new OAuthAuthenticator(clientId, clientSecret, scope, redirectUri);
-	// authCode(64 bits) can be extracted from url by loading auth.authorizationUrl with a WebBrowser
-	var spark = new SPARK(auth);
-	auth?.Authorize(authCode, result =>
-	{
-	    if (result.Success)
-	    {
-	        System.Console.WriteLine("authorize success!");
-	    }
-	    else
-	    {
-	        System.Console.WriteLine("authorize failed!");
-	    }
-	});
-	```
+    ``` c# 
+    string clientId = "your client id";  
+    string clientSecret = "your client secret";
+    string redirectUri = "KitchenSink://response/";
+    string scope = "spark:all";
+    var auth = new OAuthAuthenticator(clientId, clientSecret, scope, redirectUri);
+    // authCode(64 bits) can be extracted from url by loading auth.authorizationUrl with a WebBrowser
+    var spark = new SPARK(auth);
+    auth?.Authorize(authCode, result =>
+    {
+        if (result.Success)
+        {
+            System.Console.WriteLine("authorize success!");
+        }
+        else
+        {
+            System.Console.WriteLine("authorize failed!");
+        }
+    });
+    ```
 
 2. Create a new *Spark* instance using Guest ID authentication ([JWT](https://jwt.io/)-based):  
 
-	```c#
-	var auth = new JWTAuthenticator();
-	var spark = new SPARK(auth);
-	auth?.AuthorizeWith(jwt, result =>
-	{
-	    if (result.Success)
-	    {
-	        System.Console.WriteLine("authorize success!");
-	    }
-	    else
-	    {
-	        System.Console.WriteLine("authorize failed!");
-	    }
-	});
-	
-	```
+    ```c#
+    var auth = new JWTAuthenticator();
+    var spark = new SPARK(auth);
+    auth?.AuthorizeWith(jwt, result =>
+    {
+        if (result.Success)
+        {
+            System.Console.WriteLine("authorize success!");
+        }
+        else
+        {
+            System.Console.WriteLine("authorize failed!");
+        }
+    });
+    
+    ```
 
 3. Register the device to make or receive calls:  
  
-	``` c#
-	spark?.Phone.Register(result =>
-	{
-	    if (result.Success == true)
-	    {
-	        System.Console.WriteLine("spark cloud connected");
-	    }
-	    else
-	    {
-	        System.Console.WriteLine("spark cloud connect failed");
-	    }
-	});
-	```
-	
+    ``` c#
+    spark?.Phone.Register(result =>
+    {
+        if (result.Success == true)
+        {
+            System.Console.WriteLine("spark cloud connected");
+        }
+        else
+        {
+            System.Console.WriteLine("spark cloud connect failed");
+        }
+    });
+    ```
+    
 4. Make an outgoing call:  
 
-	```c#
-	// dial
-	spark?.Phone.Dial(calleeAddress, MediaOption.AudioVideoShare(curCallView.LocalViewHandle, curCallView.RemoteViewHandle, curCallView.RemoteShareViewHandle), result =>
-	{
-		if (result.Success)
-		{
-		    currentCall = result.Data;
-		    RegisterCallEvent();
-		}
-		else
-		{
-		    System.Console.WriteLine($"Error: {result.Error?.errorCode.ToString()} {result.Error?.reason}");
-		}
-	});
-	
-	// register call event handlers
-	void RegisterCallEvent()
-	{
-		currentCall.onRinging += CurrentCall_onRinging;
-		currentCall.onConnected += CurrentCall_onConnected;
-		currentCall.onDisconnected += CurrentCall_onDisconnected;
-		currentCall.onMediaChanged += CurrentCall_onMediaChanged;
-		currentCall.onCapabilitiesChanged += CurrentCall_onCapabilitiesChanged;
-		currentCall.onCallMembershipChanged += CurrentCall_onCallMembershipChanged;    
-	}
-	
-	// when video window such as local/remote/sharing window is resized or hided, call corresponding updateView with the windows handle
-	currentCall.UpdateLocalView(curCallView.LocalViewHandle);
-	```
+    ```c#
+    // dial
+    spark?.Phone.Dial(calleeAddress, MediaOption.AudioVideoShare(curCallView.LocalViewHandle, curCallView.RemoteViewHandle, curCallView.RemoteShareViewHandle), result =>
+    {
+        if (result.Success)
+        {
+            currentCall = result.Data;
+            RegisterCallEvent();
+        }
+        else
+        {
+            System.Console.WriteLine($"Error: {result.Error?.errorCode.ToString()} {result.Error?.reason}");
+        }
+    });
+    
+    // register call event handlers
+    void RegisterCallEvent()
+    {
+        currentCall.onRinging += CurrentCall_onRinging;
+        currentCall.onConnected += CurrentCall_onConnected;
+        currentCall.onDisconnected += CurrentCall_onDisconnected;
+        currentCall.onMediaChanged += CurrentCall_onMediaChanged;
+        currentCall.onCapabilitiesChanged += CurrentCall_onCapabilitiesChanged;
+        currentCall.onCallMembershipChanged += CurrentCall_onCallMembershipChanged;    
+    }
+    
+    // when video window such as local/remote/sharing window is resized or hided, call corresponding updateView with the windows handle
+    currentCall.UpdateLocalView(curCallView.LocalViewHandle);
+    ```
 
 5. Answer incoming call:
 
-	```c#
-	// register incoming call event
-	spark?.Phone.OnIncoming += Phone_onIncoming;
-	
-	// get call object
-	void Phone_onIncoming(SparkSDK.Call obj)
-	{
-		currentCall = obj;
-	}
-	
-	// register call event handler and answer the call
-	RegisterCallEvent();
-	
-	// answer current call  
-	currentCall?.Answer(MediaOption.audioVideo(curCallView.LocalViewHandle, curCallView.RemoteViewHandle), result =>
-	{
-		if (!result.Success)
-		{
-		    System.Console.WriteLine($"Error: {result.Error?.errorCode.ToString()} {result.Error?.reason}");
-		}
-	});
-	
-	```
+    ```c#
+    // register incoming call event
+    spark?.Phone.OnIncoming += Phone_onIncoming;
+    
+    // get call object
+    void Phone_onIncoming(SparkSDK.Call obj)
+    {
+        currentCall = obj;
+    }
+    
+    // register call event handler and answer the call
+    RegisterCallEvent();
+    
+    // answer current call  
+    currentCall?.Answer(MediaOption.audioVideo(curCallView.LocalViewHandle, curCallView.RemoteViewHandle), result =>
+    {
+        if (!result.Success)
+        {
+            System.Console.WriteLine($"Error: {result.Error?.errorCode.ToString()} {result.Error?.reason}");
+        }
+    });
+    
+    ```
 
 6. Create a new Cisco Spark space, add a user to the space, and send a message:
 
-	```c#
-	// Create a Cisco Spark room:
-	SparkSDK.Room room = null;
-	spark?.Rooms.Create("hello world", null, rsp =>
-	{
-	    if (rsp.Success){
-	        room = rsp.Data;
-	        System.Console.WriteLine("create space successfully");
-	    }
-	});
-	
-	// Add a user to the room
-	spark?.Memberships.CreateByPersonEmail(room?.Id, "email address", false, rsp =>
-	{
-	    if (rsp.Success)
-	    {
-	        System.Console.WriteLine("add user successfully");
-	    }
-	});
-	
-	// send message to the room
-	spark?.Messages.PostToRoom(room?.Id, "hello", null, rsp =>
-	{
-	    if(rsp.Success)
-	    {
-	        System.Console.WriteLine("post message successfully");
-	    }
-	});
-	
-	```
+    ```c#
+    // Create a Cisco Spark room:
+    SparkSDK.Room room = null;
+    spark?.Rooms.Create("hello world", null, rsp =>
+    {
+        if (rsp.Success){
+            room = rsp.Data;
+            System.Console.WriteLine("create space successfully");
+        }
+    });
+    
+    // Add a user to the room
+    spark?.Memberships.CreateByPersonEmail(room?.Id, "email address", false, rsp =>
+    {
+        if (rsp.Success)
+        {
+            System.Console.WriteLine("add user successfully");
+        }
+    });
+    
+    // send message to the room
+    spark?.Messages.PostToRoom(room?.Id, "hello", null, rsp =>
+    {
+        if(rsp.Success)
+        {
+            System.Console.WriteLine("post message successfully");
+        }
+    });
+    
+    ```
 
 
 ## Contribute
