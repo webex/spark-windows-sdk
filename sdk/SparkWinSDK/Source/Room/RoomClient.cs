@@ -71,7 +71,7 @@ namespace SparkSDK
             request.RootElement = "items";
             if (teamId != null) request.AddQueryParameters("teamId", teamId);
             if (max != null) request.AddQueryParameters("max", max);
-            if (type != null) request.AddQueryParameters("type", type.ToString());
+            if (type != null) request.AddQueryParameters("type", type.ToString().ToLower());
 
             request.Execute<List<Room>>(completionHandler);
 
