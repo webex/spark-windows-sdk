@@ -41,7 +41,7 @@ Here are some examples of how to use the Windows SDK in your application. More d
 	var auth = new OAuthAuthenticator(clientId, clientSecret, scope, redirectUri);
 	// authCode(64 bits) can be extracted from url by loading auth.authorizationUrl with a WebBrowser
 	var spark = new SPARK(auth);
-	auth?.authorize(authCode, result =>
+	auth?.Authorize(authCode, result =>
 	{
 	    if (result.Success)
 	    {
@@ -59,7 +59,7 @@ Here are some examples of how to use the Windows SDK in your application. More d
 	```c#
 	var auth = new JWTAuthenticator();
 	var spark = new SPARK(auth);
-	auth?.authorizeWith(jwt, result =>
+	auth?.AuthorizeWith(jwt, result =>
 	{
 	    if (result.Success)
 	    {
@@ -76,7 +76,7 @@ Here are some examples of how to use the Windows SDK in your application. More d
 3. Register the device to make or receive calls:  
  
 	``` c#
-	spark.phone.register(result =>
+	spark?.Phone.Register(result =>
 	{
 	    if (result.Success == true)
 	    {
@@ -84,7 +84,7 @@ Here are some examples of how to use the Windows SDK in your application. More d
 	    }
 	    else
 	    {
-	        System.Console.WriteLine("spark cloud failed");
+	        System.Console.WriteLine("spark cloud connect failed");
 	    }
 	});
 	```
@@ -93,11 +93,11 @@ Here are some examples of how to use the Windows SDK in your application. More d
 
 	```c#
 	// dial
-	spark?.phone.dial(calleeAddress, MediaOption.audioVideoShare(curCallView.LocalViewHandle, curCallView.RemoteViewHandle, curCallView.RemoteShareViewHandle), result =>
+	spark?.Phone.Dial(calleeAddress, MediaOption.AudioVideoShare(curCallView.LocalViewHandle, curCallView.RemoteViewHandle, curCallView.RemoteShareViewHandle), result =>
 	{
 		if (result.Success)
 		{
-		    currentCall = (SparkSDK.Call)result.Data;
+		    currentCall = result.Data;
 		    RegisterCallEvent();
 		}
 		else
@@ -118,14 +118,14 @@ Here are some examples of how to use the Windows SDK in your application. More d
 	}
 	
 	// when video window such as local/remote/sharing window is resized or hided, call corresponding updateView with the windows handle
-	currentCall.updateLocalView(curCallView.LocalViewHandle);
+	currentCall.UpdateLocalView(curCallView.LocalViewHandle);
 	```
 
 5. Answer incoming call:
 
 	```c#
 	// register incoming call event
-	spark.phone.onIncoming += Phone_onIncoming;
+	spark?.Phone.OnIncoming += Phone_onIncoming;
 	
 	// get call object
 	void Phone_onIncoming(SparkSDK.Call obj)
@@ -137,7 +137,7 @@ Here are some examples of how to use the Windows SDK in your application. More d
 	RegisterCallEvent();
 	
 	// answer current call  
-	currentCall.answer(MediaOption.audioVideo(curCallView.LocalViewHandle, curCallView.RemoteViewHandle), result =>
+	currentCall?.Answer(MediaOption.audioVideo(curCallView.LocalViewHandle, curCallView.RemoteViewHandle), result =>
 	{
 		if (!result.Success)
 		{
@@ -152,16 +152,16 @@ Here are some examples of how to use the Windows SDK in your application. More d
 	```c#
 	// Create a Cisco Spark room:
 	SparkSDK.Room room = null;
-	spark.rooms.create("hello world", null, rsp =>
+	spark?.Rooms.Create("hello world", null, rsp =>
 	{
 	    if (rsp.Success){
-	        room = (SparkSDK.Room)(rsp.Data);
+	        room = rsp.Data;
 	        System.Console.WriteLine("create space successfully");
 	    }
 	});
 	
 	// Add a user to the room
-	spark.memberships.createByPersonEmail(room?.id, "email address", false, rsp =>
+	spark?.Memberships.CreateByPersonEmail(room?.Id, "email address", false, rsp =>
 	{
 	    if (rsp.Success)
 	    {
@@ -170,7 +170,7 @@ Here are some examples of how to use the Windows SDK in your application. More d
 	});
 	
 	// send message to the room
-	spark.messages.postToRoom(room?.id, "hello", null, rsp =>
+	spark?.Messages.PostToRoom(room?.Id, "hello", null, rsp =>
 	{
 	    if(rsp.Success)
 	    {
