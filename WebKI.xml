@@ -1,0 +1,879 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="AccessToken method">
+    <HelpKINode Title="IAuthenticator.AccessToken Method " Url="html/M_SparkSDK_IAuthenticator_AccessToken.htm" />
+    <HelpKINode Title="JWTAuthenticator.AccessToken Method " Url="html/M_SparkSDK_JWTAuthenticator_AccessToken.htm" />
+    <HelpKINode Title="OAuthAuthenticator.AccessToken Method " Url="html/M_SparkSDK_OAuthAuthenticator_AccessToken.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Acknowledge method" Url="html/M_SparkSDK_Call_Acknowledge.htm" />
+  <HelpKINode Title="ActivateVideoCodecLicense method" Url="html/M_SparkSDK_Phone_ActivateVideoCodecLicense.htm" />
+  <HelpKINode Title="Answer method" Url="html/M_SparkSDK_Call_Answer.htm" />
+  <HelpKINode Title="AudioMaxBandwidth property" Url="html/P_SparkSDK_Phone_AudioMaxBandwidth.htm" />
+  <HelpKINode Title="AudioOnly method" Url="html/M_SparkSDK_MediaOption_AudioOnly.htm" />
+  <HelpKINode Title="AudioVideo method" Url="html/M_SparkSDK_MediaOption_AudioVideo.htm" />
+  <HelpKINode Title="AudioVideoShare method" Url="html/M_SparkSDK_MediaOption_AudioVideoShare.htm" />
+  <HelpKINode Title="Authenticator property" Url="html/P_SparkSDK_Spark_Authenticator.htm" />
+  <HelpKINode Title="AuthorizationUrl property" Url="html/P_SparkSDK_OAuthAuthenticator_AuthorizationUrl.htm" />
+  <HelpKINode Title="Authorize method" Url="html/M_SparkSDK_OAuthAuthenticator_Authorize.htm" />
+  <HelpKINode Title="Authorized method">
+    <HelpKINode Title="IAuthenticator.Authorized Method " Url="html/M_SparkSDK_IAuthenticator_Authorized.htm" />
+    <HelpKINode Title="JWTAuthenticator.Authorized Method " Url="html/M_SparkSDK_JWTAuthenticator_Authorized.htm" />
+    <HelpKINode Title="OAuthAuthenticator.Authorized Method " Url="html/M_SparkSDK_OAuthAuthenticator_Authorized.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AuthorizeWith method" Url="html/M_SparkSDK_JWTAuthenticator_AuthorizeWith.htm" />
+  <HelpKINode Title="Avatar property" Url="html/P_SparkSDK_Person_Avatar.htm" />
+  <HelpKINode Title="AVIODevice class">
+    <HelpKINode Title="AVIODevice Class" Url="html/T_SparkSDK_AVIODevice.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_AVIODevice__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_AVIODevice.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AVIODevice.AVIODevice constructor" Url="html/M_SparkSDK_AVIODevice__ctor.htm" />
+  <HelpKINode Title="AVIODevice.DefaultDevice property" Url="html/P_SparkSDK_AVIODevice_DefaultDevice.htm" />
+  <HelpKINode Title="AVIODevice.Id property" Url="html/P_SparkSDK_AVIODevice_Id.htm" />
+  <HelpKINode Title="AVIODevice.Name property" Url="html/P_SparkSDK_AVIODevice_Name.htm" />
+  <HelpKINode Title="AVIODevice.Type property" Url="html/P_SparkSDK_AVIODevice_Type.htm" />
+  <HelpKINode Title="AVIODeviceType enumeration" Url="html/T_SparkSDK_AVIODeviceType.htm" />
+  <HelpKINode Title="Call class">
+    <HelpKINode Title="Call Class" Url="html/T_SparkSDK_Call.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_SparkSDK_Call.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_Call.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_Call.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Call property" Url="html/P_SparkSDK_CallEvent_Call.htm" />
+  <HelpKINode Title="Call.Acknowledge method" Url="html/M_SparkSDK_Call_Acknowledge.htm" />
+  <HelpKINode Title="Call.Answer method" Url="html/M_SparkSDK_Call_Answer.htm" />
+  <HelpKINode Title="Call.CallDirection enumeration" Url="html/T_SparkSDK_Call_CallDirection.htm" />
+  <HelpKINode Title="Call.Direction property" Url="html/P_SparkSDK_Call_Direction.htm" />
+  <HelpKINode Title="Call.From property" Url="html/P_SparkSDK_Call_From.htm" />
+  <HelpKINode Title="Call.Hangup method" Url="html/M_SparkSDK_Call_Hangup.htm" />
+  <HelpKINode Title="Call.IsReceivingAudio property" Url="html/P_SparkSDK_Call_IsReceivingAudio.htm" />
+  <HelpKINode Title="Call.IsReceivingShare property" Url="html/P_SparkSDK_Call_IsReceivingShare.htm" />
+  <HelpKINode Title="Call.IsReceivingVideo property" Url="html/P_SparkSDK_Call_IsReceivingVideo.htm" />
+  <HelpKINode Title="Call.IsRemoteSendingAudio property" Url="html/P_SparkSDK_Call_IsRemoteSendingAudio.htm" />
+  <HelpKINode Title="Call.IsRemoteSendingShare property" Url="html/P_SparkSDK_Call_IsRemoteSendingShare.htm" />
+  <HelpKINode Title="Call.IsRemoteSendingVideo property" Url="html/P_SparkSDK_Call_IsRemoteSendingVideo.htm" />
+  <HelpKINode Title="Call.IsSendingAudio property" Url="html/P_SparkSDK_Call_IsSendingAudio.htm" />
+  <HelpKINode Title="Call.IsSendingDTMFEnabled property" Url="html/P_SparkSDK_Call_IsSendingDTMFEnabled.htm" />
+  <HelpKINode Title="Call.IsSendingVideo property" Url="html/P_SparkSDK_Call_IsSendingVideo.htm" />
+  <HelpKINode Title="Call.LocalVideoViewSize property" Url="html/P_SparkSDK_Call_LocalVideoViewSize.htm" />
+  <HelpKINode Title="Call.Memberships property" Url="html/P_SparkSDK_Call_Memberships.htm" />
+  <HelpKINode Title="Call.OnCallMembershipChanged event" Url="html/E_SparkSDK_Call_OnCallMembershipChanged.htm" />
+  <HelpKINode Title="Call.OnCapabilitiesChanged event" Url="html/E_SparkSDK_Call_OnCapabilitiesChanged.htm" />
+  <HelpKINode Title="Call.OnConnected event" Url="html/E_SparkSDK_Call_OnConnected.htm" />
+  <HelpKINode Title="Call.OnDisconnected event" Url="html/E_SparkSDK_Call_OnDisconnected.htm" />
+  <HelpKINode Title="Call.OnMediaChanged event" Url="html/E_SparkSDK_Call_OnMediaChanged.htm" />
+  <HelpKINode Title="Call.OnRinging event" Url="html/E_SparkSDK_Call_OnRinging.htm" />
+  <HelpKINode Title="Call.Reject method" Url="html/M_SparkSDK_Call_Reject.htm" />
+  <HelpKINode Title="Call.RemoteShareViewSize property" Url="html/P_SparkSDK_Call_RemoteShareViewSize.htm" />
+  <HelpKINode Title="Call.RemoteVideoViewSize property" Url="html/P_SparkSDK_Call_RemoteVideoViewSize.htm" />
+  <HelpKINode Title="Call.SendDtmf method" Url="html/M_SparkSDK_Call_SendDtmf.htm" />
+  <HelpKINode Title="Call.SendFeedbackWith method" Url="html/M_SparkSDK_Call_SendFeedbackWith.htm" />
+  <HelpKINode Title="Call.SetLocalView method" Url="html/M_SparkSDK_Call_SetLocalView.htm" />
+  <HelpKINode Title="Call.SetRemoteShareView method" Url="html/M_SparkSDK_Call_SetRemoteShareView.htm" />
+  <HelpKINode Title="Call.SetRemoteView method" Url="html/M_SparkSDK_Call_SetRemoteView.htm" />
+  <HelpKINode Title="Call.Status property" Url="html/P_SparkSDK_Call_Status.htm" />
+  <HelpKINode Title="Call.To property" Url="html/P_SparkSDK_Call_To.htm" />
+  <HelpKINode Title="Call.UpdateLocalView method" Url="html/M_SparkSDK_Call_UpdateLocalView.htm" />
+  <HelpKINode Title="Call.UpdateRemoteShareView method" Url="html/M_SparkSDK_Call_UpdateRemoteShareView.htm" />
+  <HelpKINode Title="Call.UpdateRemoteView method" Url="html/M_SparkSDK_Call_UpdateRemoteView.htm" />
+  <HelpKINode Title="Call.VideoDimensions structure" Url="html/T_SparkSDK_Call_VideoDimensions.htm" />
+  <HelpKINode Title="Call.VideoDimensions.Height field" Url="html/F_SparkSDK_Call_VideoDimensions_Height.htm" />
+  <HelpKINode Title="Call.VideoDimensions.Width field" Url="html/F_SparkSDK_Call_VideoDimensions_Width.htm" />
+  <HelpKINode Title="CallDisconnectedEvent class">
+    <HelpKINode Title="CallDisconnectedEvent Class" Url="html/T_SparkSDK_CallDisconnectedEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallDisconnectedEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallError class">
+    <HelpKINode Title="CallError Class" Url="html/T_SparkSDK_CallError.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallError.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallError.Error property" Url="html/P_SparkSDK_CallError_Error.htm" />
+  <HelpKINode Title="CallEvent class">
+    <HelpKINode Title="CallEvent Class" Url="html/T_SparkSDK_CallEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallEvent.Call property" Url="html/P_SparkSDK_CallEvent_Call.htm" />
+  <HelpKINode Title="CallMembership class">
+    <HelpKINode Title="CallMembership Class" Url="html/T_SparkSDK_CallMembership.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_CallMembership__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallMembership.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallMembership property" Url="html/P_SparkSDK_CallMembershipChangedEvent_CallMembership.htm" />
+  <HelpKINode Title="CallMembership.CallMembership constructor" Url="html/M_SparkSDK_CallMembership__ctor.htm" />
+  <HelpKINode Title="CallMembership.CallState enumeration" Url="html/T_SparkSDK_CallMembership_CallState.htm" />
+  <HelpKINode Title="CallMembership.Email property" Url="html/P_SparkSDK_CallMembership_Email.htm" />
+  <HelpKINode Title="CallMembership.IsInitiator property" Url="html/P_SparkSDK_CallMembership_IsInitiator.htm" />
+  <HelpKINode Title="CallMembership.IsSendingAudio property" Url="html/P_SparkSDK_CallMembership_IsSendingAudio.htm" />
+  <HelpKINode Title="CallMembership.IsSendingShare property" Url="html/P_SparkSDK_CallMembership_IsSendingShare.htm" />
+  <HelpKINode Title="CallMembership.IsSendingVideo property" Url="html/P_SparkSDK_CallMembership_IsSendingVideo.htm" />
+  <HelpKINode Title="CallMembership.PersonId property" Url="html/P_SparkSDK_CallMembership_PersonId.htm" />
+  <HelpKINode Title="CallMembership.PhoneNumber property" Url="html/P_SparkSDK_CallMembership_PhoneNumber.htm" />
+  <HelpKINode Title="CallMembership.SipUrl property" Url="html/P_SparkSDK_CallMembership_SipUrl.htm" />
+  <HelpKINode Title="CallMembership.State property" Url="html/P_SparkSDK_CallMembership_State.htm" />
+  <HelpKINode Title="CallMembershipChangedEvent class">
+    <HelpKINode Title="CallMembershipChangedEvent Class" Url="html/T_SparkSDK_CallMembershipChangedEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallMembershipChangedEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallMembershipChangedEvent.CallMembership property" Url="html/P_SparkSDK_CallMembershipChangedEvent_CallMembership.htm" />
+  <HelpKINode Title="CallMembershipDeclinedEvent class">
+    <HelpKINode Title="CallMembershipDeclinedEvent Class" Url="html/T_SparkSDK_CallMembershipDeclinedEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallMembershipDeclinedEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallMembershipJoinedEvent class">
+    <HelpKINode Title="CallMembershipJoinedEvent Class" Url="html/T_SparkSDK_CallMembershipJoinedEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallMembershipJoinedEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallMembershipLeftEvent class">
+    <HelpKINode Title="CallMembershipLeftEvent Class" Url="html/T_SparkSDK_CallMembershipLeftEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallMembershipLeftEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallMembershipSendingAudioEvent class">
+    <HelpKINode Title="CallMembershipSendingAudioEvent Class" Url="html/T_SparkSDK_CallMembershipSendingAudioEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallMembershipSendingAudioEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallMembershipSendingShareEvent class">
+    <HelpKINode Title="CallMembershipSendingShareEvent Class" Url="html/T_SparkSDK_CallMembershipSendingShareEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallMembershipSendingShareEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallMembershipSendingVideoEvent class">
+    <HelpKINode Title="CallMembershipSendingVideoEvent Class" Url="html/T_SparkSDK_CallMembershipSendingVideoEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CallMembershipSendingVideoEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CallStatus enumeration" Url="html/T_SparkSDK_CallStatus.htm" />
+  <HelpKINode Title="Camera enumeration member" Url="html/T_SparkSDK_AVIODeviceType.htm" />
+  <HelpKINode Title="Camera property" Url="html/P_SparkSDK_CameraSwitchedEvent_Camera.htm" />
+  <HelpKINode Title="CameraSwitchedEvent class">
+    <HelpKINode Title="CameraSwitchedEvent Class" Url="html/T_SparkSDK_CameraSwitchedEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CameraSwitchedEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CameraSwitchedEvent.Camera property" Url="html/P_SparkSDK_CameraSwitchedEvent_Camera.htm" />
+  <HelpKINode Title="CapabilitieDTMF class">
+    <HelpKINode Title="CapabilitieDTMF Class" Url="html/T_SparkSDK_CapabilitieDTMF.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_CapabilitieDTMF.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CapabilitieDTMF.IsEnabled property" Url="html/P_SparkSDK_CapabilitieDTMF_IsEnabled.htm" />
+  <HelpKINode Title="Capabilities class">
+    <HelpKINode Title="Capabilities Class" Url="html/T_SparkSDK_Capabilities.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_Capabilities.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Connected enumeration member" Url="html/T_SparkSDK_CallStatus.htm" />
+  <HelpKINode Title="ConsoleLogger property" Url="html/P_SparkSDK_Spark_ConsoleLogger.htm" />
+  <HelpKINode Title="Create method">
+    <HelpKINode Title="RoomClient.Create Method " Url="html/M_SparkSDK_RoomClient_Create.htm" />
+    <HelpKINode Title="TeamClient.Create Method " Url="html/M_SparkSDK_TeamClient_Create.htm" />
+    <HelpKINode Title="WebhookClient.Create Method " Url="html/M_SparkSDK_WebhookClient_Create.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CreateByEmail method" Url="html/M_SparkSDK_TeamMembershipClient_CreateByEmail.htm" />
+  <HelpKINode Title="CreateById method" Url="html/M_SparkSDK_TeamMembershipClient_CreateById.htm" />
+  <HelpKINode Title="CreateByPersonEmail method" Url="html/M_SparkSDK_MembershipClient_CreateByPersonEmail.htm" />
+  <HelpKINode Title="CreateByPersonId method" Url="html/M_SparkSDK_MembershipClient_CreateByPersonId.htm" />
+  <HelpKINode Title="Created property">
+    <HelpKINode Title="Membership.Created Property " Url="html/P_SparkSDK_Membership_Created.htm" />
+    <HelpKINode Title="Message.Created Property " Url="html/P_SparkSDK_Message_Created.htm" />
+    <HelpKINode Title="Person.Created Property " Url="html/P_SparkSDK_Person_Created.htm" />
+    <HelpKINode Title="Room.Created Property " Url="html/P_SparkSDK_Room_Created.htm" />
+    <HelpKINode Title="Team.Created Property " Url="html/P_SparkSDK_Team_Created.htm" />
+    <HelpKINode Title="TeamMembership.Created Property " Url="html/P_SparkSDK_TeamMembership_Created.htm" />
+    <HelpKINode Title="Webhook.Created Property " Url="html/P_SparkSDK_Webhook_Created.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Data property" Url="html/P_SparkSDK_SparkApiEventArgs_1_Data.htm" />
+  <HelpKINode Title="Deauthorize method">
+    <HelpKINode Title="IAuthenticator.Deauthorize Method " Url="html/M_SparkSDK_IAuthenticator_Deauthorize.htm" />
+    <HelpKINode Title="JWTAuthenticator.Deauthorize Method " Url="html/M_SparkSDK_JWTAuthenticator_Deauthorize.htm" />
+    <HelpKINode Title="OAuthAuthenticator.Deauthorize Method " Url="html/M_SparkSDK_OAuthAuthenticator_Deauthorize.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Debug enumeration member" Url="html/T_SparkSDK_LogLevel.htm" />
+  <HelpKINode Title="Declined enumeration member" Url="html/T_SparkSDK_CallMembership_CallState.htm" />
+  <HelpKINode Title="DefaultDevice property" Url="html/P_SparkSDK_AVIODevice_DefaultDevice.htm" />
+  <HelpKINode Title="Delete method">
+    <HelpKINode Title="MembershipClient.Delete Method " Url="html/M_SparkSDK_MembershipClient_Delete.htm" />
+    <HelpKINode Title="MessageClient.Delete Method " Url="html/M_SparkSDK_MessageClient_Delete.htm" />
+    <HelpKINode Title="RoomClient.Delete Method " Url="html/M_SparkSDK_RoomClient_Delete.htm" />
+    <HelpKINode Title="TeamClient.Delete Method " Url="html/M_SparkSDK_TeamClient_Delete.htm" />
+    <HelpKINode Title="TeamMembershipClient.Delete Method " Url="html/M_SparkSDK_TeamMembershipClient_Delete.htm" />
+    <HelpKINode Title="WebhookClient.Delete Method " Url="html/M_SparkSDK_WebhookClient_Delete.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Deregister method" Url="html/M_SparkSDK_Phone_Deregister.htm" />
+  <HelpKINode Title="Detail enumeration member" Url="html/T_SparkSDK_LogLevel.htm" />
+  <HelpKINode Title="Dial method" Url="html/M_SparkSDK_Phone_Dial.htm" />
+  <HelpKINode Title="Direct enumeration member" Url="html/T_SparkSDK_RoomType.htm" />
+  <HelpKINode Title="Direction property" Url="html/P_SparkSDK_Call_Direction.htm" />
+  <HelpKINode Title="DisableVideoCodecActivation method" Url="html/M_SparkSDK_Phone_DisableVideoCodecActivation.htm" />
+  <HelpKINode Title="Disconnected enumeration member" Url="html/T_SparkSDK_CallStatus.htm" />
+  <HelpKINode Title="DisplayName property" Url="html/P_SparkSDK_Person_DisplayName.htm" />
+  <HelpKINode Title="Email property" Url="html/P_SparkSDK_CallMembership_Email.htm" />
+  <HelpKINode Title="Emails property" Url="html/P_SparkSDK_Person_Emails.htm" />
+  <HelpKINode Title="Error enumeration member" Url="html/T_SparkSDK_LogLevel.htm" />
+  <HelpKINode Title="Error property">
+    <HelpKINode Title="CallError.Error Property " Url="html/P_SparkSDK_CallError_Error.htm" />
+    <HelpKINode Title="SparkApiEventArgs.Error Property " Url="html/P_SparkSDK_SparkApiEventArgs_Error.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ErrorCode property" Url="html/P_SparkSDK_SparkError_ErrorCode.htm" />
+  <HelpKINode Title="EventType property" Url="html/P_SparkSDK_Webhook_EventType.htm" />
+  <HelpKINode Title="Files property" Url="html/P_SparkSDK_Message_Files.htm" />
+  <HelpKINode Title="Filter property" Url="html/P_SparkSDK_Webhook_Filter.htm" />
+  <HelpKINode Title="From property" Url="html/P_SparkSDK_Call_From.htm" />
+  <HelpKINode Title="Get method">
+    <HelpKINode Title="MembershipClient.Get Method " Url="html/M_SparkSDK_MembershipClient_Get.htm" />
+    <HelpKINode Title="MessageClient.Get Method " Url="html/M_SparkSDK_MessageClient_Get.htm" />
+    <HelpKINode Title="PersonClient.Get Method " Url="html/M_SparkSDK_PersonClient_Get.htm" />
+    <HelpKINode Title="RoomClient.Get Method " Url="html/M_SparkSDK_RoomClient_Get.htm" />
+    <HelpKINode Title="TeamClient.Get Method " Url="html/M_SparkSDK_TeamClient_Get.htm" />
+    <HelpKINode Title="TeamMembershipClient.Get Method " Url="html/M_SparkSDK_TeamMembershipClient_Get.htm" />
+    <HelpKINode Title="WebhookClient.Get Method " Url="html/M_SparkSDK_WebhookClient_Get.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetAVIODevices method" Url="html/M_SparkSDK_Phone_GetAVIODevices.htm" />
+  <HelpKINode Title="GetMe method" Url="html/M_SparkSDK_PersonClient_GetMe.htm" />
+  <HelpKINode Title="Group enumeration member" Url="html/T_SparkSDK_RoomType.htm" />
+  <HelpKINode Title="Hangup method" Url="html/M_SparkSDK_Call_Hangup.htm" />
+  <HelpKINode Title="Height field" Url="html/F_SparkSDK_Call_VideoDimensions_Height.htm" />
+  <HelpKINode Title="IAuthenticator interface">
+    <HelpKINode Title="IAuthenticator Interface" Url="html/T_SparkSDK_IAuthenticator.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_IAuthenticator.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IAuthenticator.AccessToken method" Url="html/M_SparkSDK_IAuthenticator_AccessToken.htm" />
+  <HelpKINode Title="IAuthenticator.Authorized method" Url="html/M_SparkSDK_IAuthenticator_Authorized.htm" />
+  <HelpKINode Title="IAuthenticator.Deauthorize method" Url="html/M_SparkSDK_IAuthenticator_Deauthorize.htm" />
+  <HelpKINode Title="Id property">
+    <HelpKINode Title="AVIODevice.Id Property " Url="html/P_SparkSDK_AVIODevice_Id.htm" />
+    <HelpKINode Title="Membership.Id Property " Url="html/P_SparkSDK_Membership_Id.htm" />
+    <HelpKINode Title="Message.Id Property " Url="html/P_SparkSDK_Message_Id.htm" />
+    <HelpKINode Title="Person.Id Property " Url="html/P_SparkSDK_Person_Id.htm" />
+    <HelpKINode Title="Room.Id Property " Url="html/P_SparkSDK_Room_Id.htm" />
+    <HelpKINode Title="Team.Id Property " Url="html/P_SparkSDK_Team_Id.htm" />
+    <HelpKINode Title="TeamMembership.Id Property " Url="html/P_SparkSDK_TeamMembership_Id.htm" />
+    <HelpKINode Title="Webhook.Id Property " Url="html/P_SparkSDK_Webhook_Id.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Idle enumeration member" Url="html/T_SparkSDK_CallMembership_CallState.htm" />
+  <HelpKINode Title="IllegalOperation enumeration member" Url="html/T_SparkSDK_SparkErrorCode.htm" />
+  <HelpKINode Title="IllegalStatus enumeration member" Url="html/T_SparkSDK_SparkErrorCode.htm" />
+  <HelpKINode Title="ILogger interface">
+    <HelpKINode Title="ILogger Interface" Url="html/T_SparkSDK_ILogger.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_ILogger.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ILogger.Log method" Url="html/M_SparkSDK_ILogger_Log.htm" />
+  <HelpKINode Title="Incoming enumeration member" Url="html/T_SparkSDK_Call_CallDirection.htm" />
+  <HelpKINode Title="Info enumeration member" Url="html/T_SparkSDK_LogLevel.htm" />
+  <HelpKINode Title="Initiated enumeration member" Url="html/T_SparkSDK_CallStatus.htm" />
+  <HelpKINode Title="Invalid enumeration member" Url="html/T_SparkSDK_AVIODeviceType.htm" />
+  <HelpKINode Title="InvalidDTMF enumeration member" Url="html/T_SparkSDK_SparkErrorCode.htm" />
+  <HelpKINode Title="IsEnabled property" Url="html/P_SparkSDK_CapabilitieDTMF_IsEnabled.htm" />
+  <HelpKINode Title="IsInitiator property" Url="html/P_SparkSDK_CallMembership_IsInitiator.htm" />
+  <HelpKINode Title="IsLocked property" Url="html/P_SparkSDK_Room_IsLocked.htm" />
+  <HelpKINode Title="IsModerator property">
+    <HelpKINode Title="Membership.IsModerator Property " Url="html/P_SparkSDK_Membership_IsModerator.htm" />
+    <HelpKINode Title="TeamMembership.IsModerator Property " Url="html/P_SparkSDK_TeamMembership_IsModerator.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsMonitor property" Url="html/P_SparkSDK_Membership_IsMonitor.htm" />
+  <HelpKINode Title="IsReceiving property">
+    <HelpKINode Title="ReceivingAudioEvent.IsReceiving Property " Url="html/P_SparkSDK_ReceivingAudioEvent_IsReceiving.htm" />
+    <HelpKINode Title="ReceivingShareEvent.IsReceiving Property " Url="html/P_SparkSDK_ReceivingShareEvent_IsReceiving.htm" />
+    <HelpKINode Title="ReceivingVideoEvent.IsReceiving Property " Url="html/P_SparkSDK_ReceivingVideoEvent_IsReceiving.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsReceivingAudio property" Url="html/P_SparkSDK_Call_IsReceivingAudio.htm" />
+  <HelpKINode Title="IsReceivingShare property" Url="html/P_SparkSDK_Call_IsReceivingShare.htm" />
+  <HelpKINode Title="IsReceivingVideo property" Url="html/P_SparkSDK_Call_IsReceivingVideo.htm" />
+  <HelpKINode Title="IsRemoteSendingAudio property" Url="html/P_SparkSDK_Call_IsRemoteSendingAudio.htm" />
+  <HelpKINode Title="IsRemoteSendingShare property" Url="html/P_SparkSDK_Call_IsRemoteSendingShare.htm" />
+  <HelpKINode Title="IsRemoteSendingVideo property" Url="html/P_SparkSDK_Call_IsRemoteSendingVideo.htm" />
+  <HelpKINode Title="IsSending property">
+    <HelpKINode Title="RemoteSendingAudioEvent.IsSending Property " Url="html/P_SparkSDK_RemoteSendingAudioEvent_IsSending.htm" />
+    <HelpKINode Title="RemoteSendingShareEvent.IsSending Property " Url="html/P_SparkSDK_RemoteSendingShareEvent_IsSending.htm" />
+    <HelpKINode Title="RemoteSendingVideoEvent.IsSending Property " Url="html/P_SparkSDK_RemoteSendingVideoEvent_IsSending.htm" />
+    <HelpKINode Title="SendingAudioEvent.IsSending Property " Url="html/P_SparkSDK_SendingAudioEvent_IsSending.htm" />
+    <HelpKINode Title="SendingVideoEvent.IsSending Property " Url="html/P_SparkSDK_SendingVideoEvent_IsSending.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsSendingAudio property">
+    <HelpKINode Title="Call.IsSendingAudio Property " Url="html/P_SparkSDK_Call_IsSendingAudio.htm" />
+    <HelpKINode Title="CallMembership.IsSendingAudio Property " Url="html/P_SparkSDK_CallMembership_IsSendingAudio.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsSendingDTMFEnabled property" Url="html/P_SparkSDK_Call_IsSendingDTMFEnabled.htm" />
+  <HelpKINode Title="IsSendingShare property" Url="html/P_SparkSDK_CallMembership_IsSendingShare.htm" />
+  <HelpKINode Title="IsSendingVideo property">
+    <HelpKINode Title="Call.IsSendingVideo Property " Url="html/P_SparkSDK_Call_IsSendingVideo.htm" />
+    <HelpKINode Title="CallMembership.IsSendingVideo Property " Url="html/P_SparkSDK_CallMembership_IsSendingVideo.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsSuccess property" Url="html/P_SparkSDK_SparkApiEventArgs_IsSuccess.htm" />
+  <HelpKINode Title="Joined enumeration member" Url="html/T_SparkSDK_CallMembership_CallState.htm" />
+  <HelpKINode Title="JWTAuthenticator class">
+    <HelpKINode Title="JWTAuthenticator Class" Url="html/T_SparkSDK_JWTAuthenticator.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_JWTAuthenticator__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_JWTAuthenticator.htm" />
+  </HelpKINode>
+  <HelpKINode Title="JWTAuthenticator.AccessToken method" Url="html/M_SparkSDK_JWTAuthenticator_AccessToken.htm" />
+  <HelpKINode Title="JWTAuthenticator.Authorized method" Url="html/M_SparkSDK_JWTAuthenticator_Authorized.htm" />
+  <HelpKINode Title="JWTAuthenticator.AuthorizeWith method" Url="html/M_SparkSDK_JWTAuthenticator_AuthorizeWith.htm" />
+  <HelpKINode Title="JWTAuthenticator.Deauthorize method" Url="html/M_SparkSDK_JWTAuthenticator_Deauthorize.htm" />
+  <HelpKINode Title="JWTAuthenticator.JWTAuthenticator constructor" Url="html/M_SparkSDK_JWTAuthenticator__ctor.htm" />
+  <HelpKINode Title="LastActivity property" Url="html/P_SparkSDK_Room_LastActivity.htm" />
+  <HelpKINode Title="Left enumeration member" Url="html/T_SparkSDK_CallMembership_CallState.htm" />
+  <HelpKINode Title="List method">
+    <HelpKINode Title="MembershipClient.List Method " Url="html/Overload_SparkSDK_MembershipClient_List.htm" />
+    <HelpKINode Title="MessageClient.List Method " Url="html/M_SparkSDK_MessageClient_List.htm" />
+    <HelpKINode Title="PersonClient.List Method " Url="html/M_SparkSDK_PersonClient_List.htm" />
+    <HelpKINode Title="RoomClient.List Method " Url="html/M_SparkSDK_RoomClient_List.htm" />
+    <HelpKINode Title="TeamClient.List Method " Url="html/M_SparkSDK_TeamClient_List.htm" />
+    <HelpKINode Title="TeamMembershipClient.List Method " Url="html/M_SparkSDK_TeamMembershipClient_List.htm" />
+    <HelpKINode Title="WebhookClient.List Method " Url="html/M_SparkSDK_WebhookClient_List.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ListByPersonEmail method" Url="html/M_SparkSDK_MembershipClient_ListByPersonEmail.htm" />
+  <HelpKINode Title="ListByPersonId method" Url="html/M_SparkSDK_MembershipClient_ListByPersonId.htm" />
+  <HelpKINode Title="LocalCancel class">
+    <HelpKINode Title="LocalCancel Class" Url="html/T_SparkSDK_LocalCancel.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_LocalCancel.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LocalDecline class">
+    <HelpKINode Title="LocalDecline Class" Url="html/T_SparkSDK_LocalDecline.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_LocalDecline.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LocalLeft class">
+    <HelpKINode Title="LocalLeft Class" Url="html/T_SparkSDK_LocalLeft.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_LocalLeft.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LocalVideoReadyEvent class">
+    <HelpKINode Title="LocalVideoReadyEvent Class" Url="html/T_SparkSDK_LocalVideoReadyEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_LocalVideoReadyEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LocalVideoViewSize property" Url="html/P_SparkSDK_Call_LocalVideoViewSize.htm" />
+  <HelpKINode Title="LocalVideoViewSizeChangedEvent class">
+    <HelpKINode Title="LocalVideoViewSizeChangedEvent Class" Url="html/T_SparkSDK_LocalVideoViewSizeChangedEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_LocalVideoViewSizeChangedEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Log method" Url="html/M_SparkSDK_ILogger_Log.htm" />
+  <HelpKINode Title="Logger property" Url="html/P_SparkSDK_Spark_Logger.htm" />
+  <HelpKINode Title="LogLevel enumeration" Url="html/T_SparkSDK_LogLevel.htm" />
+  <HelpKINode Title="MaxBandwidth1080p enumeration member" Url="html/T_SparkSDK_Phone_DefaultBandwidth.htm" />
+  <HelpKINode Title="MaxBandwidth180p enumeration member" Url="html/T_SparkSDK_Phone_DefaultBandwidth.htm" />
+  <HelpKINode Title="MaxBandwidth360p enumeration member" Url="html/T_SparkSDK_Phone_DefaultBandwidth.htm" />
+  <HelpKINode Title="MaxBandwidth720p enumeration member" Url="html/T_SparkSDK_Phone_DefaultBandwidth.htm" />
+  <HelpKINode Title="MaxBandwidth90p enumeration member" Url="html/T_SparkSDK_Phone_DefaultBandwidth.htm" />
+  <HelpKINode Title="MaxBandwidthAudio enumeration member" Url="html/T_SparkSDK_Phone_DefaultBandwidth.htm" />
+  <HelpKINode Title="MaxBandwidthSession enumeration member" Url="html/T_SparkSDK_Phone_DefaultBandwidth.htm" />
+  <HelpKINode Title="MediaChangedEvent class">
+    <HelpKINode Title="MediaChangedEvent Class" Url="html/T_SparkSDK_MediaChangedEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_MediaChangedEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MediaOption class">
+    <HelpKINode Title="MediaOption Class" Url="html/T_SparkSDK_MediaOption.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_MediaOption.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MediaOption.AudioOnly method" Url="html/M_SparkSDK_MediaOption_AudioOnly.htm" />
+  <HelpKINode Title="MediaOption.AudioVideo method" Url="html/M_SparkSDK_MediaOption_AudioVideo.htm" />
+  <HelpKINode Title="MediaOption.AudioVideoShare method" Url="html/M_SparkSDK_MediaOption_AudioVideoShare.htm" />
+  <HelpKINode Title="Membership class">
+    <HelpKINode Title="Membership Class" Url="html/T_SparkSDK_Membership.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_Membership__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_Membership.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Membership.Created property" Url="html/P_SparkSDK_Membership_Created.htm" />
+  <HelpKINode Title="Membership.Id property" Url="html/P_SparkSDK_Membership_Id.htm" />
+  <HelpKINode Title="Membership.IsModerator property" Url="html/P_SparkSDK_Membership_IsModerator.htm" />
+  <HelpKINode Title="Membership.IsMonitor property" Url="html/P_SparkSDK_Membership_IsMonitor.htm" />
+  <HelpKINode Title="Membership.Membership constructor" Url="html/M_SparkSDK_Membership__ctor.htm" />
+  <HelpKINode Title="Membership.PersonEmail property" Url="html/P_SparkSDK_Membership_PersonEmail.htm" />
+  <HelpKINode Title="Membership.PersonId property" Url="html/P_SparkSDK_Membership_PersonId.htm" />
+  <HelpKINode Title="Membership.RoomId property" Url="html/P_SparkSDK_Membership_RoomId.htm" />
+  <HelpKINode Title="MembershipClient class">
+    <HelpKINode Title="MembershipClient Class" Url="html/T_SparkSDK_MembershipClient.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_MembershipClient__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_MembershipClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MembershipClient.CreateByPersonEmail method" Url="html/M_SparkSDK_MembershipClient_CreateByPersonEmail.htm" />
+  <HelpKINode Title="MembershipClient.CreateByPersonId method" Url="html/M_SparkSDK_MembershipClient_CreateByPersonId.htm" />
+  <HelpKINode Title="MembershipClient.Delete method" Url="html/M_SparkSDK_MembershipClient_Delete.htm" />
+  <HelpKINode Title="MembershipClient.Get method" Url="html/M_SparkSDK_MembershipClient_Get.htm" />
+  <HelpKINode Title="MembershipClient.List method" Url="html/Overload_SparkSDK_MembershipClient_List.htm" />
+  <HelpKINode Title="MembershipClient.ListByPersonEmail method" Url="html/M_SparkSDK_MembershipClient_ListByPersonEmail.htm" />
+  <HelpKINode Title="MembershipClient.ListByPersonId method" Url="html/M_SparkSDK_MembershipClient_ListByPersonId.htm" />
+  <HelpKINode Title="MembershipClient.MembershipClient constructor" Url="html/M_SparkSDK_MembershipClient__ctor.htm" />
+  <HelpKINode Title="MembershipClient.Update method" Url="html/M_SparkSDK_MembershipClient_Update.htm" />
+  <HelpKINode Title="Memberships property">
+    <HelpKINode Title="Call.Memberships Property " Url="html/P_SparkSDK_Call_Memberships.htm" />
+    <HelpKINode Title="Spark.Memberships Property " Url="html/P_SparkSDK_Spark_Memberships.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Message class">
+    <HelpKINode Title="Message Class" Url="html/T_SparkSDK_Message.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_Message__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_Message.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Message.Created property" Url="html/P_SparkSDK_Message_Created.htm" />
+  <HelpKINode Title="Message.Files property" Url="html/P_SparkSDK_Message_Files.htm" />
+  <HelpKINode Title="Message.Id property" Url="html/P_SparkSDK_Message_Id.htm" />
+  <HelpKINode Title="Message.Message constructor" Url="html/M_SparkSDK_Message__ctor.htm" />
+  <HelpKINode Title="Message.PersonEmail property" Url="html/P_SparkSDK_Message_PersonEmail.htm" />
+  <HelpKINode Title="Message.PersonId property" Url="html/P_SparkSDK_Message_PersonId.htm" />
+  <HelpKINode Title="Message.RoomId property" Url="html/P_SparkSDK_Message_RoomId.htm" />
+  <HelpKINode Title="Message.Text property" Url="html/P_SparkSDK_Message_Text.htm" />
+  <HelpKINode Title="Message.ToPersonEmail property" Url="html/P_SparkSDK_Message_ToPersonEmail.htm" />
+  <HelpKINode Title="Message.ToPersonId property" Url="html/P_SparkSDK_Message_ToPersonId.htm" />
+  <HelpKINode Title="MessageClient class">
+    <HelpKINode Title="MessageClient Class" Url="html/T_SparkSDK_MessageClient.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_SparkSDK_MessageClient__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_MessageClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MessageClient.Delete method" Url="html/M_SparkSDK_MessageClient_Delete.htm" />
+  <HelpKINode Title="MessageClient.Get method" Url="html/M_SparkSDK_MessageClient_Get.htm" />
+  <HelpKINode Title="MessageClient.List method" Url="html/M_SparkSDK_MessageClient_List.htm" />
+  <HelpKINode Title="MessageClient.MessageClient constructor" Url="html/Overload_SparkSDK_MessageClient__ctor.htm" />
+  <HelpKINode Title="MessageClient.PostToPerson method" Url="html/M_SparkSDK_MessageClient_PostToPerson.htm" />
+  <HelpKINode Title="MessageClient.PostToPersonByID method" Url="html/M_SparkSDK_MessageClient_PostToPersonByID.htm" />
+  <HelpKINode Title="MessageClient.PostToRoom method" Url="html/M_SparkSDK_MessageClient_PostToRoom.htm" />
+  <HelpKINode Title="Messages property" Url="html/P_SparkSDK_Spark_Messages.htm" />
+  <HelpKINode Title="Microphone enumeration member" Url="html/T_SparkSDK_AVIODeviceType.htm" />
+  <HelpKINode Title="Name property">
+    <HelpKINode Title="AVIODevice.Name Property " Url="html/P_SparkSDK_AVIODevice_Name.htm" />
+    <HelpKINode Title="Team.Name Property " Url="html/P_SparkSDK_Team_Name.htm" />
+    <HelpKINode Title="Webhook.Name Property " Url="html/P_SparkSDK_Webhook_Name.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Notified enumeration member" Url="html/T_SparkSDK_CallMembership_CallState.htm" />
+  <HelpKINode Title="OAuthAuthenticator class">
+    <HelpKINode Title="OAuthAuthenticator Class" Url="html/T_SparkSDK_OAuthAuthenticator.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_OAuthAuthenticator__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_OAuthAuthenticator.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_OAuthAuthenticator.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OAuthAuthenticator.AccessToken method" Url="html/M_SparkSDK_OAuthAuthenticator_AccessToken.htm" />
+  <HelpKINode Title="OAuthAuthenticator.AuthorizationUrl property" Url="html/P_SparkSDK_OAuthAuthenticator_AuthorizationUrl.htm" />
+  <HelpKINode Title="OAuthAuthenticator.Authorize method" Url="html/M_SparkSDK_OAuthAuthenticator_Authorize.htm" />
+  <HelpKINode Title="OAuthAuthenticator.Authorized method" Url="html/M_SparkSDK_OAuthAuthenticator_Authorized.htm" />
+  <HelpKINode Title="OAuthAuthenticator.Deauthorize method" Url="html/M_SparkSDK_OAuthAuthenticator_Deauthorize.htm" />
+  <HelpKINode Title="OAuthAuthenticator.OAuthAuthenticator constructor" Url="html/M_SparkSDK_OAuthAuthenticator__ctor.htm" />
+  <HelpKINode Title="OnCallMembershipChanged event" Url="html/E_SparkSDK_Call_OnCallMembershipChanged.htm" />
+  <HelpKINode Title="OnCapabilitiesChanged event" Url="html/E_SparkSDK_Call_OnCapabilitiesChanged.htm" />
+  <HelpKINode Title="OnConnected event" Url="html/E_SparkSDK_Call_OnConnected.htm" />
+  <HelpKINode Title="OnDisconnected event" Url="html/E_SparkSDK_Call_OnDisconnected.htm" />
+  <HelpKINode Title="OnIncoming event" Url="html/E_SparkSDK_Phone_OnIncoming.htm" />
+  <HelpKINode Title="OnMediaChanged event" Url="html/E_SparkSDK_Call_OnMediaChanged.htm" />
+  <HelpKINode Title="OnRequestVideoCodecActivation event" Url="html/E_SparkSDK_Phone_OnRequestVideoCodecActivation.htm" />
+  <HelpKINode Title="OnRinging event" Url="html/E_SparkSDK_Call_OnRinging.htm" />
+  <HelpKINode Title="OtherConnected class">
+    <HelpKINode Title="OtherConnected Class" Url="html/T_SparkSDK_OtherConnected.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_OtherConnected.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OtherDeclined class">
+    <HelpKINode Title="OtherDeclined Class" Url="html/T_SparkSDK_OtherDeclined.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_OtherDeclined.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Outgoing enumeration member" Url="html/T_SparkSDK_Call_CallDirection.htm" />
+  <HelpKINode Title="People property" Url="html/P_SparkSDK_Spark_People.htm" />
+  <HelpKINode Title="Person class">
+    <HelpKINode Title="Person Class" Url="html/T_SparkSDK_Person.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_Person__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_Person.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Person.Avatar property" Url="html/P_SparkSDK_Person_Avatar.htm" />
+  <HelpKINode Title="Person.Created property" Url="html/P_SparkSDK_Person_Created.htm" />
+  <HelpKINode Title="Person.DisplayName property" Url="html/P_SparkSDK_Person_DisplayName.htm" />
+  <HelpKINode Title="Person.Emails property" Url="html/P_SparkSDK_Person_Emails.htm" />
+  <HelpKINode Title="Person.Id property" Url="html/P_SparkSDK_Person_Id.htm" />
+  <HelpKINode Title="Person.Person constructor" Url="html/M_SparkSDK_Person__ctor.htm" />
+  <HelpKINode Title="PersonClient class">
+    <HelpKINode Title="PersonClient Class" Url="html/T_SparkSDK_PersonClient.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_PersonClient__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_PersonClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PersonClient.Get method" Url="html/M_SparkSDK_PersonClient_Get.htm" />
+  <HelpKINode Title="PersonClient.GetMe method" Url="html/M_SparkSDK_PersonClient_GetMe.htm" />
+  <HelpKINode Title="PersonClient.List method" Url="html/M_SparkSDK_PersonClient_List.htm" />
+  <HelpKINode Title="PersonClient.PersonClient constructor" Url="html/M_SparkSDK_PersonClient__ctor.htm" />
+  <HelpKINode Title="PersonDisplayName property" Url="html/P_SparkSDK_TeamMembership_PersonDisplayName.htm" />
+  <HelpKINode Title="PersonEmail property">
+    <HelpKINode Title="Membership.PersonEmail Property " Url="html/P_SparkSDK_Membership_PersonEmail.htm" />
+    <HelpKINode Title="Message.PersonEmail Property " Url="html/P_SparkSDK_Message_PersonEmail.htm" />
+    <HelpKINode Title="TeamMembership.PersonEmail Property " Url="html/P_SparkSDK_TeamMembership_PersonEmail.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PersonId property">
+    <HelpKINode Title="CallMembership.PersonId Property " Url="html/P_SparkSDK_CallMembership_PersonId.htm" />
+    <HelpKINode Title="Membership.PersonId Property " Url="html/P_SparkSDK_Membership_PersonId.htm" />
+    <HelpKINode Title="Message.PersonId Property " Url="html/P_SparkSDK_Message_PersonId.htm" />
+    <HelpKINode Title="TeamMembership.PersonId Property " Url="html/P_SparkSDK_TeamMembership_PersonId.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Phone class">
+    <HelpKINode Title="Phone Class" Url="html/T_SparkSDK_Phone.htm" />
+    <HelpKINode Title="events" Url="html/Events_T_SparkSDK_Phone.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_Phone.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_Phone.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Phone property" Url="html/P_SparkSDK_Spark_Phone.htm" />
+  <HelpKINode Title="Phone.ActivateVideoCodecLicense method" Url="html/M_SparkSDK_Phone_ActivateVideoCodecLicense.htm" />
+  <HelpKINode Title="Phone.AudioMaxBandwidth property" Url="html/P_SparkSDK_Phone_AudioMaxBandwidth.htm" />
+  <HelpKINode Title="Phone.DefaultBandwidth enumeration" Url="html/T_SparkSDK_Phone_DefaultBandwidth.htm" />
+  <HelpKINode Title="Phone.Deregister method" Url="html/M_SparkSDK_Phone_Deregister.htm" />
+  <HelpKINode Title="Phone.Dial method" Url="html/M_SparkSDK_Phone_Dial.htm" />
+  <HelpKINode Title="Phone.DisableVideoCodecActivation method" Url="html/M_SparkSDK_Phone_DisableVideoCodecActivation.htm" />
+  <HelpKINode Title="Phone.GetAVIODevices method" Url="html/M_SparkSDK_Phone_GetAVIODevices.htm" />
+  <HelpKINode Title="Phone.OnIncoming event" Url="html/E_SparkSDK_Phone_OnIncoming.htm" />
+  <HelpKINode Title="Phone.OnRequestVideoCodecActivation event" Url="html/E_SparkSDK_Phone_OnRequestVideoCodecActivation.htm" />
+  <HelpKINode Title="Phone.Register method" Url="html/M_SparkSDK_Phone_Register.htm" />
+  <HelpKINode Title="Phone.RequestVideoCodecActivation method" Url="html/M_SparkSDK_Phone_RequestVideoCodecActivation.htm" />
+  <HelpKINode Title="Phone.SelectAVIODevice method" Url="html/M_SparkSDK_Phone_SelectAVIODevice.htm" />
+  <HelpKINode Title="Phone.ShareMaxBandwidth property" Url="html/P_SparkSDK_Phone_ShareMaxBandwidth.htm" />
+  <HelpKINode Title="Phone.StartPreview method" Url="html/M_SparkSDK_Phone_StartPreview.htm" />
+  <HelpKINode Title="Phone.StopPreview method" Url="html/M_SparkSDK_Phone_StopPreview.htm" />
+  <HelpKINode Title="Phone.UpdatePreview method" Url="html/M_SparkSDK_Phone_UpdatePreview.htm" />
+  <HelpKINode Title="Phone.VideoCodecLicense property" Url="html/P_SparkSDK_Phone_VideoCodecLicense.htm" />
+  <HelpKINode Title="Phone.VideoCodecLicenseURL property" Url="html/P_SparkSDK_Phone_VideoCodecLicenseURL.htm" />
+  <HelpKINode Title="Phone.VideoMaxBandwidth property" Url="html/P_SparkSDK_Phone_VideoMaxBandwidth.htm" />
+  <HelpKINode Title="PhoneNumber property" Url="html/P_SparkSDK_CallMembership_PhoneNumber.htm" />
+  <HelpKINode Title="PostToPerson method" Url="html/M_SparkSDK_MessageClient_PostToPerson.htm" />
+  <HelpKINode Title="PostToPersonByID method" Url="html/M_SparkSDK_MessageClient_PostToPersonByID.htm" />
+  <HelpKINode Title="PostToRoom method" Url="html/M_SparkSDK_MessageClient_PostToRoom.htm" />
+  <HelpKINode Title="Reason property" Url="html/P_SparkSDK_SparkError_Reason.htm" />
+  <HelpKINode Title="ReceivingAudioEvent class">
+    <HelpKINode Title="ReceivingAudioEvent Class" Url="html/T_SparkSDK_ReceivingAudioEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_ReceivingAudioEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReceivingAudioEvent.IsReceiving property" Url="html/P_SparkSDK_ReceivingAudioEvent_IsReceiving.htm" />
+  <HelpKINode Title="ReceivingShareEvent class">
+    <HelpKINode Title="ReceivingShareEvent Class" Url="html/T_SparkSDK_ReceivingShareEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_ReceivingShareEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReceivingShareEvent.IsReceiving property" Url="html/P_SparkSDK_ReceivingShareEvent_IsReceiving.htm" />
+  <HelpKINode Title="ReceivingVideoEvent class">
+    <HelpKINode Title="ReceivingVideoEvent Class" Url="html/T_SparkSDK_ReceivingVideoEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_ReceivingVideoEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReceivingVideoEvent.IsReceiving property" Url="html/P_SparkSDK_ReceivingVideoEvent_IsReceiving.htm" />
+  <HelpKINode Title="Register method" Url="html/M_SparkSDK_Phone_Register.htm" />
+  <HelpKINode Title="Reject method" Url="html/M_SparkSDK_Call_Reject.htm" />
+  <HelpKINode Title="RemoteCancel class">
+    <HelpKINode Title="RemoteCancel Class" Url="html/T_SparkSDK_RemoteCancel.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteCancel.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteDecline class">
+    <HelpKINode Title="RemoteDecline Class" Url="html/T_SparkSDK_RemoteDecline.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteDecline.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteLeft class">
+    <HelpKINode Title="RemoteLeft Class" Url="html/T_SparkSDK_RemoteLeft.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteLeft.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteSendingAudioEvent class">
+    <HelpKINode Title="RemoteSendingAudioEvent Class" Url="html/T_SparkSDK_RemoteSendingAudioEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteSendingAudioEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteSendingAudioEvent.IsSending property" Url="html/P_SparkSDK_RemoteSendingAudioEvent_IsSending.htm" />
+  <HelpKINode Title="RemoteSendingShareEvent class">
+    <HelpKINode Title="RemoteSendingShareEvent Class" Url="html/T_SparkSDK_RemoteSendingShareEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteSendingShareEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteSendingShareEvent.IsSending property" Url="html/P_SparkSDK_RemoteSendingShareEvent_IsSending.htm" />
+  <HelpKINode Title="RemoteSendingVideoEvent class">
+    <HelpKINode Title="RemoteSendingVideoEvent Class" Url="html/T_SparkSDK_RemoteSendingVideoEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteSendingVideoEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteSendingVideoEvent.IsSending property" Url="html/P_SparkSDK_RemoteSendingVideoEvent_IsSending.htm" />
+  <HelpKINode Title="RemoteShareViewSize property" Url="html/P_SparkSDK_Call_RemoteShareViewSize.htm" />
+  <HelpKINode Title="RemoteShareViewSizeChangedEvent class">
+    <HelpKINode Title="RemoteShareViewSizeChangedEvent Class" Url="html/T_SparkSDK_RemoteShareViewSizeChangedEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteShareViewSizeChangedEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteVideoReadyEvent class">
+    <HelpKINode Title="RemoteVideoReadyEvent Class" Url="html/T_SparkSDK_RemoteVideoReadyEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteVideoReadyEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteVideoViewSize property" Url="html/P_SparkSDK_Call_RemoteVideoViewSize.htm" />
+  <HelpKINode Title="RemoteVideoViewSizeChangedEvent class">
+    <HelpKINode Title="RemoteVideoViewSizeChangedEvent Class" Url="html/T_SparkSDK_RemoteVideoViewSizeChangedEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteVideoViewSizeChangedEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RequestVideoCodecActivation method" Url="html/M_SparkSDK_Phone_RequestVideoCodecActivation.htm" />
+  <HelpKINode Title="RequireH264 enumeration member" Url="html/T_SparkSDK_SparkErrorCode.htm" />
+  <HelpKINode Title="Resource property" Url="html/P_SparkSDK_Webhook_Resource.htm" />
+  <HelpKINode Title="Ringer enumeration member" Url="html/T_SparkSDK_AVIODeviceType.htm" />
+  <HelpKINode Title="Ringing enumeration member" Url="html/T_SparkSDK_CallStatus.htm" />
+  <HelpKINode Title="Room class">
+    <HelpKINode Title="Room Class" Url="html/T_SparkSDK_Room.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_Room__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_Room.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Room.Created property" Url="html/P_SparkSDK_Room_Created.htm" />
+  <HelpKINode Title="Room.Id property" Url="html/P_SparkSDK_Room_Id.htm" />
+  <HelpKINode Title="Room.IsLocked property" Url="html/P_SparkSDK_Room_IsLocked.htm" />
+  <HelpKINode Title="Room.LastActivity property" Url="html/P_SparkSDK_Room_LastActivity.htm" />
+  <HelpKINode Title="Room.Room constructor" Url="html/M_SparkSDK_Room__ctor.htm" />
+  <HelpKINode Title="Room.TeamId property" Url="html/P_SparkSDK_Room_TeamId.htm" />
+  <HelpKINode Title="Room.Title property" Url="html/P_SparkSDK_Room_Title.htm" />
+  <HelpKINode Title="Room.Type property" Url="html/P_SparkSDK_Room_Type.htm" />
+  <HelpKINode Title="RoomClient class">
+    <HelpKINode Title="RoomClient Class" Url="html/T_SparkSDK_RoomClient.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_RoomClient__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_RoomClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RoomClient.Create method" Url="html/M_SparkSDK_RoomClient_Create.htm" />
+  <HelpKINode Title="RoomClient.Delete method" Url="html/M_SparkSDK_RoomClient_Delete.htm" />
+  <HelpKINode Title="RoomClient.Get method" Url="html/M_SparkSDK_RoomClient_Get.htm" />
+  <HelpKINode Title="RoomClient.List method" Url="html/M_SparkSDK_RoomClient_List.htm" />
+  <HelpKINode Title="RoomClient.RoomClient constructor" Url="html/M_SparkSDK_RoomClient__ctor.htm" />
+  <HelpKINode Title="RoomClient.Update method" Url="html/M_SparkSDK_RoomClient_Update.htm" />
+  <HelpKINode Title="RoomId property">
+    <HelpKINode Title="Membership.RoomId Property " Url="html/P_SparkSDK_Membership_RoomId.htm" />
+    <HelpKINode Title="Message.RoomId Property " Url="html/P_SparkSDK_Message_RoomId.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Rooms property" Url="html/P_SparkSDK_Spark_Rooms.htm" />
+  <HelpKINode Title="RoomType enumeration" Url="html/T_SparkSDK_RoomType.htm" />
+  <HelpKINode Title="SelectAVIODevice method" Url="html/M_SparkSDK_Phone_SelectAVIODevice.htm" />
+  <HelpKINode Title="SendDtmf method" Url="html/M_SparkSDK_Call_SendDtmf.htm" />
+  <HelpKINode Title="SendFeedbackWith method" Url="html/M_SparkSDK_Call_SendFeedbackWith.htm" />
+  <HelpKINode Title="SendingAudioEvent class">
+    <HelpKINode Title="SendingAudioEvent Class" Url="html/T_SparkSDK_SendingAudioEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_SendingAudioEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendingAudioEvent.IsSending property" Url="html/P_SparkSDK_SendingAudioEvent_IsSending.htm" />
+  <HelpKINode Title="SendingVideoEvent class">
+    <HelpKINode Title="SendingVideoEvent Class" Url="html/T_SparkSDK_SendingVideoEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_SendingVideoEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SendingVideoEvent.IsSending property" Url="html/P_SparkSDK_SendingVideoEvent_IsSending.htm" />
+  <HelpKINode Title="ServiceFailed enumeration member" Url="html/T_SparkSDK_SparkErrorCode.htm" />
+  <HelpKINode Title="SetLocalView method" Url="html/M_SparkSDK_Call_SetLocalView.htm" />
+  <HelpKINode Title="SetRemoteShareView method" Url="html/M_SparkSDK_Call_SetRemoteShareView.htm" />
+  <HelpKINode Title="SetRemoteView method" Url="html/M_SparkSDK_Call_SetRemoteView.htm" />
+  <HelpKINode Title="ShareMaxBandwidth property" Url="html/P_SparkSDK_Phone_ShareMaxBandwidth.htm" />
+  <HelpKINode Title="SipUrl property" Url="html/P_SparkSDK_CallMembership_SipUrl.htm" />
+  <HelpKINode Title="Spark class">
+    <HelpKINode Title="Spark Class" Url="html/T_SparkSDK_Spark.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_Spark__ctor.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_SparkSDK_Spark.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_Spark.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Spark.Authenticator property" Url="html/P_SparkSDK_Spark_Authenticator.htm" />
+  <HelpKINode Title="Spark.ConsoleLogger property" Url="html/P_SparkSDK_Spark_ConsoleLogger.htm" />
+  <HelpKINode Title="Spark.Logger property" Url="html/P_SparkSDK_Spark_Logger.htm" />
+  <HelpKINode Title="Spark.Memberships property" Url="html/P_SparkSDK_Spark_Memberships.htm" />
+  <HelpKINode Title="Spark.Messages property" Url="html/P_SparkSDK_Spark_Messages.htm" />
+  <HelpKINode Title="Spark.People property" Url="html/P_SparkSDK_Spark_People.htm" />
+  <HelpKINode Title="Spark.Phone property" Url="html/P_SparkSDK_Spark_Phone.htm" />
+  <HelpKINode Title="Spark.Rooms property" Url="html/P_SparkSDK_Spark_Rooms.htm" />
+  <HelpKINode Title="Spark.Spark constructor" Url="html/M_SparkSDK_Spark__ctor.htm" />
+  <HelpKINode Title="Spark.TeamMemberships property" Url="html/P_SparkSDK_Spark_TeamMemberships.htm" />
+  <HelpKINode Title="Spark.Teams property" Url="html/P_SparkSDK_Spark_Teams.htm" />
+  <HelpKINode Title="Spark.Version field" Url="html/F_SparkSDK_Spark_Version.htm" />
+  <HelpKINode Title="Spark.Webhooks property" Url="html/P_SparkSDK_Spark_Webhooks.htm" />
+  <HelpKINode Title="SparkApiEventArgs class">
+    <HelpKINode Title="SparkApiEventArgs Class" Url="html/T_SparkSDK_SparkApiEventArgs.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_SparkSDK_SparkApiEventArgs__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_SparkApiEventArgs.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SparkApiEventArgs(Of T) class">
+    <HelpKINode Title="SparkApiEventArgs(T) Class" Url="html/T_SparkSDK_SparkApiEventArgs_1.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_SparkSDK_SparkApiEventArgs_1__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_SparkApiEventArgs_1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SparkApiEventArgs(Of T).Data property" Url="html/P_SparkSDK_SparkApiEventArgs_1_Data.htm" />
+  <HelpKINode Title="SparkApiEventArgs(Of T).SparkApiEventArgs constructor" Url="html/Overload_SparkSDK_SparkApiEventArgs_1__ctor.htm" />
+  <HelpKINode Title="SparkApiEventArgs.Error property" Url="html/P_SparkSDK_SparkApiEventArgs_Error.htm" />
+  <HelpKINode Title="SparkApiEventArgs.IsSuccess property" Url="html/P_SparkSDK_SparkApiEventArgs_IsSuccess.htm" />
+  <HelpKINode Title="SparkApiEventArgs.SparkApiEventArgs constructor" Url="html/Overload_SparkSDK_SparkApiEventArgs__ctor.htm" />
+  <HelpKINode Title="SparkApiEventArgs&lt;T&gt; class">
+    <HelpKINode Title="SparkApiEventArgs(T) Class" Url="html/T_SparkSDK_SparkApiEventArgs_1.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload_SparkSDK_SparkApiEventArgs_1__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_SparkApiEventArgs_1.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SparkApiEventArgs&lt;T&gt;.Data property" Url="html/P_SparkSDK_SparkApiEventArgs_1_Data.htm" />
+  <HelpKINode Title="SparkApiEventArgs&lt;T&gt;.SparkApiEventArgs constructor" Url="html/Overload_SparkSDK_SparkApiEventArgs_1__ctor.htm" />
+  <HelpKINode Title="SparkError class">
+    <HelpKINode Title="SparkError Class" Url="html/T_SparkSDK_SparkError.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_SparkError__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_SparkError.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SparkError.ErrorCode property" Url="html/P_SparkSDK_SparkError_ErrorCode.htm" />
+  <HelpKINode Title="SparkError.Reason property" Url="html/P_SparkSDK_SparkError_Reason.htm" />
+  <HelpKINode Title="SparkError.SparkError constructor" Url="html/M_SparkSDK_SparkError__ctor.htm" />
+  <HelpKINode Title="SparkErrorCode enumeration" Url="html/T_SparkSDK_SparkErrorCode.htm" />
+  <HelpKINode Title="SparkSDK namespace" Url="html/N_SparkSDK.htm" />
+  <HelpKINode Title="SparkSDK.AVIODevice class" Url="html/T_SparkSDK_AVIODevice.htm" />
+  <HelpKINode Title="SparkSDK.AVIODeviceType enumeration" Url="html/T_SparkSDK_AVIODeviceType.htm" />
+  <HelpKINode Title="SparkSDK.Call class" Url="html/T_SparkSDK_Call.htm" />
+  <HelpKINode Title="SparkSDK.Call.CallDirection enumeration" Url="html/T_SparkSDK_Call_CallDirection.htm" />
+  <HelpKINode Title="SparkSDK.Call.VideoDimensions structure" Url="html/T_SparkSDK_Call_VideoDimensions.htm" />
+  <HelpKINode Title="SparkSDK.CallDisconnectedEvent class" Url="html/T_SparkSDK_CallDisconnectedEvent.htm" />
+  <HelpKINode Title="SparkSDK.CallError class" Url="html/T_SparkSDK_CallError.htm" />
+  <HelpKINode Title="SparkSDK.CallEvent class" Url="html/T_SparkSDK_CallEvent.htm" />
+  <HelpKINode Title="SparkSDK.CallMembership class" Url="html/T_SparkSDK_CallMembership.htm" />
+  <HelpKINode Title="SparkSDK.CallMembership.CallState enumeration" Url="html/T_SparkSDK_CallMembership_CallState.htm" />
+  <HelpKINode Title="SparkSDK.CallMembershipChangedEvent class" Url="html/T_SparkSDK_CallMembershipChangedEvent.htm" />
+  <HelpKINode Title="SparkSDK.CallMembershipDeclinedEvent class" Url="html/T_SparkSDK_CallMembershipDeclinedEvent.htm" />
+  <HelpKINode Title="SparkSDK.CallMembershipJoinedEvent class" Url="html/T_SparkSDK_CallMembershipJoinedEvent.htm" />
+  <HelpKINode Title="SparkSDK.CallMembershipLeftEvent class" Url="html/T_SparkSDK_CallMembershipLeftEvent.htm" />
+  <HelpKINode Title="SparkSDK.CallMembershipSendingAudioEvent class" Url="html/T_SparkSDK_CallMembershipSendingAudioEvent.htm" />
+  <HelpKINode Title="SparkSDK.CallMembershipSendingShareEvent class" Url="html/T_SparkSDK_CallMembershipSendingShareEvent.htm" />
+  <HelpKINode Title="SparkSDK.CallMembershipSendingVideoEvent class" Url="html/T_SparkSDK_CallMembershipSendingVideoEvent.htm" />
+  <HelpKINode Title="SparkSDK.CallStatus enumeration" Url="html/T_SparkSDK_CallStatus.htm" />
+  <HelpKINode Title="SparkSDK.CameraSwitchedEvent class" Url="html/T_SparkSDK_CameraSwitchedEvent.htm" />
+  <HelpKINode Title="SparkSDK.CapabilitieDTMF class" Url="html/T_SparkSDK_CapabilitieDTMF.htm" />
+  <HelpKINode Title="SparkSDK.Capabilities class" Url="html/T_SparkSDK_Capabilities.htm" />
+  <HelpKINode Title="SparkSDK.IAuthenticator interface" Url="html/T_SparkSDK_IAuthenticator.htm" />
+  <HelpKINode Title="SparkSDK.ILogger interface" Url="html/T_SparkSDK_ILogger.htm" />
+  <HelpKINode Title="SparkSDK.JWTAuthenticator class" Url="html/T_SparkSDK_JWTAuthenticator.htm" />
+  <HelpKINode Title="SparkSDK.LocalCancel class" Url="html/T_SparkSDK_LocalCancel.htm" />
+  <HelpKINode Title="SparkSDK.LocalDecline class" Url="html/T_SparkSDK_LocalDecline.htm" />
+  <HelpKINode Title="SparkSDK.LocalLeft class" Url="html/T_SparkSDK_LocalLeft.htm" />
+  <HelpKINode Title="SparkSDK.LocalVideoReadyEvent class" Url="html/T_SparkSDK_LocalVideoReadyEvent.htm" />
+  <HelpKINode Title="SparkSDK.LocalVideoViewSizeChangedEvent class" Url="html/T_SparkSDK_LocalVideoViewSizeChangedEvent.htm" />
+  <HelpKINode Title="SparkSDK.LogLevel enumeration" Url="html/T_SparkSDK_LogLevel.htm" />
+  <HelpKINode Title="SparkSDK.MediaChangedEvent class" Url="html/T_SparkSDK_MediaChangedEvent.htm" />
+  <HelpKINode Title="SparkSDK.MediaOption class" Url="html/T_SparkSDK_MediaOption.htm" />
+  <HelpKINode Title="SparkSDK.Membership class" Url="html/T_SparkSDK_Membership.htm" />
+  <HelpKINode Title="SparkSDK.MembershipClient class" Url="html/T_SparkSDK_MembershipClient.htm" />
+  <HelpKINode Title="SparkSDK.Message class" Url="html/T_SparkSDK_Message.htm" />
+  <HelpKINode Title="SparkSDK.MessageClient class" Url="html/T_SparkSDK_MessageClient.htm" />
+  <HelpKINode Title="SparkSDK.OAuthAuthenticator class" Url="html/T_SparkSDK_OAuthAuthenticator.htm" />
+  <HelpKINode Title="SparkSDK.OtherConnected class" Url="html/T_SparkSDK_OtherConnected.htm" />
+  <HelpKINode Title="SparkSDK.OtherDeclined class" Url="html/T_SparkSDK_OtherDeclined.htm" />
+  <HelpKINode Title="SparkSDK.Person class" Url="html/T_SparkSDK_Person.htm" />
+  <HelpKINode Title="SparkSDK.PersonClient class" Url="html/T_SparkSDK_PersonClient.htm" />
+  <HelpKINode Title="SparkSDK.Phone class" Url="html/T_SparkSDK_Phone.htm" />
+  <HelpKINode Title="SparkSDK.Phone.DefaultBandwidth enumeration" Url="html/T_SparkSDK_Phone_DefaultBandwidth.htm" />
+  <HelpKINode Title="SparkSDK.ReceivingAudioEvent class" Url="html/T_SparkSDK_ReceivingAudioEvent.htm" />
+  <HelpKINode Title="SparkSDK.ReceivingShareEvent class" Url="html/T_SparkSDK_ReceivingShareEvent.htm" />
+  <HelpKINode Title="SparkSDK.ReceivingVideoEvent class" Url="html/T_SparkSDK_ReceivingVideoEvent.htm" />
+  <HelpKINode Title="SparkSDK.RemoteCancel class" Url="html/T_SparkSDK_RemoteCancel.htm" />
+  <HelpKINode Title="SparkSDK.RemoteDecline class" Url="html/T_SparkSDK_RemoteDecline.htm" />
+  <HelpKINode Title="SparkSDK.RemoteLeft class" Url="html/T_SparkSDK_RemoteLeft.htm" />
+  <HelpKINode Title="SparkSDK.RemoteSendingAudioEvent class" Url="html/T_SparkSDK_RemoteSendingAudioEvent.htm" />
+  <HelpKINode Title="SparkSDK.RemoteSendingShareEvent class" Url="html/T_SparkSDK_RemoteSendingShareEvent.htm" />
+  <HelpKINode Title="SparkSDK.RemoteSendingVideoEvent class" Url="html/T_SparkSDK_RemoteSendingVideoEvent.htm" />
+  <HelpKINode Title="SparkSDK.RemoteShareViewSizeChangedEvent class" Url="html/T_SparkSDK_RemoteShareViewSizeChangedEvent.htm" />
+  <HelpKINode Title="SparkSDK.RemoteVideoReadyEvent class" Url="html/T_SparkSDK_RemoteVideoReadyEvent.htm" />
+  <HelpKINode Title="SparkSDK.RemoteVideoViewSizeChangedEvent class" Url="html/T_SparkSDK_RemoteVideoViewSizeChangedEvent.htm" />
+  <HelpKINode Title="SparkSDK.Room class" Url="html/T_SparkSDK_Room.htm" />
+  <HelpKINode Title="SparkSDK.RoomClient class" Url="html/T_SparkSDK_RoomClient.htm" />
+  <HelpKINode Title="SparkSDK.RoomType enumeration" Url="html/T_SparkSDK_RoomType.htm" />
+  <HelpKINode Title="SparkSDK.SendingAudioEvent class" Url="html/T_SparkSDK_SendingAudioEvent.htm" />
+  <HelpKINode Title="SparkSDK.SendingVideoEvent class" Url="html/T_SparkSDK_SendingVideoEvent.htm" />
+  <HelpKINode Title="SparkSDK.Spark class" Url="html/T_SparkSDK_Spark.htm" />
+  <HelpKINode Title="SparkSDK.SparkApiEventArgs class" Url="html/T_SparkSDK_SparkApiEventArgs.htm" />
+  <HelpKINode Title="SparkSDK.SparkApiEventArgs(Of T) class" Url="html/T_SparkSDK_SparkApiEventArgs_1.htm" />
+  <HelpKINode Title="SparkSDK.SparkApiEventArgs&lt;T&gt; class" Url="html/T_SparkSDK_SparkApiEventArgs_1.htm" />
+  <HelpKINode Title="SparkSDK.SparkError class" Url="html/T_SparkSDK_SparkError.htm" />
+  <HelpKINode Title="SparkSDK.SparkErrorCode enumeration" Url="html/T_SparkSDK_SparkErrorCode.htm" />
+  <HelpKINode Title="SparkSDK.SpeakerSwitchedEvent class" Url="html/T_SparkSDK_SpeakerSwitchedEvent.htm" />
+  <HelpKINode Title="SparkSDK.Team class" Url="html/T_SparkSDK_Team.htm" />
+  <HelpKINode Title="SparkSDK.TeamClient class" Url="html/T_SparkSDK_TeamClient.htm" />
+  <HelpKINode Title="SparkSDK.TeamMembership class" Url="html/T_SparkSDK_TeamMembership.htm" />
+  <HelpKINode Title="SparkSDK.TeamMembershipClient class" Url="html/T_SparkSDK_TeamMembershipClient.htm" />
+  <HelpKINode Title="SparkSDK.Webhook class" Url="html/T_SparkSDK_Webhook.htm" />
+  <HelpKINode Title="SparkSDK.WebhookClient class" Url="html/T_SparkSDK_WebhookClient.htm" />
+  <HelpKINode Title="Speaker enumeration member" Url="html/T_SparkSDK_AVIODeviceType.htm" />
+  <HelpKINode Title="Speaker property" Url="html/P_SparkSDK_SpeakerSwitchedEvent_Speaker.htm" />
+  <HelpKINode Title="SpeakerSwitchedEvent class">
+    <HelpKINode Title="SpeakerSwitchedEvent Class" Url="html/T_SparkSDK_SpeakerSwitchedEvent.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_SpeakerSwitchedEvent.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SpeakerSwitchedEvent.Speaker property" Url="html/P_SparkSDK_SpeakerSwitchedEvent_Speaker.htm" />
+  <HelpKINode Title="StartPreview method" Url="html/M_SparkSDK_Phone_StartPreview.htm" />
+  <HelpKINode Title="State property" Url="html/P_SparkSDK_CallMembership_State.htm" />
+  <HelpKINode Title="Status property" Url="html/P_SparkSDK_Call_Status.htm" />
+  <HelpKINode Title="StopPreview method" Url="html/M_SparkSDK_Phone_StopPreview.htm" />
+  <HelpKINode Title="TargetUrl property" Url="html/P_SparkSDK_Webhook_TargetUrl.htm" />
+  <HelpKINode Title="Team class">
+    <HelpKINode Title="Team Class" Url="html/T_SparkSDK_Team.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_Team__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_Team.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Team.Created property" Url="html/P_SparkSDK_Team_Created.htm" />
+  <HelpKINode Title="Team.Id property" Url="html/P_SparkSDK_Team_Id.htm" />
+  <HelpKINode Title="Team.Name property" Url="html/P_SparkSDK_Team_Name.htm" />
+  <HelpKINode Title="Team.Team constructor" Url="html/M_SparkSDK_Team__ctor.htm" />
+  <HelpKINode Title="TeamClient class">
+    <HelpKINode Title="TeamClient Class" Url="html/T_SparkSDK_TeamClient.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_TeamClient__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_TeamClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TeamClient.Create method" Url="html/M_SparkSDK_TeamClient_Create.htm" />
+  <HelpKINode Title="TeamClient.Delete method" Url="html/M_SparkSDK_TeamClient_Delete.htm" />
+  <HelpKINode Title="TeamClient.Get method" Url="html/M_SparkSDK_TeamClient_Get.htm" />
+  <HelpKINode Title="TeamClient.List method" Url="html/M_SparkSDK_TeamClient_List.htm" />
+  <HelpKINode Title="TeamClient.TeamClient constructor" Url="html/M_SparkSDK_TeamClient__ctor.htm" />
+  <HelpKINode Title="TeamClient.Update method" Url="html/M_SparkSDK_TeamClient_Update.htm" />
+  <HelpKINode Title="TeamId property">
+    <HelpKINode Title="Room.TeamId Property " Url="html/P_SparkSDK_Room_TeamId.htm" />
+    <HelpKINode Title="TeamMembership.TeamId Property " Url="html/P_SparkSDK_TeamMembership_TeamId.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TeamMembership class">
+    <HelpKINode Title="TeamMembership Class" Url="html/T_SparkSDK_TeamMembership.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_TeamMembership__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_TeamMembership.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TeamMembership.Created property" Url="html/P_SparkSDK_TeamMembership_Created.htm" />
+  <HelpKINode Title="TeamMembership.Id property" Url="html/P_SparkSDK_TeamMembership_Id.htm" />
+  <HelpKINode Title="TeamMembership.IsModerator property" Url="html/P_SparkSDK_TeamMembership_IsModerator.htm" />
+  <HelpKINode Title="TeamMembership.PersonDisplayName property" Url="html/P_SparkSDK_TeamMembership_PersonDisplayName.htm" />
+  <HelpKINode Title="TeamMembership.PersonEmail property" Url="html/P_SparkSDK_TeamMembership_PersonEmail.htm" />
+  <HelpKINode Title="TeamMembership.PersonId property" Url="html/P_SparkSDK_TeamMembership_PersonId.htm" />
+  <HelpKINode Title="TeamMembership.TeamId property" Url="html/P_SparkSDK_TeamMembership_TeamId.htm" />
+  <HelpKINode Title="TeamMembership.TeamMembership constructor" Url="html/M_SparkSDK_TeamMembership__ctor.htm" />
+  <HelpKINode Title="TeamMembershipClient class">
+    <HelpKINode Title="TeamMembershipClient Class" Url="html/T_SparkSDK_TeamMembershipClient.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_TeamMembershipClient__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_TeamMembershipClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TeamMembershipClient.CreateByEmail method" Url="html/M_SparkSDK_TeamMembershipClient_CreateByEmail.htm" />
+  <HelpKINode Title="TeamMembershipClient.CreateById method" Url="html/M_SparkSDK_TeamMembershipClient_CreateById.htm" />
+  <HelpKINode Title="TeamMembershipClient.Delete method" Url="html/M_SparkSDK_TeamMembershipClient_Delete.htm" />
+  <HelpKINode Title="TeamMembershipClient.Get method" Url="html/M_SparkSDK_TeamMembershipClient_Get.htm" />
+  <HelpKINode Title="TeamMembershipClient.List method" Url="html/M_SparkSDK_TeamMembershipClient_List.htm" />
+  <HelpKINode Title="TeamMembershipClient.TeamMembershipClient constructor" Url="html/M_SparkSDK_TeamMembershipClient__ctor.htm" />
+  <HelpKINode Title="TeamMembershipClient.Update method" Url="html/M_SparkSDK_TeamMembershipClient_Update.htm" />
+  <HelpKINode Title="TeamMemberships property" Url="html/P_SparkSDK_Spark_TeamMemberships.htm" />
+  <HelpKINode Title="Teams property" Url="html/P_SparkSDK_Spark_Teams.htm" />
+  <HelpKINode Title="Text property" Url="html/P_SparkSDK_Message_Text.htm" />
+  <HelpKINode Title="Title property" Url="html/P_SparkSDK_Room_Title.htm" />
+  <HelpKINode Title="To property" Url="html/P_SparkSDK_Call_To.htm" />
+  <HelpKINode Title="ToPersonEmail property" Url="html/P_SparkSDK_Message_ToPersonEmail.htm" />
+  <HelpKINode Title="ToPersonId property" Url="html/P_SparkSDK_Message_ToPersonId.htm" />
+  <HelpKINode Title="Trace enumeration member" Url="html/T_SparkSDK_LogLevel.htm" />
+  <HelpKINode Title="Type property">
+    <HelpKINode Title="AVIODevice.Type Property " Url="html/P_SparkSDK_AVIODevice_Type.htm" />
+    <HelpKINode Title="Room.Type Property " Url="html/P_SparkSDK_Room_Type.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Unknown enumeration member" Url="html/T_SparkSDK_CallMembership_CallState.htm" />
+  <HelpKINode Title="Unregistered enumeration member" Url="html/T_SparkSDK_SparkErrorCode.htm" />
+  <HelpKINode Title="UnsupportedDTMF enumeration member" Url="html/T_SparkSDK_SparkErrorCode.htm" />
+  <HelpKINode Title="Update method">
+    <HelpKINode Title="MembershipClient.Update Method " Url="html/M_SparkSDK_MembershipClient_Update.htm" />
+    <HelpKINode Title="RoomClient.Update Method " Url="html/M_SparkSDK_RoomClient_Update.htm" />
+    <HelpKINode Title="TeamClient.Update Method " Url="html/M_SparkSDK_TeamClient_Update.htm" />
+    <HelpKINode Title="TeamMembershipClient.Update Method " Url="html/M_SparkSDK_TeamMembershipClient_Update.htm" />
+    <HelpKINode Title="WebhookClient.Update Method " Url="html/M_SparkSDK_WebhookClient_Update.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UpdateLocalView method" Url="html/M_SparkSDK_Call_UpdateLocalView.htm" />
+  <HelpKINode Title="UpdatePreview method" Url="html/M_SparkSDK_Phone_UpdatePreview.htm" />
+  <HelpKINode Title="UpdateRemoteShareView method" Url="html/M_SparkSDK_Call_UpdateRemoteShareView.htm" />
+  <HelpKINode Title="UpdateRemoteView method" Url="html/M_SparkSDK_Call_UpdateRemoteView.htm" />
+  <HelpKINode Title="Version field" Url="html/F_SparkSDK_Spark_Version.htm" />
+  <HelpKINode Title="VideoCodecLicense property" Url="html/P_SparkSDK_Phone_VideoCodecLicense.htm" />
+  <HelpKINode Title="VideoCodecLicenseURL property" Url="html/P_SparkSDK_Phone_VideoCodecLicenseURL.htm" />
+  <HelpKINode Title="VideoDimensions structure">
+    <HelpKINode Title="fields" Url="html/Fields_T_SparkSDK_Call_VideoDimensions.htm" />
+  </HelpKINode>
+  <HelpKINode Title="VideoMaxBandwidth property" Url="html/P_SparkSDK_Phone_VideoMaxBandwidth.htm" />
+  <HelpKINode Title="Warn enumeration member" Url="html/T_SparkSDK_LogLevel.htm" />
+  <HelpKINode Title="Webhook class">
+    <HelpKINode Title="Webhook Class" Url="html/T_SparkSDK_Webhook.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_Webhook__ctor.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_Webhook.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Webhook.Created property" Url="html/P_SparkSDK_Webhook_Created.htm" />
+  <HelpKINode Title="Webhook.EventType property" Url="html/P_SparkSDK_Webhook_EventType.htm" />
+  <HelpKINode Title="Webhook.Filter property" Url="html/P_SparkSDK_Webhook_Filter.htm" />
+  <HelpKINode Title="Webhook.Id property" Url="html/P_SparkSDK_Webhook_Id.htm" />
+  <HelpKINode Title="Webhook.Name property" Url="html/P_SparkSDK_Webhook_Name.htm" />
+  <HelpKINode Title="Webhook.Resource property" Url="html/P_SparkSDK_Webhook_Resource.htm" />
+  <HelpKINode Title="Webhook.TargetUrl property" Url="html/P_SparkSDK_Webhook_TargetUrl.htm" />
+  <HelpKINode Title="Webhook.Webhook constructor" Url="html/M_SparkSDK_Webhook__ctor.htm" />
+  <HelpKINode Title="WebhookClient class">
+    <HelpKINode Title="WebhookClient Class" Url="html/T_SparkSDK_WebhookClient.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_WebhookClient__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_WebhookClient.htm" />
+  </HelpKINode>
+  <HelpKINode Title="WebhookClient.Create method" Url="html/M_SparkSDK_WebhookClient_Create.htm" />
+  <HelpKINode Title="WebhookClient.Delete method" Url="html/M_SparkSDK_WebhookClient_Delete.htm" />
+  <HelpKINode Title="WebhookClient.Get method" Url="html/M_SparkSDK_WebhookClient_Get.htm" />
+  <HelpKINode Title="WebhookClient.List method" Url="html/M_SparkSDK_WebhookClient_List.htm" />
+  <HelpKINode Title="WebhookClient.Update method" Url="html/M_SparkSDK_WebhookClient_Update.htm" />
+  <HelpKINode Title="WebhookClient.WebhookClient constructor" Url="html/M_SparkSDK_WebhookClient__ctor.htm" />
+  <HelpKINode Title="Webhooks property" Url="html/P_SparkSDK_Spark_Webhooks.htm" />
+  <HelpKINode Title="Width field" Url="html/F_SparkSDK_Call_VideoDimensions_Width.htm" />
+</HelpKI>

@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="2c959d82-d817-44f6-a5f8-9daf4163651c" Title="SparkSDK" Url="html/N_SparkSDK.htm">
+    <HelpTOCNode Id="001c4346-810f-457f-91ea-34dc8f672cc1" Title="AVIODevice Class" Url="html/T_SparkSDK_AVIODevice.htm">
+      <HelpTOCNode Title="AVIODevice Constructor " Url="html/M_SparkSDK_AVIODevice__ctor.htm" />
+      <HelpTOCNode Id="8d283507-8794-4794-9fea-667ab8527136" Title="AVIODevice Properties" Url="html/Properties_T_SparkSDK_AVIODevice.htm">
+        <HelpTOCNode Title="DefaultDevice Property " Url="html/P_SparkSDK_AVIODevice_DefaultDevice.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P_SparkSDK_AVIODevice_Id.htm" />
+        <HelpTOCNode Title="Name Property " Url="html/P_SparkSDK_AVIODevice_Name.htm" />
+        <HelpTOCNode Title="Type Property " Url="html/P_SparkSDK_AVIODevice_Type.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="AVIODeviceType Enumeration" Url="html/T_SparkSDK_AVIODeviceType.htm" />
+    <HelpTOCNode Id="a8e3d5a0-aa2d-483e-8569-85820492b7dc" Title="Call Class" Url="html/T_SparkSDK_Call.htm">
+      <HelpTOCNode Id="3f0a035b-7e20-478d-9fc7-327e7858c7a0" Title="Call Properties" Url="html/Properties_T_SparkSDK_Call.htm">
+        <HelpTOCNode Title="Direction Property " Url="html/P_SparkSDK_Call_Direction.htm" />
+        <HelpTOCNode Title="From Property " Url="html/P_SparkSDK_Call_From.htm" />
+        <HelpTOCNode Title="IsReceivingAudio Property " Url="html/P_SparkSDK_Call_IsReceivingAudio.htm" />
+        <HelpTOCNode Title="IsReceivingShare Property " Url="html/P_SparkSDK_Call_IsReceivingShare.htm" />
+        <HelpTOCNode Title="IsReceivingVideo Property " Url="html/P_SparkSDK_Call_IsReceivingVideo.htm" />
+        <HelpTOCNode Title="IsRemoteSendingAudio Property " Url="html/P_SparkSDK_Call_IsRemoteSendingAudio.htm" />
+        <HelpTOCNode Title="IsRemoteSendingShare Property " Url="html/P_SparkSDK_Call_IsRemoteSendingShare.htm" />
+        <HelpTOCNode Title="IsRemoteSendingVideo Property " Url="html/P_SparkSDK_Call_IsRemoteSendingVideo.htm" />
+        <HelpTOCNode Title="IsSendingAudio Property " Url="html/P_SparkSDK_Call_IsSendingAudio.htm" />
+        <HelpTOCNode Title="IsSendingDTMFEnabled Property " Url="html/P_SparkSDK_Call_IsSendingDTMFEnabled.htm" />
+        <HelpTOCNode Title="IsSendingVideo Property " Url="html/P_SparkSDK_Call_IsSendingVideo.htm" />
+        <HelpTOCNode Title="LocalVideoViewSize Property " Url="html/P_SparkSDK_Call_LocalVideoViewSize.htm" />
+        <HelpTOCNode Title="Memberships Property " Url="html/P_SparkSDK_Call_Memberships.htm" />
+        <HelpTOCNode Title="RemoteShareViewSize Property " Url="html/P_SparkSDK_Call_RemoteShareViewSize.htm" />
+        <HelpTOCNode Title="RemoteVideoViewSize Property " Url="html/P_SparkSDK_Call_RemoteVideoViewSize.htm" />
+        <HelpTOCNode Title="Status Property " Url="html/P_SparkSDK_Call_Status.htm" />
+        <HelpTOCNode Title="To Property " Url="html/P_SparkSDK_Call_To.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c3e32c5d-adaa-4186-99ad-1fb480de2c30" Title="Call Methods" Url="html/Methods_T_SparkSDK_Call.htm">
+        <HelpTOCNode Title="Acknowledge Method " Url="html/M_SparkSDK_Call_Acknowledge.htm" />
+        <HelpTOCNode Title="Answer Method " Url="html/M_SparkSDK_Call_Answer.htm" />
+        <HelpTOCNode Title="Hangup Method " Url="html/M_SparkSDK_Call_Hangup.htm" />
+        <HelpTOCNode Title="Reject Method " Url="html/M_SparkSDK_Call_Reject.htm" />
+        <HelpTOCNode Title="SendDtmf Method " Url="html/M_SparkSDK_Call_SendDtmf.htm" />
+        <HelpTOCNode Title="SendFeedbackWith Method " Url="html/M_SparkSDK_Call_SendFeedbackWith.htm" />
+        <HelpTOCNode Title="SetLocalView Method " Url="html/M_SparkSDK_Call_SetLocalView.htm" />
+        <HelpTOCNode Title="SetRemoteShareView Method " Url="html/M_SparkSDK_Call_SetRemoteShareView.htm" />
+        <HelpTOCNode Title="SetRemoteView Method " Url="html/M_SparkSDK_Call_SetRemoteView.htm" />
+        <HelpTOCNode Title="UpdateLocalView Method " Url="html/M_SparkSDK_Call_UpdateLocalView.htm" />
+        <HelpTOCNode Title="UpdateRemoteShareView Method " Url="html/M_SparkSDK_Call_UpdateRemoteShareView.htm" />
+        <HelpTOCNode Title="UpdateRemoteView Method " Url="html/M_SparkSDK_Call_UpdateRemoteView.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="6f4b63f9-0bf6-460c-90f1-422195d4269f" Title="Call Events" Url="html/Events_T_SparkSDK_Call.htm">
+        <HelpTOCNode Title="OnCallMembershipChanged Event" Url="html/E_SparkSDK_Call_OnCallMembershipChanged.htm" />
+        <HelpTOCNode Title="OnCapabilitiesChanged Event" Url="html/E_SparkSDK_Call_OnCapabilitiesChanged.htm" />
+        <HelpTOCNode Title="OnConnected Event" Url="html/E_SparkSDK_Call_OnConnected.htm" />
+        <HelpTOCNode Title="OnDisconnected Event" Url="html/E_SparkSDK_Call_OnDisconnected.htm" />
+        <HelpTOCNode Title="OnMediaChanged Event" Url="html/E_SparkSDK_Call_OnMediaChanged.htm" />
+        <HelpTOCNode Title="OnRinging Event" Url="html/E_SparkSDK_Call_OnRinging.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="Call.CallDirection Enumeration" Url="html/T_SparkSDK_Call_CallDirection.htm" />
+    <HelpTOCNode Id="248f7257-efe8-4163-9344-3fa0160e827c" Title="Call.VideoDimensions Structure" Url="html/T_SparkSDK_Call_VideoDimensions.htm">
+      <HelpTOCNode Id="75055351-902d-46c9-aecb-7fcab8c52c87" Title="VideoDimensions Fields" Url="html/Fields_T_SparkSDK_Call_VideoDimensions.htm">
+        <HelpTOCNode Title="Height Field" Url="html/F_SparkSDK_Call_VideoDimensions_Height.htm" />
+        <HelpTOCNode Title="Width Field" Url="html/F_SparkSDK_Call_VideoDimensions_Width.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="0a3d212c-f3b3-472e-9cbe-11cc06795ac9" Title="CallDisconnectedEvent Class" Url="html/T_SparkSDK_CallDisconnectedEvent.htm">
+      <HelpTOCNode Title="CallDisconnectedEvent Properties" Url="html/Properties_T_SparkSDK_CallDisconnectedEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="1e401f68-6387-4916-a6a5-8f3b7bd19724" Title="CallError Class" Url="html/T_SparkSDK_CallError.htm">
+      <HelpTOCNode Id="7844722a-d5d6-487c-a0b4-c526b5a00b35" Title="CallError Properties" Url="html/Properties_T_SparkSDK_CallError.htm">
+        <HelpTOCNode Title="Error Property " Url="html/P_SparkSDK_CallError_Error.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a71924b6-4884-4bce-b588-d26869548b74" Title="CallEvent Class" Url="html/T_SparkSDK_CallEvent.htm">
+      <HelpTOCNode Id="8477d100-f437-4019-9b2d-fa36bf3fece4" Title="CallEvent Properties" Url="html/Properties_T_SparkSDK_CallEvent.htm">
+        <HelpTOCNode Title="Call Property " Url="html/P_SparkSDK_CallEvent_Call.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="826f709f-6380-43ee-b7b3-3250e1d9dffb" Title="CallMembership Class" Url="html/T_SparkSDK_CallMembership.htm">
+      <HelpTOCNode Title="CallMembership Constructor " Url="html/M_SparkSDK_CallMembership__ctor.htm" />
+      <HelpTOCNode Id="40063f43-6578-4dee-a90c-b22bc6ccfe27" Title="CallMembership Properties" Url="html/Properties_T_SparkSDK_CallMembership.htm">
+        <HelpTOCNode Title="Email Property " Url="html/P_SparkSDK_CallMembership_Email.htm" />
+        <HelpTOCNode Title="IsInitiator Property " Url="html/P_SparkSDK_CallMembership_IsInitiator.htm" />
+        <HelpTOCNode Title="IsSendingAudio Property " Url="html/P_SparkSDK_CallMembership_IsSendingAudio.htm" />
+        <HelpTOCNode Title="IsSendingShare Property " Url="html/P_SparkSDK_CallMembership_IsSendingShare.htm" />
+        <HelpTOCNode Title="IsSendingVideo Property " Url="html/P_SparkSDK_CallMembership_IsSendingVideo.htm" />
+        <HelpTOCNode Title="PersonId Property " Url="html/P_SparkSDK_CallMembership_PersonId.htm" />
+        <HelpTOCNode Title="PhoneNumber Property " Url="html/P_SparkSDK_CallMembership_PhoneNumber.htm" />
+        <HelpTOCNode Title="SipUrl Property " Url="html/P_SparkSDK_CallMembership_SipUrl.htm" />
+        <HelpTOCNode Title="State Property " Url="html/P_SparkSDK_CallMembership_State.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="CallMembership.CallState Enumeration" Url="html/T_SparkSDK_CallMembership_CallState.htm" />
+    <HelpTOCNode Id="19b6aa25-c0ff-478d-9936-3d93b73ca203" Title="CallMembershipChangedEvent Class" Url="html/T_SparkSDK_CallMembershipChangedEvent.htm">
+      <HelpTOCNode Id="2af20269-8d49-4218-b1f1-dd41fadb283b" Title="CallMembershipChangedEvent Properties" Url="html/Properties_T_SparkSDK_CallMembershipChangedEvent.htm">
+        <HelpTOCNode Title="CallMembership Property " Url="html/P_SparkSDK_CallMembershipChangedEvent_CallMembership.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="17c0d962-5058-4af7-8dde-9cdd2f63fd7d" Title="CallMembershipDeclinedEvent Class" Url="html/T_SparkSDK_CallMembershipDeclinedEvent.htm">
+      <HelpTOCNode Title="CallMembershipDeclinedEvent Properties" Url="html/Properties_T_SparkSDK_CallMembershipDeclinedEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="eb41bb45-d9f5-42dd-8183-7001755fd8b4" Title="CallMembershipJoinedEvent Class" Url="html/T_SparkSDK_CallMembershipJoinedEvent.htm">
+      <HelpTOCNode Title="CallMembershipJoinedEvent Properties" Url="html/Properties_T_SparkSDK_CallMembershipJoinedEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="b3b277a8-fff5-419b-a9cc-625063fc5831" Title="CallMembershipLeftEvent Class" Url="html/T_SparkSDK_CallMembershipLeftEvent.htm">
+      <HelpTOCNode Title="CallMembershipLeftEvent Properties" Url="html/Properties_T_SparkSDK_CallMembershipLeftEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="c22ec128-965c-4cd9-adb7-3e2409fa0258" Title="CallMembershipSendingAudioEvent Class" Url="html/T_SparkSDK_CallMembershipSendingAudioEvent.htm">
+      <HelpTOCNode Title="CallMembershipSendingAudioEvent Properties" Url="html/Properties_T_SparkSDK_CallMembershipSendingAudioEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="0d6c18f5-0856-4251-adf4-7f916730615d" Title="CallMembershipSendingShareEvent Class" Url="html/T_SparkSDK_CallMembershipSendingShareEvent.htm">
+      <HelpTOCNode Title="CallMembershipSendingShareEvent Properties" Url="html/Properties_T_SparkSDK_CallMembershipSendingShareEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="300ef7fa-f70d-4ad2-8325-77634e303b12" Title="CallMembershipSendingVideoEvent Class" Url="html/T_SparkSDK_CallMembershipSendingVideoEvent.htm">
+      <HelpTOCNode Title="CallMembershipSendingVideoEvent Properties" Url="html/Properties_T_SparkSDK_CallMembershipSendingVideoEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="CallStatus Enumeration" Url="html/T_SparkSDK_CallStatus.htm" />
+    <HelpTOCNode Id="13818bc3-d68e-4e5c-bdec-2a3d1fceddc3" Title="CameraSwitchedEvent Class" Url="html/T_SparkSDK_CameraSwitchedEvent.htm">
+      <HelpTOCNode Id="2cafa03e-9d98-4235-b67b-7788b4f80486" Title="CameraSwitchedEvent Properties" Url="html/Properties_T_SparkSDK_CameraSwitchedEvent.htm">
+        <HelpTOCNode Title="Camera Property " Url="html/P_SparkSDK_CameraSwitchedEvent_Camera.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="7fbd8213-2099-45db-8e9c-37d695cf399d" Title="CapabilitieDTMF Class" Url="html/T_SparkSDK_CapabilitieDTMF.htm">
+      <HelpTOCNode Id="1e6ffbdd-f871-4675-ae64-5932bc99b66c" Title="CapabilitieDTMF Properties" Url="html/Properties_T_SparkSDK_CapabilitieDTMF.htm">
+        <HelpTOCNode Title="IsEnabled Property " Url="html/P_SparkSDK_CapabilitieDTMF_IsEnabled.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="0d78dd58-3a04-4414-9f4c-888c3b72ef5c" Title="Capabilities Class" Url="html/T_SparkSDK_Capabilities.htm">
+      <HelpTOCNode Title="Capabilities Properties" Url="html/Properties_T_SparkSDK_Capabilities.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="1dfe309e-a5e6-4d43-9035-eea7b5f82264" Title="IAuthenticator Interface" Url="html/T_SparkSDK_IAuthenticator.htm">
+      <HelpTOCNode Id="fce23c7e-df4d-4939-ad4d-93619c32cd11" Title="IAuthenticator Methods" Url="html/Methods_T_SparkSDK_IAuthenticator.htm">
+        <HelpTOCNode Title="AccessToken Method " Url="html/M_SparkSDK_IAuthenticator_AccessToken.htm" />
+        <HelpTOCNode Title="Authorized Method " Url="html/M_SparkSDK_IAuthenticator_Authorized.htm" />
+        <HelpTOCNode Title="Deauthorize Method " Url="html/M_SparkSDK_IAuthenticator_Deauthorize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="7b07f13c-ff66-4a3b-b78f-6a648ed7d4ca" Title="ILogger Interface" Url="html/T_SparkSDK_ILogger.htm">
+      <HelpTOCNode Id="650d285c-00de-475a-813a-51c4ee9a2b8a" Title="ILogger Methods" Url="html/Methods_T_SparkSDK_ILogger.htm">
+        <HelpTOCNode Title="Log Method " Url="html/M_SparkSDK_ILogger_Log.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="ae3f9a84-dbcf-46e0-b2d2-6eecb460f7dc" Title="JWTAuthenticator Class" Url="html/T_SparkSDK_JWTAuthenticator.htm">
+      <HelpTOCNode Title="JWTAuthenticator Constructor " Url="html/M_SparkSDK_JWTAuthenticator__ctor.htm" />
+      <HelpTOCNode Id="314b8585-7413-4fc9-913f-6e745e46b0ab" Title="JWTAuthenticator Methods" Url="html/Methods_T_SparkSDK_JWTAuthenticator.htm">
+        <HelpTOCNode Title="AccessToken Method " Url="html/M_SparkSDK_JWTAuthenticator_AccessToken.htm" />
+        <HelpTOCNode Title="Authorized Method " Url="html/M_SparkSDK_JWTAuthenticator_Authorized.htm" />
+        <HelpTOCNode Title="AuthorizeWith Method " Url="html/M_SparkSDK_JWTAuthenticator_AuthorizeWith.htm" />
+        <HelpTOCNode Title="Deauthorize Method " Url="html/M_SparkSDK_JWTAuthenticator_Deauthorize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="410a8f47-7b70-4942-b900-98b4ab93833f" Title="LocalCancel Class" Url="html/T_SparkSDK_LocalCancel.htm">
+      <HelpTOCNode Title="LocalCancel Properties" Url="html/Properties_T_SparkSDK_LocalCancel.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="53bbc9db-97aa-43a7-8aac-85581f21e4b1" Title="LocalDecline Class" Url="html/T_SparkSDK_LocalDecline.htm">
+      <HelpTOCNode Title="LocalDecline Properties" Url="html/Properties_T_SparkSDK_LocalDecline.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="841b620c-95f9-4896-83c6-276a190143af" Title="LocalLeft Class" Url="html/T_SparkSDK_LocalLeft.htm">
+      <HelpTOCNode Title="LocalLeft Properties" Url="html/Properties_T_SparkSDK_LocalLeft.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="7417eca9-4df0-4238-bb91-ec71fb20ebef" Title="LocalVideoReadyEvent Class" Url="html/T_SparkSDK_LocalVideoReadyEvent.htm">
+      <HelpTOCNode Title="LocalVideoReadyEvent Properties" Url="html/Properties_T_SparkSDK_LocalVideoReadyEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="c1820c84-4665-4d39-8895-8452031ac336" Title="LocalVideoViewSizeChangedEvent Class" Url="html/T_SparkSDK_LocalVideoViewSizeChangedEvent.htm">
+      <HelpTOCNode Title="LocalVideoViewSizeChangedEvent Properties" Url="html/Properties_T_SparkSDK_LocalVideoViewSizeChangedEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Title="LogLevel Enumeration" Url="html/T_SparkSDK_LogLevel.htm" />
+    <HelpTOCNode Id="14570643-75d5-45cd-b024-ab504aa5199f" Title="MediaChangedEvent Class" Url="html/T_SparkSDK_MediaChangedEvent.htm">
+      <HelpTOCNode Title="MediaChangedEvent Properties" Url="html/Properties_T_SparkSDK_MediaChangedEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="c720230a-367c-42b3-8e25-11cb9ba10a7e" Title="MediaOption Class" Url="html/T_SparkSDK_MediaOption.htm">
+      <HelpTOCNode Id="44a610a0-afda-437a-8b74-36d67fadeb91" Title="MediaOption Methods" Url="html/Methods_T_SparkSDK_MediaOption.htm">
+        <HelpTOCNode Title="AudioOnly Method " Url="html/M_SparkSDK_MediaOption_AudioOnly.htm" />
+        <HelpTOCNode Title="AudioVideo Method " Url="html/M_SparkSDK_MediaOption_AudioVideo.htm" />
+        <HelpTOCNode Title="AudioVideoShare Method " Url="html/M_SparkSDK_MediaOption_AudioVideoShare.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="da3abc10-27d8-409d-8991-bb3923ce25d0" Title="Membership Class" Url="html/T_SparkSDK_Membership.htm">
+      <HelpTOCNode Title="Membership Constructor " Url="html/M_SparkSDK_Membership__ctor.htm" />
+      <HelpTOCNode Id="24b110c5-d358-40fe-9032-8e156d6ce65a" Title="Membership Properties" Url="html/Properties_T_SparkSDK_Membership.htm">
+        <HelpTOCNode Title="Created Property " Url="html/P_SparkSDK_Membership_Created.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P_SparkSDK_Membership_Id.htm" />
+        <HelpTOCNode Title="IsModerator Property " Url="html/P_SparkSDK_Membership_IsModerator.htm" />
+        <HelpTOCNode Title="IsMonitor Property " Url="html/P_SparkSDK_Membership_IsMonitor.htm" />
+        <HelpTOCNode Title="PersonEmail Property " Url="html/P_SparkSDK_Membership_PersonEmail.htm" />
+        <HelpTOCNode Title="PersonId Property " Url="html/P_SparkSDK_Membership_PersonId.htm" />
+        <HelpTOCNode Title="RoomId Property " Url="html/P_SparkSDK_Membership_RoomId.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="c3c9b15a-22a8-46bd-876a-56a60a634e92" Title="MembershipClient Class" Url="html/T_SparkSDK_MembershipClient.htm">
+      <HelpTOCNode Title="MembershipClient Constructor " Url="html/M_SparkSDK_MembershipClient__ctor.htm" />
+      <HelpTOCNode Id="1b6c5893-2b98-408a-932c-65edcbc01699" Title="MembershipClient Methods" Url="html/Methods_T_SparkSDK_MembershipClient.htm">
+        <HelpTOCNode Title="CreateByPersonEmail Method " Url="html/M_SparkSDK_MembershipClient_CreateByPersonEmail.htm" />
+        <HelpTOCNode Title="CreateByPersonId Method " Url="html/M_SparkSDK_MembershipClient_CreateByPersonId.htm" />
+        <HelpTOCNode Title="Delete Method " Url="html/M_SparkSDK_MembershipClient_Delete.htm" />
+        <HelpTOCNode Title="Get Method " Url="html/M_SparkSDK_MembershipClient_Get.htm" />
+        <HelpTOCNode Id="dd7f2ea8-e838-4788-ae18-fa6c41a82492" Title="List Method " Url="html/Overload_SparkSDK_MembershipClient_List.htm">
+          <HelpTOCNode Title="List Method (Nullable(Int32), Action(SparkApiEventArgs(List(Membership))))" Url="html/M_SparkSDK_MembershipClient_List.htm" />
+          <HelpTOCNode Title="List Method (String, Nullable(Int32), Action(SparkApiEventArgs(List(Membership))))" Url="html/M_SparkSDK_MembershipClient_List_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="ListByPersonEmail Method " Url="html/M_SparkSDK_MembershipClient_ListByPersonEmail.htm" />
+        <HelpTOCNode Title="ListByPersonId Method " Url="html/M_SparkSDK_MembershipClient_ListByPersonId.htm" />
+        <HelpTOCNode Title="Update Method " Url="html/M_SparkSDK_MembershipClient_Update.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="0f4409c6-8f3d-478c-972a-8d4d0542aa21" Title="Message Class" Url="html/T_SparkSDK_Message.htm">
+      <HelpTOCNode Title="Message Constructor " Url="html/M_SparkSDK_Message__ctor.htm" />
+      <HelpTOCNode Id="e967adcc-4b5e-4e16-b29b-8f1185eacee9" Title="Message Properties" Url="html/Properties_T_SparkSDK_Message.htm">
+        <HelpTOCNode Title="Created Property " Url="html/P_SparkSDK_Message_Created.htm" />
+        <HelpTOCNode Title="Files Property " Url="html/P_SparkSDK_Message_Files.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P_SparkSDK_Message_Id.htm" />
+        <HelpTOCNode Title="PersonEmail Property " Url="html/P_SparkSDK_Message_PersonEmail.htm" />
+        <HelpTOCNode Title="PersonId Property " Url="html/P_SparkSDK_Message_PersonId.htm" />
+        <HelpTOCNode Title="RoomId Property " Url="html/P_SparkSDK_Message_RoomId.htm" />
+        <HelpTOCNode Title="Text Property " Url="html/P_SparkSDK_Message_Text.htm" />
+        <HelpTOCNode Title="ToPersonEmail Property " Url="html/P_SparkSDK_Message_ToPersonEmail.htm" />
+        <HelpTOCNode Title="ToPersonId Property " Url="html/P_SparkSDK_Message_ToPersonId.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="d65839d0-2238-4e51-8546-f97b2959c69c" Title="MessageClient Class" Url="html/T_SparkSDK_MessageClient.htm">
+      <HelpTOCNode Id="566f84d4-6863-4036-9fd1-41953e2de15a" Title="MessageClient Constructor " Url="html/Overload_SparkSDK_MessageClient__ctor.htm">
+        <HelpTOCNode Title="MessageClient Constructor " Url="html/M_SparkSDK_MessageClient__ctor.htm" />
+        <HelpTOCNode Title="MessageClient Constructor (IAuthenticator)" Url="html/M_SparkSDK_MessageClient__ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="0ae0423c-9533-434f-9380-0ad06fd88ae3" Title="MessageClient Methods" Url="html/Methods_T_SparkSDK_MessageClient.htm">
+        <HelpTOCNode Title="Delete Method " Url="html/M_SparkSDK_MessageClient_Delete.htm" />
+        <HelpTOCNode Title="Get Method " Url="html/M_SparkSDK_MessageClient_Get.htm" />
+        <HelpTOCNode Title="List Method " Url="html/M_SparkSDK_MessageClient_List.htm" />
+        <HelpTOCNode Title="PostToPerson Method " Url="html/M_SparkSDK_MessageClient_PostToPerson.htm" />
+        <HelpTOCNode Title="PostToPersonByID Method " Url="html/M_SparkSDK_MessageClient_PostToPersonByID.htm" />
+        <HelpTOCNode Title="PostToRoom Method " Url="html/M_SparkSDK_MessageClient_PostToRoom.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="62325858-7042-44c4-a482-3bd81f860981" Title="OAuthAuthenticator Class" Url="html/T_SparkSDK_OAuthAuthenticator.htm">
+      <HelpTOCNode Title="OAuthAuthenticator Constructor " Url="html/M_SparkSDK_OAuthAuthenticator__ctor.htm" />
+      <HelpTOCNode Id="7537a0de-cfc6-4d9a-9175-7be9a40cb839" Title="OAuthAuthenticator Properties" Url="html/Properties_T_SparkSDK_OAuthAuthenticator.htm">
+        <HelpTOCNode Title="AuthorizationUrl Property " Url="html/P_SparkSDK_OAuthAuthenticator_AuthorizationUrl.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d84f01d8-c644-4d7b-ae35-0bda60b052f9" Title="OAuthAuthenticator Methods" Url="html/Methods_T_SparkSDK_OAuthAuthenticator.htm">
+        <HelpTOCNode Title="AccessToken Method " Url="html/M_SparkSDK_OAuthAuthenticator_AccessToken.htm" />
+        <HelpTOCNode Title="Authorize Method " Url="html/M_SparkSDK_OAuthAuthenticator_Authorize.htm" />
+        <HelpTOCNode Title="Authorized Method " Url="html/M_SparkSDK_OAuthAuthenticator_Authorized.htm" />
+        <HelpTOCNode Title="Deauthorize Method " Url="html/M_SparkSDK_OAuthAuthenticator_Deauthorize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="62c4ff54-4d7f-4672-a92b-8d5d1a0a5e3a" Title="OtherConnected Class" Url="html/T_SparkSDK_OtherConnected.htm">
+      <HelpTOCNode Title="OtherConnected Properties" Url="html/Properties_T_SparkSDK_OtherConnected.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="5cb79706-a055-4cd6-a97a-2f4dd13c3a00" Title="OtherDeclined Class" Url="html/T_SparkSDK_OtherDeclined.htm">
+      <HelpTOCNode Title="OtherDeclined Properties" Url="html/Properties_T_SparkSDK_OtherDeclined.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="597a7263-3ea4-45e4-b35a-99bc032dd8d0" Title="Person Class" Url="html/T_SparkSDK_Person.htm">
+      <HelpTOCNode Title="Person Constructor " Url="html/M_SparkSDK_Person__ctor.htm" />
+      <HelpTOCNode Id="e6b6b07c-8f0d-40b5-82bc-c10de9455a53" Title="Person Properties" Url="html/Properties_T_SparkSDK_Person.htm">
+        <HelpTOCNode Title="Avatar Property " Url="html/P_SparkSDK_Person_Avatar.htm" />
+        <HelpTOCNode Title="Created Property " Url="html/P_SparkSDK_Person_Created.htm" />
+        <HelpTOCNode Title="DisplayName Property " Url="html/P_SparkSDK_Person_DisplayName.htm" />
+        <HelpTOCNode Title="Emails Property " Url="html/P_SparkSDK_Person_Emails.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P_SparkSDK_Person_Id.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="7c038b2f-3bb8-4685-8c08-8c4cfb7646af" Title="PersonClient Class" Url="html/T_SparkSDK_PersonClient.htm">
+      <HelpTOCNode Title="PersonClient Constructor " Url="html/M_SparkSDK_PersonClient__ctor.htm" />
+      <HelpTOCNode Id="29306c14-db28-46ad-bf74-391127b3f137" Title="PersonClient Methods" Url="html/Methods_T_SparkSDK_PersonClient.htm">
+        <HelpTOCNode Title="Get Method " Url="html/M_SparkSDK_PersonClient_Get.htm" />
+        <HelpTOCNode Title="GetMe Method " Url="html/M_SparkSDK_PersonClient_GetMe.htm" />
+        <HelpTOCNode Title="List Method " Url="html/M_SparkSDK_PersonClient_List.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="1edeb55c-9182-4b3e-aed9-73e8d2f7d231" Title="Phone Class" Url="html/T_SparkSDK_Phone.htm">
+      <HelpTOCNode Id="3daeab6a-7c1f-447f-b032-6b6ae7fcd62f" Title="Phone Properties" Url="html/Properties_T_SparkSDK_Phone.htm">
+        <HelpTOCNode Title="AudioMaxBandwidth Property " Url="html/P_SparkSDK_Phone_AudioMaxBandwidth.htm" />
+        <HelpTOCNode Title="ShareMaxBandwidth Property " Url="html/P_SparkSDK_Phone_ShareMaxBandwidth.htm" />
+        <HelpTOCNode Title="VideoCodecLicense Property " Url="html/P_SparkSDK_Phone_VideoCodecLicense.htm" />
+        <HelpTOCNode Title="VideoCodecLicenseURL Property " Url="html/P_SparkSDK_Phone_VideoCodecLicenseURL.htm" />
+        <HelpTOCNode Title="VideoMaxBandwidth Property " Url="html/P_SparkSDK_Phone_VideoMaxBandwidth.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="69f4a84f-1bc9-4e7f-9f3a-a8bf264ac1d3" Title="Phone Methods" Url="html/Methods_T_SparkSDK_Phone.htm">
+        <HelpTOCNode Title="ActivateVideoCodecLicense Method " Url="html/M_SparkSDK_Phone_ActivateVideoCodecLicense.htm" />
+        <HelpTOCNode Title="Deregister Method " Url="html/M_SparkSDK_Phone_Deregister.htm" />
+        <HelpTOCNode Title="Dial Method " Url="html/M_SparkSDK_Phone_Dial.htm" />
+        <HelpTOCNode Title="DisableVideoCodecActivation Method " Url="html/M_SparkSDK_Phone_DisableVideoCodecActivation.htm" />
+        <HelpTOCNode Title="GetAVIODevices Method " Url="html/M_SparkSDK_Phone_GetAVIODevices.htm" />
+        <HelpTOCNode Title="Register Method " Url="html/M_SparkSDK_Phone_Register.htm" />
+        <HelpTOCNode Title="RequestVideoCodecActivation Method " Url="html/M_SparkSDK_Phone_RequestVideoCodecActivation.htm" />
+        <HelpTOCNode Title="SelectAVIODevice Method " Url="html/M_SparkSDK_Phone_SelectAVIODevice.htm" />
+        <HelpTOCNode Title="StartPreview Method " Url="html/M_SparkSDK_Phone_StartPreview.htm" />
+        <HelpTOCNode Title="StopPreview Method " Url="html/M_SparkSDK_Phone_StopPreview.htm" />
+        <HelpTOCNode Title="UpdatePreview Method " Url="html/M_SparkSDK_Phone_UpdatePreview.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="25565182-1894-4bde-897c-dea7bd0d0158" Title="Phone Events" Url="html/Events_T_SparkSDK_Phone.htm">
+        <HelpTOCNode Title="OnIncoming Event" Url="html/E_SparkSDK_Phone_OnIncoming.htm" />
+        <HelpTOCNode Title="OnRequestVideoCodecActivation Event" Url="html/E_SparkSDK_Phone_OnRequestVideoCodecActivation.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="Phone.DefaultBandwidth Enumeration" Url="html/T_SparkSDK_Phone_DefaultBandwidth.htm" />
+    <HelpTOCNode Id="de2cda78-4241-4f48-b9da-3043d94e2e5c" Title="ReceivingAudioEvent Class" Url="html/T_SparkSDK_ReceivingAudioEvent.htm">
+      <HelpTOCNode Id="adabeb65-ee97-47eb-aee5-e3fc54d7e648" Title="ReceivingAudioEvent Properties" Url="html/Properties_T_SparkSDK_ReceivingAudioEvent.htm">
+        <HelpTOCNode Title="IsReceiving Property " Url="html/P_SparkSDK_ReceivingAudioEvent_IsReceiving.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="b712ed0c-f84c-4f5f-a113-50d3bf047120" Title="ReceivingShareEvent Class" Url="html/T_SparkSDK_ReceivingShareEvent.htm">
+      <HelpTOCNode Id="fbcb204f-12bc-40c4-8999-9bd9e4ac5cab" Title="ReceivingShareEvent Properties" Url="html/Properties_T_SparkSDK_ReceivingShareEvent.htm">
+        <HelpTOCNode Title="IsReceiving Property " Url="html/P_SparkSDK_ReceivingShareEvent_IsReceiving.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="945b7dab-b3c7-48e9-bf65-7e8691bc338e" Title="ReceivingVideoEvent Class" Url="html/T_SparkSDK_ReceivingVideoEvent.htm">
+      <HelpTOCNode Id="0f82930f-5cf5-4f8a-bbb6-eb88d0f80222" Title="ReceivingVideoEvent Properties" Url="html/Properties_T_SparkSDK_ReceivingVideoEvent.htm">
+        <HelpTOCNode Title="IsReceiving Property " Url="html/P_SparkSDK_ReceivingVideoEvent_IsReceiving.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="145f3bf6-f957-4dc9-93b7-c860a5365801" Title="RemoteCancel Class" Url="html/T_SparkSDK_RemoteCancel.htm">
+      <HelpTOCNode Title="RemoteCancel Properties" Url="html/Properties_T_SparkSDK_RemoteCancel.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="12f9ded0-76c5-45c7-ab74-aaab71898736" Title="RemoteDecline Class" Url="html/T_SparkSDK_RemoteDecline.htm">
+      <HelpTOCNode Title="RemoteDecline Properties" Url="html/Properties_T_SparkSDK_RemoteDecline.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="025f336d-8e8c-4848-860e-dbfa73296c17" Title="RemoteLeft Class" Url="html/T_SparkSDK_RemoteLeft.htm">
+      <HelpTOCNode Title="RemoteLeft Properties" Url="html/Properties_T_SparkSDK_RemoteLeft.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="a607704d-9196-4e29-8ab9-a36aa8057550" Title="RemoteSendingAudioEvent Class" Url="html/T_SparkSDK_RemoteSendingAudioEvent.htm">
+      <HelpTOCNode Id="77adf24e-b3b8-475a-9821-75b4dc52f186" Title="RemoteSendingAudioEvent Properties" Url="html/Properties_T_SparkSDK_RemoteSendingAudioEvent.htm">
+        <HelpTOCNode Title="IsSending Property " Url="html/P_SparkSDK_RemoteSendingAudioEvent_IsSending.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6c2bc058-0d49-4ed4-be9d-7cf0c354477c" Title="RemoteSendingShareEvent Class" Url="html/T_SparkSDK_RemoteSendingShareEvent.htm">
+      <HelpTOCNode Id="4e43001d-8f01-4451-9e89-4b3a1a30a875" Title="RemoteSendingShareEvent Properties" Url="html/Properties_T_SparkSDK_RemoteSendingShareEvent.htm">
+        <HelpTOCNode Title="IsSending Property " Url="html/P_SparkSDK_RemoteSendingShareEvent_IsSending.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="f007724e-e2ce-458a-bef5-6b70307aec93" Title="RemoteSendingVideoEvent Class" Url="html/T_SparkSDK_RemoteSendingVideoEvent.htm">
+      <HelpTOCNode Id="bc0df9f5-9858-4834-94fb-5fdce75657be" Title="RemoteSendingVideoEvent Properties" Url="html/Properties_T_SparkSDK_RemoteSendingVideoEvent.htm">
+        <HelpTOCNode Title="IsSending Property " Url="html/P_SparkSDK_RemoteSendingVideoEvent_IsSending.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6bc1ab7c-c28b-4b05-9234-cb6558d78596" Title="RemoteShareViewSizeChangedEvent Class" Url="html/T_SparkSDK_RemoteShareViewSizeChangedEvent.htm">
+      <HelpTOCNode Title="RemoteShareViewSizeChangedEvent Properties" Url="html/Properties_T_SparkSDK_RemoteShareViewSizeChangedEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="2971a4db-1d1f-417a-b38d-d6c5f6a37bd8" Title="RemoteVideoReadyEvent Class" Url="html/T_SparkSDK_RemoteVideoReadyEvent.htm">
+      <HelpTOCNode Title="RemoteVideoReadyEvent Properties" Url="html/Properties_T_SparkSDK_RemoteVideoReadyEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="7a77b7a3-bad2-48ca-aa07-54f0aa9cd550" Title="RemoteVideoViewSizeChangedEvent Class" Url="html/T_SparkSDK_RemoteVideoViewSizeChangedEvent.htm">
+      <HelpTOCNode Title="RemoteVideoViewSizeChangedEvent Properties" Url="html/Properties_T_SparkSDK_RemoteVideoViewSizeChangedEvent.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="c7816120-7401-4718-b193-3b8e5e66f2a5" Title="Room Class" Url="html/T_SparkSDK_Room.htm">
+      <HelpTOCNode Title="Room Constructor " Url="html/M_SparkSDK_Room__ctor.htm" />
+      <HelpTOCNode Id="b431d9b4-7f67-48ef-a6d0-d77299c4cf70" Title="Room Properties" Url="html/Properties_T_SparkSDK_Room.htm">
+        <HelpTOCNode Title="Created Property " Url="html/P_SparkSDK_Room_Created.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P_SparkSDK_Room_Id.htm" />
+        <HelpTOCNode Title="IsLocked Property " Url="html/P_SparkSDK_Room_IsLocked.htm" />
+        <HelpTOCNode Title="LastActivity Property " Url="html/P_SparkSDK_Room_LastActivity.htm" />
+        <HelpTOCNode Title="TeamId Property " Url="html/P_SparkSDK_Room_TeamId.htm" />
+        <HelpTOCNode Title="Title Property " Url="html/P_SparkSDK_Room_Title.htm" />
+        <HelpTOCNode Title="Type Property " Url="html/P_SparkSDK_Room_Type.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="263821ba-b509-4dab-9dad-7d80b07f361d" Title="RoomClient Class" Url="html/T_SparkSDK_RoomClient.htm">
+      <HelpTOCNode Title="RoomClient Constructor " Url="html/M_SparkSDK_RoomClient__ctor.htm" />
+      <HelpTOCNode Id="651095d5-af0c-4dcc-8aa5-10a60c76b400" Title="RoomClient Methods" Url="html/Methods_T_SparkSDK_RoomClient.htm">
+        <HelpTOCNode Title="Create Method " Url="html/M_SparkSDK_RoomClient_Create.htm" />
+        <HelpTOCNode Title="Delete Method " Url="html/M_SparkSDK_RoomClient_Delete.htm" />
+        <HelpTOCNode Title="Get Method " Url="html/M_SparkSDK_RoomClient_Get.htm" />
+        <HelpTOCNode Title="List Method " Url="html/M_SparkSDK_RoomClient_List.htm" />
+        <HelpTOCNode Title="Update Method " Url="html/M_SparkSDK_RoomClient_Update.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="RoomType Enumeration" Url="html/T_SparkSDK_RoomType.htm" />
+    <HelpTOCNode Id="b7fe4d87-53d6-45e0-842a-9322672f11dd" Title="SendingAudioEvent Class" Url="html/T_SparkSDK_SendingAudioEvent.htm">
+      <HelpTOCNode Id="3f6faadd-7274-45d2-9409-f4a95ef42f5c" Title="SendingAudioEvent Properties" Url="html/Properties_T_SparkSDK_SendingAudioEvent.htm">
+        <HelpTOCNode Title="IsSending Property " Url="html/P_SparkSDK_SendingAudioEvent_IsSending.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="1dc08941-862a-4dd1-91e9-200e42228396" Title="SendingVideoEvent Class" Url="html/T_SparkSDK_SendingVideoEvent.htm">
+      <HelpTOCNode Id="608bcb28-b6ab-49de-bc74-732008b749a4" Title="SendingVideoEvent Properties" Url="html/Properties_T_SparkSDK_SendingVideoEvent.htm">
+        <HelpTOCNode Title="IsSending Property " Url="html/P_SparkSDK_SendingVideoEvent_IsSending.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="b55e1e97-7bfd-459e-b585-bf9db94ffdb0" Title="Spark Class" Url="html/T_SparkSDK_Spark.htm">
+      <HelpTOCNode Title="Spark Constructor " Url="html/M_SparkSDK_Spark__ctor.htm" />
+      <HelpTOCNode Id="82c523da-dc62-4d08-b8e9-8658c9cd1ee8" Title="Spark Properties" Url="html/Properties_T_SparkSDK_Spark.htm">
+        <HelpTOCNode Title="Authenticator Property " Url="html/P_SparkSDK_Spark_Authenticator.htm" />
+        <HelpTOCNode Title="ConsoleLogger Property " Url="html/P_SparkSDK_Spark_ConsoleLogger.htm" />
+        <HelpTOCNode Title="Logger Property " Url="html/P_SparkSDK_Spark_Logger.htm" />
+        <HelpTOCNode Title="Memberships Property " Url="html/P_SparkSDK_Spark_Memberships.htm" />
+        <HelpTOCNode Title="Messages Property " Url="html/P_SparkSDK_Spark_Messages.htm" />
+        <HelpTOCNode Title="People Property " Url="html/P_SparkSDK_Spark_People.htm" />
+        <HelpTOCNode Title="Phone Property " Url="html/P_SparkSDK_Spark_Phone.htm" />
+        <HelpTOCNode Title="Rooms Property " Url="html/P_SparkSDK_Spark_Rooms.htm" />
+        <HelpTOCNode Title="TeamMemberships Property " Url="html/P_SparkSDK_Spark_TeamMemberships.htm" />
+        <HelpTOCNode Title="Teams Property " Url="html/P_SparkSDK_Spark_Teams.htm" />
+        <HelpTOCNode Title="Webhooks Property " Url="html/P_SparkSDK_Spark_Webhooks.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d08535ae-b97d-48a0-9c6f-d1af606ebcc2" Title="Spark Fields" Url="html/Fields_T_SparkSDK_Spark.htm">
+        <HelpTOCNode Title="Version Field" Url="html/F_SparkSDK_Spark_Version.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a55b6cd3-8780-4ac2-ae57-6454b2bef791" Title="SparkApiEventArgs Class" Url="html/T_SparkSDK_SparkApiEventArgs.htm">
+      <HelpTOCNode Id="2adf7822-b985-4dea-a7ae-1ab700b4d5ac" Title="SparkApiEventArgs Constructor " Url="html/Overload_SparkSDK_SparkApiEventArgs__ctor.htm">
+        <HelpTOCNode Title="SparkApiEventArgs Constructor " Url="html/M_SparkSDK_SparkApiEventArgs__ctor.htm" />
+        <HelpTOCNode Title="SparkApiEventArgs Constructor (Boolean, SparkError)" Url="html/M_SparkSDK_SparkApiEventArgs__ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="5dc66210-79f7-49a1-bb65-15074ba40044" Title="SparkApiEventArgs Properties" Url="html/Properties_T_SparkSDK_SparkApiEventArgs.htm">
+        <HelpTOCNode Title="Error Property " Url="html/P_SparkSDK_SparkApiEventArgs_Error.htm" />
+        <HelpTOCNode Title="IsSuccess Property " Url="html/P_SparkSDK_SparkApiEventArgs_IsSuccess.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="1830118a-b432-4eed-a44a-62964c72921f" Title="SparkApiEventArgs(T) Class" Url="html/T_SparkSDK_SparkApiEventArgs_1.htm">
+      <HelpTOCNode Id="44f0e0ef-dff0-405d-8d38-27a726fa2117" Title="SparkApiEventArgs(T) Constructor " Url="html/Overload_SparkSDK_SparkApiEventArgs_1__ctor.htm">
+        <HelpTOCNode Title="SparkApiEventArgs(T) Constructor " Url="html/M_SparkSDK_SparkApiEventArgs_1__ctor.htm" />
+        <HelpTOCNode Title="SparkApiEventArgs(T) Constructor (Boolean, SparkError, T)" Url="html/M_SparkSDK_SparkApiEventArgs_1__ctor_1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="33130f1e-ce00-46db-aa60-a24ed55e18d2" Title="SparkApiEventArgs(T) Properties" Url="html/Properties_T_SparkSDK_SparkApiEventArgs_1.htm">
+        <HelpTOCNode Title="Data Property " Url="html/P_SparkSDK_SparkApiEventArgs_1_Data.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="9a29e023-8daf-40f6-83cc-8da6f430ee6d" Title="SparkError Class" Url="html/T_SparkSDK_SparkError.htm">
+      <HelpTOCNode Title="SparkError Constructor " Url="html/M_SparkSDK_SparkError__ctor.htm" />
+      <HelpTOCNode Id="02271dd3-456e-404a-8362-9b2f3a37fbae" Title="SparkError Properties" Url="html/Properties_T_SparkSDK_SparkError.htm">
+        <HelpTOCNode Title="ErrorCode Property " Url="html/P_SparkSDK_SparkError_ErrorCode.htm" />
+        <HelpTOCNode Title="Reason Property " Url="html/P_SparkSDK_SparkError_Reason.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="SparkErrorCode Enumeration" Url="html/T_SparkSDK_SparkErrorCode.htm" />
+    <HelpTOCNode Id="9634c9ae-3f91-4843-b0eb-a23a5af03b77" Title="SpeakerSwitchedEvent Class" Url="html/T_SparkSDK_SpeakerSwitchedEvent.htm">
+      <HelpTOCNode Id="0dad0473-20ea-4b0c-addd-f9f40a715d40" Title="SpeakerSwitchedEvent Properties" Url="html/Properties_T_SparkSDK_SpeakerSwitchedEvent.htm">
+        <HelpTOCNode Title="Speaker Property " Url="html/P_SparkSDK_SpeakerSwitchedEvent_Speaker.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="49f54a00-8f7a-44f1-9025-fad75e49dd8b" Title="Team Class" Url="html/T_SparkSDK_Team.htm">
+      <HelpTOCNode Title="Team Constructor " Url="html/M_SparkSDK_Team__ctor.htm" />
+      <HelpTOCNode Id="5d93e585-6e36-4b72-b2ed-b5dc0facd0c5" Title="Team Properties" Url="html/Properties_T_SparkSDK_Team.htm">
+        <HelpTOCNode Title="Created Property " Url="html/P_SparkSDK_Team_Created.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P_SparkSDK_Team_Id.htm" />
+        <HelpTOCNode Title="Name Property " Url="html/P_SparkSDK_Team_Name.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="4e8f211f-ea97-4c2a-8647-57bc7c96089e" Title="TeamClient Class" Url="html/T_SparkSDK_TeamClient.htm">
+      <HelpTOCNode Title="TeamClient Constructor " Url="html/M_SparkSDK_TeamClient__ctor.htm" />
+      <HelpTOCNode Id="a1a1c558-76fd-4c99-b69f-1da52e01333d" Title="TeamClient Methods" Url="html/Methods_T_SparkSDK_TeamClient.htm">
+        <HelpTOCNode Title="Create Method " Url="html/M_SparkSDK_TeamClient_Create.htm" />
+        <HelpTOCNode Title="Delete Method " Url="html/M_SparkSDK_TeamClient_Delete.htm" />
+        <HelpTOCNode Title="Get Method " Url="html/M_SparkSDK_TeamClient_Get.htm" />
+        <HelpTOCNode Title="List Method " Url="html/M_SparkSDK_TeamClient_List.htm" />
+        <HelpTOCNode Title="Update Method " Url="html/M_SparkSDK_TeamClient_Update.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="1a41db8e-0a88-4b2b-b424-baeac5b9f858" Title="TeamMembership Class" Url="html/T_SparkSDK_TeamMembership.htm">
+      <HelpTOCNode Title="TeamMembership Constructor " Url="html/M_SparkSDK_TeamMembership__ctor.htm" />
+      <HelpTOCNode Id="d7df8c4d-1616-4475-bbb1-f42382d32f4d" Title="TeamMembership Properties" Url="html/Properties_T_SparkSDK_TeamMembership.htm">
+        <HelpTOCNode Title="Created Property " Url="html/P_SparkSDK_TeamMembership_Created.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P_SparkSDK_TeamMembership_Id.htm" />
+        <HelpTOCNode Title="IsModerator Property " Url="html/P_SparkSDK_TeamMembership_IsModerator.htm" />
+        <HelpTOCNode Title="PersonDisplayName Property " Url="html/P_SparkSDK_TeamMembership_PersonDisplayName.htm" />
+        <HelpTOCNode Title="PersonEmail Property " Url="html/P_SparkSDK_TeamMembership_PersonEmail.htm" />
+        <HelpTOCNode Title="PersonId Property " Url="html/P_SparkSDK_TeamMembership_PersonId.htm" />
+        <HelpTOCNode Title="TeamId Property " Url="html/P_SparkSDK_TeamMembership_TeamId.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="e34dce7b-3194-4f22-bb00-22119bf17e92" Title="TeamMembershipClient Class" Url="html/T_SparkSDK_TeamMembershipClient.htm">
+      <HelpTOCNode Title="TeamMembershipClient Constructor " Url="html/M_SparkSDK_TeamMembershipClient__ctor.htm" />
+      <HelpTOCNode Id="6558c108-c914-4550-bd16-49c54d88ae0c" Title="TeamMembershipClient Methods" Url="html/Methods_T_SparkSDK_TeamMembershipClient.htm">
+        <HelpTOCNode Title="CreateByEmail Method " Url="html/M_SparkSDK_TeamMembershipClient_CreateByEmail.htm" />
+        <HelpTOCNode Title="CreateById Method " Url="html/M_SparkSDK_TeamMembershipClient_CreateById.htm" />
+        <HelpTOCNode Title="Delete Method " Url="html/M_SparkSDK_TeamMembershipClient_Delete.htm" />
+        <HelpTOCNode Title="Get Method " Url="html/M_SparkSDK_TeamMembershipClient_Get.htm" />
+        <HelpTOCNode Title="List Method " Url="html/M_SparkSDK_TeamMembershipClient_List.htm" />
+        <HelpTOCNode Title="Update Method " Url="html/M_SparkSDK_TeamMembershipClient_Update.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="101a943f-e561-4669-8027-575c8a7209a4" Title="Webhook Class" Url="html/T_SparkSDK_Webhook.htm">
+      <HelpTOCNode Title="Webhook Constructor " Url="html/M_SparkSDK_Webhook__ctor.htm" />
+      <HelpTOCNode Id="02fc77bd-645a-48fd-a5a9-f6374b066d0e" Title="Webhook Properties" Url="html/Properties_T_SparkSDK_Webhook.htm">
+        <HelpTOCNode Title="Created Property " Url="html/P_SparkSDK_Webhook_Created.htm" />
+        <HelpTOCNode Title="EventType Property " Url="html/P_SparkSDK_Webhook_EventType.htm" />
+        <HelpTOCNode Title="Filter Property " Url="html/P_SparkSDK_Webhook_Filter.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/P_SparkSDK_Webhook_Id.htm" />
+        <HelpTOCNode Title="Name Property " Url="html/P_SparkSDK_Webhook_Name.htm" />
+        <HelpTOCNode Title="Resource Property " Url="html/P_SparkSDK_Webhook_Resource.htm" />
+        <HelpTOCNode Title="TargetUrl Property " Url="html/P_SparkSDK_Webhook_TargetUrl.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="0aa3945c-6b76-4660-9f2e-1091eef4731e" Title="WebhookClient Class" Url="html/T_SparkSDK_WebhookClient.htm">
+      <HelpTOCNode Title="WebhookClient Constructor " Url="html/M_SparkSDK_WebhookClient__ctor.htm" />
+      <HelpTOCNode Id="2e35e8a5-2bb2-4c4d-8d6b-d9c579acdb59" Title="WebhookClient Methods" Url="html/Methods_T_SparkSDK_WebhookClient.htm">
+        <HelpTOCNode Title="Create Method " Url="html/M_SparkSDK_WebhookClient_Create.htm" />
+        <HelpTOCNode Title="Delete Method " Url="html/M_SparkSDK_WebhookClient_Delete.htm" />
+        <HelpTOCNode Title="Get Method " Url="html/M_SparkSDK_WebhookClient_Get.htm" />
+        <HelpTOCNode Title="List Method " Url="html/M_SparkSDK_WebhookClient_List.htm" />
+        <HelpTOCNode Title="Update Method " Url="html/M_SparkSDK_WebhookClient_Update.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
