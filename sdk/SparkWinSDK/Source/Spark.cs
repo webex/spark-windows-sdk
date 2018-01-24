@@ -25,9 +25,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-/// <summary>
-/// The Cisco Spark Windows SDK makes it easy to integrate secure and convenient Cisco Spark messaging and calling features in your apps.
-/// </summary>
 namespace SparkSDK
 {
     /// <summary>

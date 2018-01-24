@@ -218,6 +218,7 @@ namespace SparkSDK.Tests
             Assert.IsNotNull(currentCall);
             Assert.IsTrue(currentCall.Status >= CallStatus.Initiated);
             Assert.AreEqual(Call.CallDirection.Outgoing, currentCall.Direction);
+            Assert.IsTrue(callData.ReleaseReason is LocalCancel);
         }
 
         [TestMethod()]
@@ -357,10 +358,11 @@ namespace SparkSDK.Tests
                         connectSignal = true;
                     };
 
-                    currentCall.OnDisconnected += (call) =>
+                    currentCall.OnDisconnected += (releaseReason) =>
                     {
                         Console.WriteLine("CurrentCall_onDisconnected");
                         disconnectSignal = true;
+                        callData.ReleaseReason = releaseReason;
                         MessageHelper.BreakLoop();
                     };
                 }
@@ -377,6 +379,7 @@ namespace SparkSDK.Tests
             Assert.IsTrue(ringSignal);
             Assert.IsTrue(connectSignal);
             Assert.IsTrue(disconnectSignal);
+            Assert.IsTrue(callData.ReleaseReason is RemoteLeft);
         }
 
         [TestMethod()]
@@ -517,9 +520,10 @@ namespace SparkSDK.Tests
                 if (r.IsSuccess)
                 {
                     currentCall = r.Data;
-                    currentCall.OnDisconnected += (call) =>
+                    currentCall.OnDisconnected += (releaseReason) =>
                     {
                         Console.WriteLine("onDisconnected");
+                        callData.ReleaseReason = releaseReason;
                         MessageHelper.BreakLoop();
                     };
                     currentCall.OnCallMembershipChanged += (callMembershipEvent) =>
@@ -545,7 +549,8 @@ namespace SparkSDK.Tests
 
             Assert.IsFalse(callee.IsInitiator);
             Assert.AreEqual(calleeAddress, callee.Email);
-            Assert.AreEqual(CallMembership.CallState.Declined, callee.State);        
+            Assert.AreEqual(CallMembership.CallState.Declined, callee.State);
+            Assert.IsTrue(callData.ReleaseReason is RemoteDecline);        
         }
 
         [TestMethod()]
@@ -926,7 +931,8 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is RemoteSendingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
-                        }                      
+                            callData.IsRemoteSendingVideo = currentCall.IsRemoteSendingVideo;
+                        }
                     };
                 }
                 else
@@ -943,6 +949,7 @@ namespace SparkSDK.Tests
             var mediaevent = mediaEvents[0] as RemoteSendingVideoEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsFalse(mediaevent.IsSending);
+            Assert.IsFalse(callData.IsRemoteSendingVideo);
         }
 
         [TestMethod()]
@@ -975,6 +982,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is RemoteSendingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsRemoteSendingVideo = currentCall.IsRemoteSendingVideo;
                         }
                     };
                 }
@@ -995,6 +1003,7 @@ namespace SparkSDK.Tests
             mediaevent = mediaEvents[1] as RemoteSendingVideoEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsSending);
+            Assert.IsTrue(callData.IsRemoteSendingVideo);
         }
 
         [TestMethod()]
@@ -1026,6 +1035,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is RemoteSendingAudioEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsRemoteSendingAudio = currentCall.IsRemoteSendingAudio;
                         }
                     };
                 }
@@ -1043,6 +1053,7 @@ namespace SparkSDK.Tests
             var mediaevent = mediaEvents[0] as RemoteSendingAudioEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsFalse(mediaevent.IsSending);
+            Assert.IsFalse(callData.IsRemoteSendingAudio);
         }
 
 
@@ -1076,6 +1087,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is RemoteSendingAudioEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsRemoteSendingAudio = currentCall.IsRemoteSendingAudio;
                         }
                     };
                 }
@@ -1096,6 +1108,7 @@ namespace SparkSDK.Tests
             mediaevent = mediaEvents[1] as RemoteSendingAudioEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsSending);
+            Assert.IsTrue(callData.IsRemoteSendingAudio);
         }
 
         [TestMethod()]
@@ -1133,6 +1146,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is SendingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsSendingVideo = currentCall.IsSendingVideo;
                         }
                     };
                 }
@@ -1150,6 +1164,7 @@ namespace SparkSDK.Tests
             var mediaevent = mediaEvents[0] as SendingVideoEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsFalse(mediaevent.IsSending);
+            Assert.IsFalse(callData.IsSendingVideo);
         }
 
         [TestMethod()]
@@ -1188,6 +1203,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is SendingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsSendingVideo = currentCall.IsSendingVideo;
 
                             if (((SendingVideoEvent)callMediaChangedEvent).IsSending == false)
                             {
@@ -1214,6 +1230,7 @@ namespace SparkSDK.Tests
             mediaevent = mediaEvents[1] as SendingVideoEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsSending);
+            Assert.IsTrue(callData.IsSendingVideo);
         }
 
 
@@ -1252,6 +1269,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is SendingAudioEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsSendingAudio = currentCall.IsSendingAudio;
                         }
                     };
                 }
@@ -1269,6 +1287,7 @@ namespace SparkSDK.Tests
             var mediaevent = mediaEvents[0] as SendingAudioEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsFalse(mediaevent.IsSending);
+            Assert.IsFalse(callData.IsSendingAudio);
         }
 
         [TestMethod()]
@@ -1307,6 +1326,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is SendingAudioEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsSendingAudio = currentCall.IsSendingAudio;
 
                             if (((SendingAudioEvent)callMediaChangedEvent).IsSending == false)
                             {
@@ -1333,6 +1353,7 @@ namespace SparkSDK.Tests
             mediaevent = mediaEvents[1] as SendingAudioEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsSending);
+            Assert.IsTrue(callData.IsSendingAudio);
         }
 
         [TestMethod()]
@@ -1370,6 +1391,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is ReceivingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsReceivingVideo = currentCall.IsReceivingVideo;
                         }
                     };
                 }
@@ -1387,6 +1409,7 @@ namespace SparkSDK.Tests
             var mediaevent = mediaEvents[0] as ReceivingVideoEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsFalse(mediaevent.IsReceiving);
+            Assert.IsFalse(callData.IsReceivingVideo);
         }
 
         [TestMethod()]
@@ -1425,6 +1448,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is ReceivingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsReceivingVideo = currentCall.IsReceivingVideo;
 
                             if (((ReceivingVideoEvent)callMediaChangedEvent).IsReceiving == false)
                             {
@@ -1451,6 +1475,7 @@ namespace SparkSDK.Tests
             mediaevent = mediaEvents[1] as ReceivingVideoEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsReceiving);
+            Assert.IsTrue(callData.IsReceivingVideo);
         }
 
         [TestMethod()]
@@ -1488,6 +1513,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is ReceivingAudioEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsReceivingAudio = currentCall.IsReceivingAudio;
                         }
                     };
                 }
@@ -1505,6 +1531,7 @@ namespace SparkSDK.Tests
             var mediaevent = mediaEvents[0] as ReceivingAudioEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsFalse(mediaevent.IsReceiving);
+            Assert.IsFalse(callData.IsReceivingAudio);
         }
 
         [TestMethod()]
@@ -1521,7 +1548,7 @@ namespace SparkSDK.Tests
             currentCall = null;
             List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
 
-            phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
+            phone.Dial(calleeAddress, MediaOption.AudioVideoShare(IntPtr.Zero, IntPtr.Zero, IntPtr.Zero), r =>
             {
                 if (r.IsSuccess)
                 {
@@ -1543,6 +1570,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is ReceivingAudioEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsReceivingAudio = currentCall.IsReceivingAudio;
 
                             if (((ReceivingAudioEvent)callMediaChangedEvent).IsReceiving == false)
                             {
@@ -1569,6 +1597,7 @@ namespace SparkSDK.Tests
             mediaevent = mediaEvents[1] as ReceivingAudioEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsReceiving);
+            Assert.IsTrue(callData.IsReceivingAudio);
         }
 
         
@@ -1742,6 +1771,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is RemoteSendingShareEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsRemoteSendingShare = currentCall.IsRemoteSendingShare;
                         }
                     };
                 }
@@ -1760,6 +1790,7 @@ namespace SparkSDK.Tests
             var mediaevent = mediaEvents[0] as RemoteSendingShareEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsSending);
+            Assert.IsTrue(callData.IsRemoteSendingShare);
         }
 
         [TestMethod()]
@@ -1792,6 +1823,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is RemoteSendingShareEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsRemoteSendingShare = currentCall.IsRemoteSendingShare;
                         }
                     };
                 }
@@ -1813,6 +1845,7 @@ namespace SparkSDK.Tests
             mediaevent = mediaEvents[1] as RemoteSendingShareEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsFalse(mediaevent.IsSending);
+            Assert.IsFalse(callData.IsRemoteSendingShare);
         }
 
         [TestMethod()]
@@ -1845,6 +1878,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is ReceivingShareEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsReceivingShare = currentCall.IsReceivingShare;
                         }
                         if (callMediaChangedEvent is RemoteSendingShareEvent
                             && ((RemoteSendingShareEvent)callMediaChangedEvent).IsSending == true)
@@ -1869,6 +1903,7 @@ namespace SparkSDK.Tests
             var mediaevent = mediaEvents[0] as ReceivingShareEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsFalse(mediaevent.IsReceiving);
+            Assert.IsFalse(callData.IsReceivingShare);
         }
 
         [TestMethod()]
@@ -1902,6 +1937,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is ReceivingShareEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            callData.IsReceivingShare = currentCall.IsReceivingShare;
 
                             if (((ReceivingShareEvent)callMediaChangedEvent).IsReceiving == false)
                             {
@@ -1936,6 +1972,7 @@ namespace SparkSDK.Tests
             mediaevent = mediaEvents[1] as ReceivingShareEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsReceiving);
+            Assert.IsTrue(callData.IsReceivingShare);
         }
 
         [TestMethod()]
@@ -1953,6 +1990,7 @@ namespace SparkSDK.Tests
             phone.OnIncoming -= Phone_onIncomingCallStateEventTest;
             Assert.IsTrue(callData.connectSignal);
             Assert.IsTrue(callData.disconnectSignal);
+            Assert.IsTrue(callData.ReleaseReason is LocalLeft);
         }
 
         private void Phone_onIncomingCallStateEventTest(Call obj)
@@ -1968,10 +2006,11 @@ namespace SparkSDK.Tests
                 HangupCall(currentCall);
             };
 
-            currentCall.OnDisconnected += (call) =>
+            currentCall.OnDisconnected += (releaseReason) =>
             {
                 Console.WriteLine("CurrentCall_onDisconnected");
                 callData.disconnectSignal = true;
+                callData.ReleaseReason = releaseReason;
                 MessageHelper.BreakLoop();
             };
 
@@ -1997,7 +2036,7 @@ namespace SparkSDK.Tests
 
             phone.OnIncoming -= Phone_onIncomingCallRejectTest;
             Assert.IsNotNull(currentCall);
-            Assert.IsTrue(callData.releaseReason is LocalDecline);
+            Assert.IsTrue(callData.ReleaseReason is LocalDecline);
         }
 
         private void Phone_onIncomingCallRejectTest(Call obj)
@@ -2006,7 +2045,7 @@ namespace SparkSDK.Tests
             currentCall.OnDisconnected += (r) =>
             {
                 Console.WriteLine("CurrentCall_onDisconnected");
-                callData.releaseReason = r;
+                callData.ReleaseReason = r;
                 MessageHelper.BreakLoop();
             };
             TimerHelper.StartTimer(1000, (o, e) =>
@@ -2230,6 +2269,7 @@ namespace SparkSDK.Tests
                 call.OnDisconnected += (r) =>
                 {
                     Console.WriteLine("onDisconnected");
+                    callData.ReleaseReason = r;
                     MessageHelper.BreakLoop();
                 };
                 return true;
@@ -2388,7 +2428,20 @@ namespace SparkSDK.Tests
         public bool connectSignal;
         public bool disconnectSignal;
 
-        public CallDisconnectedEvent releaseReason;
+        public bool IsRemoteSendingVideo { get; set; }
+        public bool IsRemoteSendingAudio { get; set; }
+        public bool IsRemoteSendingShare { get; set; }
+        public bool IsSendingVideo { get; set; }
+        public bool IsSendingAudio { get; set; }
+        public bool IsReceivingVideo { get; set; }
+        public bool IsReceivingAudio { get; set; }
+        public bool IsReceivingShare { get; set; }
+        public bool IsSendingDTMFEnabled { get; set; }
+        public CallStatus Status { get; set; }
+        public Call.CallDirection Direction { get; set; }
+
+
+        public CallDisconnectedEvent ReleaseReason { get; set; }
 
         public List<CallMembershipChangedEvent> listCallMembershipChangedEvent;
         public List<MediaChangedEvent> listMediaChangedEvent;
