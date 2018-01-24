@@ -1548,7 +1548,7 @@ namespace SparkSDK.Tests
             currentCall = null;
             List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
 
-            phone.Dial(calleeAddress, MediaOption.AudioVideoShare(IntPtr.Zero, IntPtr.Zero, IntPtr.Zero), r =>
+            phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
             {
                 if (r.IsSuccess)
                 {
