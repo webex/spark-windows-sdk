@@ -36,7 +36,13 @@ namespace SparkSDK
     /// <remarks>Since: 0.1.0</remarks>
     public class SparkApiEventArgs : EventArgs
     {
+        /// <summary>
+        /// Indicating whether this event is success.
+        /// </summary>
         protected readonly bool isSuccess;
+        /// <summary>
+        /// Indicating the error value, if the success is false, otherwise is null
+        /// </summary>
         protected readonly SparkError error;
 
         /// <summary>
