@@ -632,7 +632,7 @@ namespace SparkSDK
             switch (type)
             {
                 case SCFEventType.ParticipantsChanged:
-                    OnParticipantsChanged();
+                    OnParticipantsChanged(error, status);
                     break;
                 case SCFEventType.MercuryStateChange:
                     OnMercuryStateChange((SparkNet.MercuryState)error, status); ;
@@ -650,7 +650,7 @@ namespace SparkSDK
                     currentCall.CallId = status;
                     break;
                 case SCFEventType.CallDisconnected:
-                    OnCallDisconnected();
+                    OnCallDisconnected(error, status); ;
                     break;
                 case SCFEventType.CallConnected:
                     if(currentCall != null)
@@ -671,7 +671,7 @@ namespace SparkSDK
                     currentCall.CallId = m_core_telephoneService.getCurrentCallId();
                     break;
                 case SCFEventType.ShowIncomingCallAlert:
-                    OnShowIncomingCallAlert();
+                    OnShowIncomingCallAlert(error, status);
                     break;
                 case SCFEventType.AudioMutedStateChanged:
                     OnAudioMutedStateChanged((SparkNet.TrackType)error, status);
@@ -704,13 +704,18 @@ namespace SparkSDK
                     break;
             }
         }
-        private void OnParticipantsChanged()
+        private void OnParticipantsChanged(int error, string callId)
         {
             List<CallMembership> tmpMemberships = new List<CallMembership>();
 
             if(currentCall == null || currentCall.CallId == null)
             {
                 SDKLogger.Instance.Warn("currentCall.CallId is null");
+                return;
+            }
+
+            if (callId != currentCall.CallId)
+            {
                 return;
             }
 
@@ -938,29 +943,31 @@ namespace SparkSDK
             if (currentCall.IsUsed == true && currentCall.Direction == Call.CallDirection.Outgoing)
             {
                 currentCall.CallId = callId;
-                var confInfo = SCFCore.Instance.m_core_conversationService.getConversation(callId);
                 m_core_telephoneService.setMediaOption(currentCall.CallId , currentCall.MediaOption.MediaOptionType);
                 m_core_telephoneService.setAudioMaxBandwidth(currentCall.CallId, AudioMaxBandwidth);
                 m_core_telephoneService.setVideoMaxBandwidth(currentCall.CallId, VideoMaxBandwidth);
                 DialCompletedHandler?.Invoke(new SparkApiEventArgs<Call>(true, null, currentCall));
             }
-            // incoming call
-            else
-            {
-                currentCall.IsUsed = true;
-                currentCall.Direction = Call.CallDirection.Incoming;
-                currentCall.Status = CallStatus.Initiated;
-                currentCall.CallId = callId;
-                var confInfo = SCFCore.Instance.m_core_conversationService.getConversation(callId);
-
-                OnIncoming?.Invoke(currentCall);
-            }            
-
         }
 
-        private void OnShowIncomingCallAlert()
+        private void OnShowIncomingCallAlert(int error, string callId)
         {
-            SDKLogger.Instance.Debug("");
+            // incoming call
+            SDKLogger.Instance.Debug($"CallId[{callId}] error[{error}]");
+            if (currentCall.CallId != null)
+            {
+                SDKLogger.Instance.Warn("already have a call, reject incoming call");
+                m_core_telephoneService?.declineCall(callId);
+                m_core_telephoneService?.endCall(callId);
+                return;
+            }
+
+            currentCall.IsUsed = true;
+            currentCall.Direction = Call.CallDirection.Incoming;
+            currentCall.Status = CallStatus.Initiated;
+            currentCall.CallId = callId;
+
+            OnIncoming?.Invoke(currentCall);
         }
 
         private void OnStartRing(SparkNet.RingerType ringerType, string callId)
@@ -996,8 +1003,12 @@ namespace SparkSDK
             currentCall?.TrigerOnConnected();
         }
 
-        private void OnCallDisconnected()
-        {           
+        private void OnCallDisconnected(int error, string callId)
+        {
+            if (callId != currentCall.CallId)
+            {
+                return;
+            }
             if (currentCall.Status >= CallStatus.Disconnected)
             {
                 SDKLogger.Instance.Warn($"current call state is already {currentCall.Status.ToString()}, not process calldisconnect event");
@@ -1016,7 +1027,12 @@ namespace SparkSDK
 
         private void OnCallTerminated(int error, string callId)
         {
-            if(currentCall.Status ==  CallStatus.Disconnected)
+            if (callId != currentCall.CallId)
+            {
+                return;
+            }
+
+            if (currentCall.Status ==  CallStatus.Disconnected)
             {
                 return;
             }
