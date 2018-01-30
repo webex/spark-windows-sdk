@@ -88,6 +88,7 @@
     <Compile Include="Source\Auth\JWTAuthClient.cs" />
     <Compile Include="Source\Auth\JWTAuthenticator.cs" />
     <Compile Include="Source\Auth\OAuthAuthenticator.cs" />
+    <Compile Include="Source\Auth\SSOAuthenticator.cs" />
     <Compile Include="Source\Http\RestSharpClient.cs" />
     <Compile Include="Source\Http\ServiceRequest.cs" />
     <Compile Include="Source\Http\IServiceRequestClient.cs" />

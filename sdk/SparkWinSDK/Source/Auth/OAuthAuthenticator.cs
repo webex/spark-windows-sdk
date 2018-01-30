@@ -36,10 +36,10 @@ namespace SparkSDK
     /// <summary>
     /// An [OAuth](https://oauth.net/2/) based authentication strategy is to be used to authenticate a user on Cisco Spark. 
     /// </summary>
-    /// - see: [Cisco Spark Integration](https://developer.ciscospark.com/authentication.html)
+    /// See: [Cisco Spark Integration](https://developer.ciscospark.com/authentication.html)
     /// <seealso cref="SparkSDK.IAuthenticator" />
     /// <remarks>Since: 0.1.0</remarks>
-    public sealed class OAuthAuthenticator : IAuthenticator
+    public class OAuthAuthenticator : IAuthenticator
     {
         private SparkNet.CoreFramework m_core;
         private bool hasRegsterToCore = false;
