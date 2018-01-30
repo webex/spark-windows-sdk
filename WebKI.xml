@@ -13,7 +13,10 @@
   <HelpKINode Title="AudioVideo method" Url="html/M_SparkSDK_MediaOption_AudioVideo.htm" />
   <HelpKINode Title="AudioVideoShare method" Url="html/M_SparkSDK_MediaOption_AudioVideoShare.htm" />
   <HelpKINode Title="Authenticator property" Url="html/P_SparkSDK_Spark_Authenticator.htm" />
-  <HelpKINode Title="AuthorizationUrl property" Url="html/P_SparkSDK_OAuthAuthenticator_AuthorizationUrl.htm" />
+  <HelpKINode Title="AuthorizationUrl property">
+    <HelpKINode Title="OAuthAuthenticator.AuthorizationUrl Property " Url="html/P_SparkSDK_OAuthAuthenticator_AuthorizationUrl.htm" />
+    <HelpKINode Title="SSOAuthenticator.AuthorizationUrl Property " Url="html/P_SparkSDK_SSOAuthenticator_AuthorizationUrl.htm" />
+  </HelpKINode>
   <HelpKINode Title="Authorize method" Url="html/M_SparkSDK_OAuthAuthenticator_Authorize.htm" />
   <HelpKINode Title="Authorized method">
     <HelpKINode Title="IAuthenticator.Authorized Method " Url="html/M_SparkSDK_IAuthenticator_Authorized.htm" />
@@ -749,6 +752,7 @@
   <HelpKINode Title="SparkSDK.SparkError class" Url="html/T_SparkSDK_SparkError.htm" />
   <HelpKINode Title="SparkSDK.SparkErrorCode enumeration" Url="html/T_SparkSDK_SparkErrorCode.htm" />
   <HelpKINode Title="SparkSDK.SpeakerSwitchedEvent class" Url="html/T_SparkSDK_SpeakerSwitchedEvent.htm" />
+  <HelpKINode Title="SparkSDK.SSOAuthenticator class" Url="html/T_SparkSDK_SSOAuthenticator.htm" />
   <HelpKINode Title="SparkSDK.Team class" Url="html/T_SparkSDK_Team.htm" />
   <HelpKINode Title="SparkSDK.TeamClient class" Url="html/T_SparkSDK_TeamClient.htm" />
   <HelpKINode Title="SparkSDK.TeamMembership class" Url="html/T_SparkSDK_TeamMembership.htm" />
@@ -762,6 +766,14 @@
     <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_SpeakerSwitchedEvent.htm" />
   </HelpKINode>
   <HelpKINode Title="SpeakerSwitchedEvent.Speaker property" Url="html/P_SparkSDK_SpeakerSwitchedEvent_Speaker.htm" />
+  <HelpKINode Title="SSOAuthenticator class">
+    <HelpKINode Title="SSOAuthenticator Class" Url="html/T_SparkSDK_SSOAuthenticator.htm" />
+    <HelpKINode Title="constructor" Url="html/M_SparkSDK_SSOAuthenticator__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_SparkSDK_SSOAuthenticator.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_SSOAuthenticator.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SSOAuthenticator.AuthorizationUrl property" Url="html/P_SparkSDK_SSOAuthenticator_AuthorizationUrl.htm" />
+  <HelpKINode Title="SSOAuthenticator.SSOAuthenticator constructor" Url="html/M_SparkSDK_SSOAuthenticator__ctor.htm" />
   <HelpKINode Title="StartPreview method" Url="html/M_SparkSDK_Phone_StartPreview.htm" />
   <HelpKINode Title="State property" Url="html/P_SparkSDK_CallMembership_State.htm" />
   <HelpKINode Title="Status property" Url="html/P_SparkSDK_Call_Status.htm" />
