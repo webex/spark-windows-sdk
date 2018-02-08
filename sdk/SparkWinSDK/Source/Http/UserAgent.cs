@@ -37,8 +37,6 @@ namespace SparkSDK
         public string OSVersion { get; set; }
         public string OSLanguage { get; set; }
 
-        public const string prefix = "spark_win_sdk";
-
         private UserAgent()
         {
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT Version FROM Win32_OperatingSystem");
@@ -81,6 +79,14 @@ namespace SparkSDK
             {
                 return string.Format($"spark_win_sdk ({OSVersion})/{Spark.Version}");
             } 
+        }
+
+        public string Prefix
+        {
+            get
+            {
+                return string.Format($"spark_win_sdk ({OSVersion})");
+            }
         }
 
         private string GetOSLanguageName(int language)

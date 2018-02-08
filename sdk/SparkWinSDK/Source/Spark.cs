@@ -227,7 +227,7 @@ namespace SparkSDK
             string strCurUserLogDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             strCurUserLogDir += "\\" + System.Diagnostics.Process.GetCurrentProcess().ProcessName + "\\";
             m_core.configureLog(strCurUserLogDir);
-            m_core.init(Spark.Version, UserAgent.Instance.OSVersion, UserAgent.Instance.OSLanguage, "", strCurUserLogDir, UserAgent.prefix);
+            m_core.init(Spark.Version, UserAgent.Instance.OSVersion, UserAgent.Instance.OSLanguage, "", strCurUserLogDir, UserAgent.Instance.Prefix);
             m_core_telephoneService = m_core.getTelephonyService();
             m_core_conversationService = m_core.getConversationService();
             m_core_deviceManager = m_core.getDeviceManager();
