@@ -1,6 +1,6 @@
 # Cisco Spark Windows SDK
 [![LICENSE](https://img.shields.io/github/license/ciscospark/spark-windows-sdk.svg)](https://github.com/ciscospark/spark-windows-sdk/blob/master/LICENSE)
-[![Build status](https://ci.appveyor.com/api/projects/status/67u908ms00m4w7vh/branch/master?svg=true)](https://ci.appveyor.com/project/JaydenHan1106/spark-windows-sdk/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/67u908ms00m4w7vh/branch/master?svg=true)](https://ci.appveyor.com/project/ciscospark/spark-windows-sdk/branch/master)
 
 > The Cisco Spark™ Windows SDK
  
