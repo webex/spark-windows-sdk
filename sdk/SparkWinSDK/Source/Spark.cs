@@ -38,7 +38,7 @@ namespace SparkSDK
         /// The version number of this Cisco Spark .Net SDK. 
         /// </summary>
         /// <remarks>Since: 0.1.0</remarks>
-        public const string Version = "0.1.0";
+        public const string Version = "0.1.5";
 
 
         /// <summary>
