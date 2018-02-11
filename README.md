@@ -1,7 +1,7 @@
 # Cisco Spark Windows SDK
-[![LICENSE](https://img.shields.io/github/license/ciscospark/spark-windows-sdk.svg)](https://github.com/ciscospark/spark-windows-sdk/blob/master/LICENSE)
+[![NuGet version (Cisco.Spark.WindowsSDK)](https://img.shields.io/nuget/v/Cisco.Spark.WindowsSDK.svg?style=flat-square)](https://www.nuget.org/packages/Cisco.Spark.WindowsSDK/)
 [![Build status](https://ci.appveyor.com/api/projects/status/67u908ms00m4w7vh/branch/develop?svg=true)](https://ci.appveyor.com/project/ciscospark/spark-windows-sdk/branch/develop)
-
+[![LICENSE](https://img.shields.io/github/license/ciscospark/spark-windows-sdk.svg)](https://github.com/ciscospark/spark-windows-sdk/blob/master/LICENSE)
 > The Cisco Spark™ Windows SDK
  
 The Cisco Spark Windows SDK makes it easy to integrate secure and convenient Cisco Spark calling and messaging features in your Windows applications.
