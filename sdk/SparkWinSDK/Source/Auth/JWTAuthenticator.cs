@@ -43,7 +43,7 @@ namespace SparkSDK
         private JWTAccessToken jwtAccessTokenStore;
         private JWTAuthClient client;
         private bool isAuthorized;
-        internal bool mercuryConnected { get; set; }
+        internal bool MercuryConnected { get; set; }
         private SparkNet.CoreFramework m_core;
 
         private event Action<SparkApiEventArgs> AuthorizeAction;
@@ -278,15 +278,14 @@ namespace SparkSDK
                 return null;
             }
 
-            string expUtcTime;
-            if (payload.TryGetValue("exp", out expUtcTime))
+            if (payload.TryGetValue("exp", out string expUtcTime))
             {
                 DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
                 DateTime expTime = startTime.AddSeconds(double.Parse(expUtcTime));
 
                 if (expTime < DateTime.Now)
                 {
-                    SDKLogger.Instance.Error("JWT has expaired at {0}", expTime);
+                    SDKLogger.Instance.Error("JWT has expired at {0}", expTime);
                     return null;
                 }
             }
