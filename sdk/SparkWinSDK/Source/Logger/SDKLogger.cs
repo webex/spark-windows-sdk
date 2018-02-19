@@ -36,28 +36,19 @@ namespace SparkSDK
         public ILogger Logger { get; set; }
         private LogLevel console = LogLevel.Debug;
 
+        // BEGIN non-lazy singleton implementation pattern
+        // See http://csharpindepth.com/Articles/General/Singleton.aspx 
+        // for this non-lazy Singleton implementation pattern. It is 
+        // version 4 and achieves thread safety without using locks.
+        // For a lazy instantiation see version 6 on same web page.
+        private static readonly Singleton instance = new SDKLogger();
 
-        private static volatile SDKLogger instance = null;
-        private static readonly object lockHelper = new object();
+        static SDKLogger() { }
 
-        public static SDKLogger Instance
-        {
-            get
-            {
-                if (null == instance)
-                {
-                    lock (lockHelper)
-                    {
-                        if (null == instance)
-                        {
-                            instance = new SDKLogger();
-                        }
-                    }
+        private SDKLogger() { }
 
-                }
-                return instance;
-            }
-        }
+        public static SDKLogger Instance { get { return instance; } }
+        // END non-lazy singleton implementation pattern
 
         public LogLevel Console
         {
