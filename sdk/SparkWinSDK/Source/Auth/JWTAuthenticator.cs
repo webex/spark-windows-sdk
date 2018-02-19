@@ -278,7 +278,8 @@ namespace SparkSDK
                 return null;
             }
 
-            if (payload.TryGetValue("exp", out string expUtcTime))
+            string expUtcTime;
+            if (payload.TryGetValue("exp", out expUtcTime))
             {
                 DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
                 DateTime expTime = startTime.AddSeconds(double.Parse(expUtcTime));
