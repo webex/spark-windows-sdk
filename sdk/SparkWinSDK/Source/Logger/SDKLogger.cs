@@ -41,7 +41,7 @@ namespace SparkSDK
         // for this non-lazy Singleton implementation pattern. It is 
         // version 4 and achieves thread safety without using locks.
         // For a lazy instantiation see version 6 on same web page.
-        private static readonly Singleton instance = new SDKLogger();
+        private static readonly SDKLogger instance = new SDKLogger();
 
         static SDKLogger() { }
 
