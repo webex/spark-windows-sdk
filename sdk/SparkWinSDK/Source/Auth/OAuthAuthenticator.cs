@@ -42,7 +42,7 @@ namespace SparkSDK
     public class OAuthAuthenticator : IAuthenticator
     {
         private SparkNet.CoreFramework m_core;
-        private bool hasRegsterToCore = false;
+        private bool isRegisteredToCore = false;
         private AccessToken accessTokenStore;
 
         private readonly string clientId;
@@ -69,7 +69,7 @@ namespace SparkSDK
                 return;
             }
 
-            if (!hasRegsterToCore)
+            if (!isRegisteredToCore)
             {
                 RegisterToCore();
             }
@@ -92,7 +92,7 @@ namespace SparkSDK
         /// <remarks>Since: 0.1.0</remarks>
         public OAuthAuthenticator(string clientId, string clientSecret, string scope, string redirectUri)
         {
-            this.hasRegsterToCore = false;
+            this.isRegisteredToCore = false;
             this.isAuthorized = false;
             this.clientId = clientId;
             this.clientSecret = clientSecret;
@@ -127,7 +127,7 @@ namespace SparkSDK
             }
             AuthorizeAction = completionHandler;
 
-            if(!hasRegsterToCore)
+            if(!isRegisteredToCore)
             {
                 RegisterToCore();
             }
@@ -174,7 +174,7 @@ namespace SparkSDK
 
         private void RegisterToCore()
         {
-            if (hasRegsterToCore)
+            if (isRegisteredToCore)
             {
                 return;
             }
@@ -182,17 +182,17 @@ namespace SparkSDK
             m_core.m_CallbackEvent += OnCoreCallBack;
             m_core.setApplicationIntegrationProperties(this.clientId, this.clientSecret, this.scope, this.redirectUri);
 
-            hasRegsterToCore = true;
+            isRegisteredToCore = true;
         }
         private void UnRegisterToCore()
         {
-            if (!hasRegsterToCore)
+            if (!isRegisteredToCore)
             {
                 return;
             }
             m_core.m_CallbackEvent -= OnCoreCallBack;
             m_core = null;
-            hasRegsterToCore = false;
+            isRegisteredToCore = false;
         }
 
 

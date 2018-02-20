@@ -39,7 +39,7 @@ namespace SparkSDK
     /// <remarks>Since: 0.1.0</remarks>
     public sealed class Phone
     {
-        private bool hasRegsterToCore = false;
+        private bool isRegisteredToCore = false;
         readonly IAuthenticator authenticator;
         private static volatile Phone instance = null;
         private static readonly object lockHelper = new object();
@@ -50,7 +50,7 @@ namespace SparkSDK
             this.authenticator = authenticator;
             this.currentCall = new Call(this);
             prompter = new H264LicensePrompter();
-            hasRegsterToCore = false;
+            isRegisteredToCore = false;
             isMercuryConnected = false;
             AudioMaxBandwidth = (UInt32)DefaultBandwidth.MaxBandwidthAudio;
             VideoMaxBandwidth = (UInt32)DefaultBandwidth.MaxBandwidth720p;
@@ -61,7 +61,7 @@ namespace SparkSDK
 
         private void RegisterToCore()
         {
-            if (hasRegsterToCore)
+            if (isRegisteredToCore)
             {
                 return;
             }
@@ -71,11 +71,11 @@ namespace SparkSDK
             m_core_deviceManager = SCFCore.Instance.m_core_deviceManager;
             m_core.m_CallbackEvent += OnCoreCallBackPhone;
 
-            hasRegsterToCore = true;
+            isRegisteredToCore = true;
         }
         internal void UnRegisterToCore()
         {
-            if (!hasRegsterToCore)
+            if (!isRegisteredToCore)
             {
                 return;
             }
@@ -84,7 +84,7 @@ namespace SparkSDK
             m_core_telephoneService = null;
             m_core_conversationService = null;
             m_core_deviceManager = null;
-            hasRegsterToCore = false;
+            isRegisteredToCore = false;
             instance = null;
         }
 

@@ -31,7 +31,7 @@ using SparkNet;
 
 namespace SparkSDK
 {
-    internal class SDKLogger
+    internal sealed class SDKLogger
     {
         public ILogger Logger { get; set; }
         private LogLevel console = LogLevel.Debug;
