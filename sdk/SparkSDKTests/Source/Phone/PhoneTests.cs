@@ -2588,10 +2588,10 @@ namespace SparkSDK.Tests
         [DllImport("User32.dll", EntryPoint = "SendMessage")]
         private static extern int SendMessage
         (
-            IntPtr hWnd,                   //目标窗体句柄
+            IntPtr hWnd,                   //Handle of target window
             int Msg,                       //WM_COPYDATA
-            int wParam,                    //自定义数值
-            ref CopyDataStruct lParam     //结构体
+            int wParam,                    //wParam
+            ref CopyDataStruct lParam      //lParam
         );
 
         [DllImport("User32.dll", EntryPoint = "FindWindow")]

@@ -38,12 +38,12 @@ namespace SparkSDK
     /// <remarks>Since: 0.1.0</remarks>
     public sealed class JWTAuthenticator : IAuthenticator
     {
-        private bool hasRegsterToCore = false;
+        private bool isRegisteredToCore = false;
         private string jwt;
         private JWTAccessToken jwtAccessTokenStore;
         private JWTAuthClient client;
         private bool isAuthorized;
-        internal bool mercuryConnected { get; set; }
+        internal bool MercuryConnected { get; set; }
         private SparkNet.CoreFramework m_core;
 
         private event Action<SparkApiEventArgs> AuthorizeAction;
@@ -55,7 +55,7 @@ namespace SparkSDK
         /// <remarks>Since: 0.1.0</remarks>
         public JWTAuthenticator()
         {
-            this.hasRegsterToCore = false;
+            this.isRegisteredToCore = false;
             this.jwt = null;
             this.client = new JWTAuthClient();
             this.jwtAccessTokenStore = null;
@@ -66,24 +66,24 @@ namespace SparkSDK
 
         private void RegisterToCore()
         {
-            if (hasRegsterToCore)
+            if (isRegisteredToCore)
             {
                 return;
             }
             m_core = SCFCore.Instance.m_core;
             m_core.m_CallbackEvent += OnCoreCallBack;
 
-            hasRegsterToCore = true;
+            isRegisteredToCore = true;
         }
         private void UnRegisterToCore()
         {
-            if (!hasRegsterToCore)
+            if (!isRegisteredToCore)
             {
                 return;
             }
             m_core.m_CallbackEvent -= OnCoreCallBack;
             m_core = null;
-            hasRegsterToCore = false;
+            isRegisteredToCore = false;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace SparkSDK
                 return;
             }
 
-            if (!hasRegsterToCore)
+            if (!isRegisteredToCore)
             {
                 RegisterToCore();
             }
@@ -286,7 +286,7 @@ namespace SparkSDK
 
                 if (expTime < DateTime.Now)
                 {
-                    SDKLogger.Instance.Error("JWT has expaired at {0}", expTime);
+                    SDKLogger.Instance.Error("JWT has expired at {0}", expTime);
                     return null;
                 }
             }

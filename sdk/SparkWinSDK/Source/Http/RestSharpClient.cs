@@ -30,6 +30,17 @@ namespace SparkSDK
 {
     internal class RestSharpClient : IServiceRequestClient
     {
+        private void AddParameters(IRestRequest request, IEnumerable<KeyValuePair<string, object>> pairs)
+        {
+            if (request != null && pairs != null)
+            {
+                foreach (var pair in pairs)
+                {
+                    request.AddParameter(pair.Key, pair.Value, ParameterType.GetOrPost);
+                }
+            }
+        }
+
         public void Execute<T>(ServiceRequest serviceRequest, Action<SparkApiEventArgs<T>> completedhandler) where T : new()
         {
             if (serviceRequest == null)
@@ -45,28 +56,27 @@ namespace SparkSDK
                 request.AddHeader("Authorization", "Bearer " + serviceRequest.AccessToken);
             }
 
-            foreach (var pair in serviceRequest.Headers)
+            if (serviceRequest.Headers != null)
             {
-                request.AddHeader(pair.Key, pair.Value);
+                foreach (var pair in serviceRequest.Headers)
+                {
+                    request.AddHeader(pair.Key, pair.Value);
+                }
             }
 
-            foreach (var pair in serviceRequest.QueryParameters)
-            {
-                request.AddParameter(pair.Key, pair.Value, ParameterType.GetOrPost);
-            }
+            AddParameters(request, serviceRequest.QueryParameters);
 
-            foreach (var pair in serviceRequest.BodyParameters)
-            {
-                request.AddParameter(pair.Key, pair.Value, ParameterType.GetOrPost);
-            }
+            AddParameters(request, serviceRequest.BodyParameters);
 
-            if (serviceRequest.RootElement.Length != 0)
+            if (serviceRequest.RootElement?.Length != 0)
             {
                 request.RootElement = serviceRequest.RootElement;
             }
 
-            var client = new RestClient();
-            client.BaseUrl = new System.Uri(serviceRequest.baseUri);
+            var client = new RestClient()
+            {
+                BaseUrl = new System.Uri(serviceRequest.baseUri)
+            };
 
             SDKLogger.Instance.Info($"http request[{serviceRequest.Method.ToString()}]: {serviceRequest.baseUri + request.Resource}" );
             client.ExecuteAsync<T>(request, response =>

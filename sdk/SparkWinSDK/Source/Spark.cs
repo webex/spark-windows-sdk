@@ -211,7 +211,7 @@ namespace SparkSDK
 
     }
 
-    internal class SCFCore
+    internal sealed class SCFCore
     {
         private static volatile SCFCore instance = null;
         private static readonly object lockHelper = new object();
