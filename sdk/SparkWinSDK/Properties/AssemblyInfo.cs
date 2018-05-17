@@ -19,6 +19,9 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
+[assembly: InternalsVisibleTo("SparkSDKTests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("71755a7a-5ca8-4e68-8f9c-76eb1176f636")]
 

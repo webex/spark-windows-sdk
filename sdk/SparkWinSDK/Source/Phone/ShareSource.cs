@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -31,71 +31,36 @@ namespace SparkSDK
     /// <summary>
     /// share source types.
     /// </summary>
-    /// <remarks>Since: 0.1.0</remarks>
+    /// <remarks>Since: 0.1.7</remarks>
     public enum ShareSourceType
     {
         /// <summary>
-        /// unknown type.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Unknown = 0,
-        /// <summary>
         /// share the whole desktop.
         /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
+        /// <remarks>Since: 0.1.7</remarks>
         Desktop = 1,
         /// <summary>
         /// share an application.
         /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Application = 2,
-        /// <summary>
-        /// share a scope of content.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Content = 3
+        /// <remarks>Since: 0.1.7</remarks>
+        Application = 2
     }
 
     /// <summary>
     /// Share source.
     /// </summary>
-    /// <remarks>Since: 0.1.0</remarks>
+    /// <remarks>Since: 0.1.7</remarks>
     public class ShareSource
     {
         /// <summary>
         /// the source ID.
         /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        public string SourceId;
+        /// <remarks>Since: 0.1.7</remarks>
+        public string SourceId { get; set; }
         /// <summary>
         /// the name of the shared source.
         /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        public string Name;
-        /// <summary>
-        /// if this source has sharrd.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        public bool IsShared;
-        /// <summary>
-        /// the width of the scope of the content
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        public int Width;
-        /// <summary>
-        /// the height of the scope of the content.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        public int Height;
-        /// <summary>
-        /// the position of the start point.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        public int X;
-        /// <summary>
-        /// the position of the start point.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        public int Y;
+        /// <remarks>Since: 0.1.7</remarks>
+        public string Name { get; set; }
     }
 }

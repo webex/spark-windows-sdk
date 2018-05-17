@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ using SparkNet;
 
 namespace SparkSDK
 {
-    internal class SDKLogger
+    internal sealed class SDKLogger
     {
         public ILogger Logger { get; set; }
         private LogLevel console = LogLevel.Debug;
@@ -105,19 +105,25 @@ namespace SparkSDK
             StackTrace st = new StackTrace(true);
 
             StackFrame sf = st.GetFrame(2);
-            
-            string fullstr = string.Format("[SPARKSDK] {0}:{1} {2}::{3} {4}", System.IO.Path.GetFileName(sf.GetFileName()), sf.GetFileLineNumber(), sf.GetMethod().ReflectedType.Name, sf.GetMethod().Name, str);
+
+            string fullstr = string.Format("{0,-10}", "[SPARKSDK]");
+            fullstr += string.Format(" {0}:{1} {2}::{3} {4}", System.IO.Path.GetFileName(sf.GetFileName()), sf.GetFileLineNumber(), sf.GetMethod().ReflectedType.Name, sf.GetMethod().Name, str);
             
             if (logLevel >= Console)
             {
                 SCFCore.Instance.m_core.outputLog((SCFLogLevel)logLevel, fullstr);
+
+                if (this.Logger != null)
+                {
+                    string loggerOutput = string.Format("{0,-19}", $"{DateTime.UtcNow}");
+                    loggerOutput += string.Format("{0,-5}", $"{logLevel.ToString()}");
+                    loggerOutput += string.Format("{0,-5}", $"[{Thread.CurrentThread.ManagedThreadId}]");
+                    loggerOutput += string.Format($"{fullstr}");
+                    this.Logger.Log(loggerOutput);
+                }
             }
 
-            if (this.Logger != null)
-            {
-                string loggerOutput = string.Format($"{DateTime.Now} {logLevel.ToString()} [{Thread.CurrentThread.ManagedThreadId}] {fullstr}");
-                this.Logger.Log(loggerOutput);
-            }
+
         }
     }
 }

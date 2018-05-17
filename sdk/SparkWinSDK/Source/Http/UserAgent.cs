@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -77,16 +77,8 @@ namespace SparkSDK
         {
             get
             {
-                return string.Format($"spark_win_sdk ({OSVersion})/{Spark.Version}");
+                return string.Format($"spark_win_sdk {Spark.Version}/({OSVersion})");
             } 
-        }
-
-        public string Prefix
-        {
-            get
-            {
-                return string.Format($"spark_win_sdk ({OSVersion})");
-            }
         }
 
         private string GetOSLanguageName(int language)

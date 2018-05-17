@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,6 @@ namespace SparkSDK
 {
     internal interface IServiceRequestClient
     {
-        void Execute<T>(ServiceRequest serviceRequest, Action<SparkApiEventArgs<T>> completedhandler) where T : new();
+        void Execute<T>(ServiceRequest serviceRequest, Action<ServiceRequest.Response<T>> completedhandler) where T : new();
     }
 }

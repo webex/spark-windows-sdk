@@ -12,7 +12,8 @@ del /Q vstest_error_log.txt
 rmdir /s /q TestResults
 set PATH=%PATH%;%CD%;
 REM "%VS140COMNTOOLS%\..\IDE\MSTest.exe" /testcontainer:SparkSDKTests.dll /resultsfile:testresult.trx /runconfig:..\..\..\..\..\..\sdk\SparkSDKTests\CodeCoverage.runsettings
-"%VS140COMNTOOLS%..\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" SparkSDKTests.dll /InIsolation /EnableCodeCoverage /Logger:trx /Settings:..\..\..\..\..\..\sdk\SparkSDKTests\CodeCoverage.runsettings 2>vstest_error_log.txt
+"%VS150COMNTOOLS%..\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" SparkSDKTests.dll /InIsolation /EnableCodeCoverage /Logger:trx /Settings:..\..\..\..\..\..\sdk\SparkSDKTests\CodeCoverage.runsettings 2>vstest_error_log.txt
+
 
 
 echo vstest.console.exe exit code is %errorlevel%

@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ namespace SparkSDK
         /// The version number of this Cisco Spark .Net SDK. 
         /// </summary>
         /// <remarks>Since: 0.1.0</remarks>
-        public const string Version = "0.1.6";
+        public const string Version = "0.1.7";
 
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace SparkSDK
         /// <remarks>Since: 0.1.0</remarks>
         public MessageClient Messages
         {
-            get { return new MessageClient(Authenticator); }
+            get { return MessageClient.GetInstance(Authenticator); }
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace SparkSDK
 
     }
 
-    internal class SCFCore
+    internal sealed class SCFCore
     {
         private static volatile SCFCore instance = null;
         private static readonly object lockHelper = new object();
@@ -220,6 +220,7 @@ namespace SparkSDK
         public SparkNet.TelephonyService m_core_telephoneService;
         public SparkNet.ConversationService m_core_conversationService;
         public SparkNet.DeviceManager m_core_deviceManager;
+        public SparkNet.ImageService m_core_imageService;
         private SCFCore()
         {
             Console.WriteLine("scf core init");
@@ -227,10 +228,11 @@ namespace SparkSDK
             string strCurUserLogDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             strCurUserLogDir += "\\" + System.Diagnostics.Process.GetCurrentProcess().ProcessName + "\\";
             m_core.configureLog(strCurUserLogDir);
-            m_core.init(Spark.Version, UserAgent.Instance.OSVersion, UserAgent.Instance.OSLanguage, "", strCurUserLogDir, UserAgent.Instance.Prefix);
+            m_core.init(Spark.Version, UserAgent.Instance.OSVersion, UserAgent.Instance.OSLanguage, "", strCurUserLogDir, UserAgent.Instance.Name);
             m_core_telephoneService = m_core.getTelephonyService();
             m_core_conversationService = m_core.getConversationService();
             m_core_deviceManager = m_core.getDeviceManager();
+            m_core_imageService = m_core.getImageService();
         }
         public static SCFCore Instance
         {
@@ -258,6 +260,7 @@ namespace SparkSDK
             }
 
             Phone.GetInstance(null).UnRegisterToCore();
+            MessageClient.GetInstance(null).UnRegisterToCore();
             m_core.exit();
             m_core.Dispose();
             instance = null;

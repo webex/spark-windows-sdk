@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -428,9 +428,32 @@ namespace SparkSDK
             isSending = sending;
         }
         /// <summary>
-        /// True if the share now is receiving. Otherwise false.
+        /// True if the share now is sending. Otherwise false.
         /// </summary>
         /// <remarks>Since: 0.1.0</remarks>
+        public bool IsSending
+        {
+            get { return isSending; }
+        }
+    }
+
+    /// <summary>
+    /// This might be triggered when the local party started or stopped share stream.
+    /// </summary>
+    /// <remarks>Since: 0.1.7</remarks>
+    public class SendingShareEvent : MediaChangedEvent
+    {
+        private bool isSending;
+
+        internal SendingShareEvent(Call call, bool sending)
+            : base(call)
+        {
+            isSending = sending;
+        }
+        /// <summary>
+        /// True if the share now is sending. Otherwise false.
+        /// </summary>
+        /// <remarks>Since: 0.1.7</remarks>
         public bool IsSending
         {
             get { return isSending; }

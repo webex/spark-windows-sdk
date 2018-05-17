@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -59,6 +59,15 @@ namespace SparkSDK
         /// <param name="completionHandler">The completion event handler.</param>
         /// <remarks>Since: 0.1.0</remarks>
         void AccessToken(Action<SparkApiEventArgs<string>> completionHandler);
+
+        /// <summary>
+        /// Returns an new access token of this authenticator.
+        /// This may involve long-running operations such as service calls.
+        /// If the access token could not be retrieved then the completion handler will be called with null.
+        /// </summary>
+        /// <param name="completionHandler">The completion event handler.</param>
+        /// <remarks>Since: 0.1.7</remarks>
+        void RefreshToken(Action<SparkApiEventArgs<string>> completionHandler);
 
     }
 }

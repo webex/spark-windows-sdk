@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -56,6 +56,7 @@ namespace SparkSDK
         private bool isRemoteSendingVideo;
         private bool isRemoteSendingAudio;
         private bool isRemoteSendingShare;
+        private bool isSendingShare;
         private VideoDimensions localVideoViewSize;
         private VideoDimensions remoteVideoViewSize;
         private VideoDimensions remoteShareViewSize;
@@ -163,7 +164,8 @@ namespace SparkSDK
         public event Action<Capabilities> OnCapabilitiesChanged;
 
 
-        //private event Action<SparkApiEventArgs<List<ShareSource>>> SelectShareSourceCompletedHandler = null;
+        private event Action<SparkApiEventArgs<List<ShareSource>>> SelectShareSourceCompletedHandler = null;
+        private event Action<SparkApiEventArgs<List<ShareSource>>> SelectAppShareSourceCompletedHandler = null;
 
         /// <summary>
         /// Gets the status of this call.
@@ -258,7 +260,7 @@ namespace SparkSDK
         }
 
         /// <summary>
-        /// True if the remote party of this call is sending  share. Otherwise, false.
+        /// True if the remote party of this call is sending share. Otherwise, false.
         /// </summary>
         /// <remarks>Since: 0.1.0</remarks>
         public bool IsRemoteSendingShare
@@ -268,6 +270,19 @@ namespace SparkSDK
                 return isRemoteSendingShare;
             }
             private set { isRemoteSendingShare = value; }
+        }
+
+        /// <summary>
+        /// True if the local party of this call is sending share. Otherwise, false.
+        /// </summary>
+        /// <remarks>Since: 0.1.7</remarks>
+        public bool IsSendingShare
+        {
+            get
+            {
+                return isSendingShare;
+            }
+            private set { isSendingShare = value; }
         }
 
         /// <summary>
@@ -532,6 +547,7 @@ namespace SparkSDK
             m_core_telephoneService.setMediaOption(CallId, option.MediaOptionType);
             m_core_telephoneService.setAudioMaxBandwidth(CallId, phone.AudioMaxBandwidth);
             m_core_telephoneService.setVideoMaxBandwidth(CallId, phone.VideoMaxBandwidth);
+            m_core_telephoneService.setScreenShareMaxBandwidth(CallId, phone.ShareMaxBandwidth);
             m_core_telephoneService?.joinCall(this.CallId);
 
             completedHandler?.Invoke(new SparkApiEventArgs(true, null));
@@ -652,11 +668,11 @@ namespace SparkSDK
         /// </summary>
         /// <param name="handle">the local share dispaly window handle</param>
         /// <remarks>Since: 0.1.0</remarks>
-        //public void SetLoalShareView(IntPtr handle)
-        //{
-        //    SDKLogger.Instance.Debug($"handle:{handle}");
-        //    m_core_telephoneService.setView(this.CallId, handle, TrackType.LocalShare);
-        //}
+        public void SetLoalShareView(IntPtr handle)
+        {
+            SDKLogger.Instance.Debug($"handle:{handle}");
+            m_core_telephoneService.setView(this.CallId, handle, TrackType.LocalShare);
+        }
 
         /// <summary>
         /// Set remote share view to display.
@@ -696,11 +712,11 @@ namespace SparkSDK
         /// </summary>
         /// <param name="handle">the local share dispaly window handle</param>
         /// <remarks>Since: 0.1.0</remarks>
-        //public void UpdateLoalShareView(IntPtr handle)
-        //{
-        //    SDKLogger.Instance.Debug($"handle:{handle}");
-        //    m_core_telephoneService.updateView(this.CallId, handle, TrackType.LocalShare);
-        //}
+        public void UpdateLoalShareView(IntPtr handle)
+        {
+            SDKLogger.Instance.Debug($"handle:{handle}");
+            m_core_telephoneService.updateView(this.CallId, handle, TrackType.LocalShare);
+        }
 
         /// <summary>
         /// Update remote share view to display when video window is resized.
@@ -715,69 +731,75 @@ namespace SparkSDK
 
 
         /// <summary>
-        /// Select a kind of share source type
+        /// Fetch enumerated sources with a kind of source type
         /// </summary>
         /// <param name="sourceType">share source type.</param>
         /// <param name="completedHandler">The completion event handler.</param>
-        /// <remarks>Since: 0.1.0</remarks>
-        //public void SelectShareSource(ShareSourceType sourceType, Action<SparkApiEventArgs<List<ShareSource>>> completedHandler)
-        //{
-        //    if (Status != CallStatus.Connected)
-        //    {
-        //        completedHandler(new SparkApiEventArgs<List<ShareSource>>(false, new SparkError(SparkErrorCode.illegalOperation, "call status is not connected."), null));
-        //        return;
-        //    }
-        //    if (sourceType != ShareSourceType.Desktop)
-        //    {
-        //        completedHandler(new SparkApiEventArgs<List<ShareSource>>(false, new SparkError(SparkErrorCode.illegalOperation,"now only support share desktop"), null));
-        //        return;
-        //    }
-        //    SelectShareSourceCompletedHandler = completedHandler;
-        //    m_core_telephoneService.enumerateShareSources((SparkNet.ShareSourceType)sourceType);
-        //}
+        /// <remarks>Since: 0.1.7</remarks>
+        public void FetchShareSources(ShareSourceType sourceType, Action<SparkApiEventArgs<List<ShareSource>>> completedHandler)
+        {
+            if (Status != CallStatus.Connected)
+            {
+                completedHandler(new SparkApiEventArgs<List<ShareSource>>(false, new SparkError(SparkErrorCode.IllegalOperation, "call status is not connected."), null));
+                return;
+            }
+            SDKLogger.Instance.Debug($"selected source type is {sourceType.ToString()}");
+            if (sourceType == ShareSourceType.Application)
+            {
+                SelectAppShareSourceCompletedHandler = completedHandler;
+            }
+            else
+            {
+                SelectShareSourceCompletedHandler = completedHandler;
+            }
+            
+            m_core_telephoneService.enumerateShareSources((SparkNet.ShareSourceType)sourceType);
+        }
 
         /// <summary>
         /// Start share .
         /// </summary>
-        /// <param name="source">the selected share source</param>
+        /// <param name="sourceId">the selected share sourceId</param>
         /// <param name="completedHandler">The completed event handler.</param>
-        /// <remarks>Since: 0.1.0</remarks>
-        //public void StartShare(ShareSource source, Action<SparkApiEventArgs> completedHandler)
-        //{
-        //    if (Status != CallStatus.Connected)
-        //    {
-        //        SDKLogger.Instance.Error("call status is not connected.");
-        //        completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.illegalOperation, "call status is not connected.")));
-        //        return;
-        //    }
+        /// <remarks>Since: 0.1.7</remarks>
+        public void StartShare(string sourceId, Action<SparkApiEventArgs> completedHandler)
+        {
+            if (Status != CallStatus.Connected)
+            {
+                SDKLogger.Instance.Error("call status is not connected.");
+                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.IllegalOperation, "call status is not connected.")));
+                return;
+            }
 
-        //    if (source == null || source.SourceId == null)
-        //    {
-        //        SDKLogger.Instance.Error("source is null or source id is null");
-        //        completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.illegalOperation, "share soure is invalid.")));
-        //        return;
-        //    }
-        //    SDKLogger.Instance.Debug($"{source.SourceId}");
-        //    m_core_telephoneService.startShare(this.CallId, source.SourceId);
-        //    completedHandler?.Invoke(new SparkApiEventArgs(true, null));
-        //}
+            if (sourceId == null)
+            {
+                SDKLogger.Instance.Error("source is null or source id is null");
+                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.IllegalOperation, "share soure is invalid.")));
+                return;
+            }
+            SDKLogger.Instance.Debug($"{sourceId}");
+            m_core_telephoneService.startShare(this.CallId, sourceId);
+            completedHandler?.Invoke(new SparkApiEventArgs(true, null));
+        }
 
         /// <summary>
         /// Stop share .
         /// </summary>
         /// <param name="completedHandler">The completion event handler.</param>
-        /// <remarks>Since: 0.1.0</remarks>
-        //public void StopShare(Action<SparkApiEventArgs> completedHandler)
-        //{
-        //    if (Status != CallStatus.Connected)
-        //    {
-        //        SDKLogger.Instance.Error("call status is not connected.");
-        //        completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.illegalOperation, "call status is not connected.")));
-        //        return;
-        //    }
-        //    SDKLogger.Instance.Debug("");
-        //    m_core_telephoneService.stopShare(this.CallId);
-        //}
+        /// <remarks>Since: 0.1.7</remarks>
+        public void StopShare(Action<SparkApiEventArgs> completedHandler)
+        {
+            if (Status != CallStatus.Connected)
+            {
+                SDKLogger.Instance.Error("call status is not connected.");
+                completedHandler?.Invoke(new SparkApiEventArgs(false, new SparkError(SparkErrorCode.IllegalOperation, "call status is not connected.")));
+                return;
+            }
+            SDKLogger.Instance.Debug("");
+            m_core_telephoneService.stopShare(this.CallId);
+
+            completedHandler?.Invoke(new SparkApiEventArgs(true,null));
+        }
         internal void TrigerAnswerCompletedHandler(SparkApiEventArgs completedHandler)
         {
             AnswerCompletedHandler?.Invoke(completedHandler);
@@ -852,6 +874,10 @@ namespace SparkSDK
             {
                 isReceivingShare = ((ReceivingShareEvent)mediaChangedEvent).IsReceiving;
             }
+            else if (mediaChangedEvent is SendingShareEvent)
+            {
+                IsSendingShare = ((SendingShareEvent)mediaChangedEvent).IsSending;
+            }
             else
             {
 
@@ -865,25 +891,28 @@ namespace SparkSDK
             OnCallMembershipChanged?.Invoke(callMembershipEvent);
         }
 
-        //internal void TrigerOnSelectShareSource()
-        //{
-        //    var result = new List<ShareSource>();
-        //    var shareSources = m_core_telephoneService.getShareSources();
-        //    foreach (var item in shareSources)
-        //    {
-        //        result.Add(new ShareSource()
-        //        {
-        //            SourceId = item.sourceId,
-        //            Name = item.name,
-        //            Height = item.height,
-        //            Width = item.width,
-        //            X = item.x,
-        //            Y = item.y,
-        //            IsShared = item.shared,
-        //        });
-        //    }
-        //    SelectShareSourceCompletedHandler?.Invoke(new SparkApiEventArgs<List<ShareSource>>(true, null, result));
-        //    SelectShareSourceCompletedHandler = null;
-        //}
+        internal void TrigerOnSelectShareSource( ShareSourceType type)
+        {
+            var result = new List<ShareSource>();
+            var shareSources = m_core_telephoneService.getShareSources((SparkNet.ShareSourceType)type);
+            foreach (var item in shareSources)
+            {
+                result.Add(new ShareSource()
+                {
+                    SourceId = item.sourceId,
+                    Name = item.name,
+                });
+            }
+            if (type == ShareSourceType.Application)
+            {
+                SelectAppShareSourceCompletedHandler?.Invoke(new SparkApiEventArgs<List<ShareSource>>(true, null, result));
+                SelectAppShareSourceCompletedHandler = null;
+            }
+            else
+            {
+                SelectShareSourceCompletedHandler?.Invoke(new SparkApiEventArgs<List<ShareSource>>(true, null, result));
+                SelectShareSourceCompletedHandler = null;
+            }
+        }
     }
 }

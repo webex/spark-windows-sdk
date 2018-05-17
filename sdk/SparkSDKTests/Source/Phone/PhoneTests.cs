@@ -2,7 +2,7 @@
 using SparkSDK;
 
 #region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -50,7 +50,7 @@ namespace SparkSDK.Tests
         private Call currentCall;
         private CallData callData;
 
-        private static Process testFixtureAppProcess;
+        //private static Process testFixtureAppProcess = null;
         private readonly string calleeAddress = ConfigurationManager.AppSettings["TestFixtureAppAddress01"] ?? "";
         private static readonly string testFixtureApp = "TestFixtureApp";
 
@@ -93,17 +93,12 @@ namespace SparkSDK.Tests
 
             myRoom = CreateRoom("my test room");
             Assert.IsNotNull(myRoom);
-            //Thread.Sleep(30000);//wait for scf recv conversationid
 
             // start testFixtureApp process
-            Assert.IsTrue(StartTestFixtureAppProcess());
+            //Assert.IsTrue(StartTestFixtureAppProcess());
             //Thread.Sleep(30000);
 
-            MessageHelper.Init();
-
-            MessageHelper.CloseTestFixtureApp(testFixtureApp);
-            Thread.Sleep(50000);
-
+            Thread.Sleep(10000);
         }
 
         [ClassCleanup]
@@ -116,14 +111,12 @@ namespace SparkSDK.Tests
                 myRoom = null;
             }
 
-            if (testFixtureAppProcess != null && !testFixtureAppProcess.HasExited)
-            {
-                Console.WriteLine("close testFixtureAppProcess");
-                testFixtureAppProcess.Kill();
-                testFixtureAppProcess = null;
-            }
-
-            MessageHelper.CloseTestFixtureApp(testFixtureApp);
+            //if (testFixtureAppProcess != null && !testFixtureAppProcess.HasExited)
+            //{
+            //    Console.WriteLine("close testFixtureAppProcess");
+            //    testFixtureAppProcess.Kill();
+            //    testFixtureAppProcess = null;
+            //}
 
             fixture = null;
             spark = null;
@@ -145,12 +138,12 @@ namespace SparkSDK.Tests
         public void TearDown()
         {
             Console.WriteLine("tear down");
-            if (testFixtureAppProcess != null && testFixtureAppProcess.HasExited)
-            {
-                Console.WriteLine("Error: testFixtureApp has exited.");
-                Assert.IsTrue(StartTestFixtureAppProcess());
-                Thread.Sleep(10000);
-            }
+            //if (testFixtureAppProcess != null && testFixtureAppProcess.HasExited)
+            //{
+            //    Console.WriteLine("Error: testFixtureApp has exited.");
+            //    Assert.IsTrue(StartTestFixtureAppProcess());
+            //    Thread.Sleep(10000);
+            //}
 
             if (currentCall != null && currentCall.Status != CallStatus.Disconnected)
             {
@@ -435,7 +428,7 @@ namespace SparkSDK.Tests
 
             Assert.IsTrue(caller.IsInitiator);
             Assert.AreEqual(CallMembership.CallState.Joined, caller.State);
-            Assert.AreEqual(self.Id, SparkTestFixture.GetPersonIdFromUserId(caller.PersonId));
+            Assert.AreEqual(self.Id, caller.PersonId);
             Assert.AreEqual(self.Emails[0], caller.Email);
 
             Assert.IsFalse(callee.IsInitiator);
@@ -496,7 +489,7 @@ namespace SparkSDK.Tests
 
             Assert.IsTrue(caller.IsInitiator);
             Assert.AreEqual(CallMembership.CallState.Left, caller.State);
-            Assert.AreEqual(self.Id, SparkTestFixture.GetPersonIdFromUserId(caller.PersonId));
+            Assert.AreEqual(self.Id, caller.PersonId);
             Assert.AreEqual(self.Emails[0], caller.Email);
 
             Assert.IsFalse(callee.IsInitiator);
@@ -1367,6 +1360,458 @@ namespace SparkSDK.Tests
             Assert.IsFalse(callData.listIsSendingAudio[0]);
             Assert.IsTrue(callData.listIsSendingAudio[1]);
         }
+        #region screen share
+        //[TestMethod()]
+        //public void OutgoingSelectShareSourceDesktopTest()
+        //{
+        //    //call scene：
+        //    //1. caller: callout
+        //    //2. callee: answer
+        //    //3. caller: select share source
+        //    //4. callee: hangup
+        //    MessageHelper.SetTestMode_CalleeAutoAnswerAndHangupAfter30Seconds(testFixtureApp);
+
+        //    currentCall = null;
+        //    List<ShareSource> shareSources = new List<ShareSource>();
+
+        //    phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
+        //    {
+        //        if (r.IsSuccess)
+        //        {
+        //            currentCall = r.Data;
+        //            currentCall.OnDisconnected += (call) =>
+        //            {
+        //                Console.WriteLine("onDisconnected");
+        //                MessageHelper.BreakLoop();
+        //            };
+        //            currentCall.OnConnected += (call) =>
+        //            {
+        //                Console.WriteLine("onConnected");
+        //                Console.WriteLine("select share source");
+        //                currentCall.FetchShareSources(ShareSourceType.Desktop, result =>
+        //                {
+        //                    if (r.IsSuccess)
+        //                    {
+        //                        shareSources = result.Data;
+        //                    }
+        //                    else
+        //                    {
+        //                        Console.WriteLine($"select share source failed. Error: {result.Error.ErrorCode}: {result.Error.Reason}");
+        //                    }
+        //                });
+        //            };
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine($"dial fail: {r.Error.ErrorCode}:{r.Error.Reason}");
+        //            currentCall = r.Data;
+        //            MessageHelper.BreakLoop();
+        //        }
+        //    });
+
+        //    MessageHelper.RunDispatcherLoop();
+
+        //    Assert.IsTrue(shareSources.Count > 0);
+        //    Assert.IsNotNull(shareSources[0].SourceId);
+        //    Assert.IsNotNull(shareSources[0].Name);
+        //}
+
+        //[TestMethod()]
+        //public void OutgoingSelectShareSourceApplicationTest()
+        //{
+        //    //call scene：
+        //    //1. caller: callout
+        //    //2. callee: answer
+        //    //3. caller: select share source
+        //    //4. callee: hangup
+        //    MessageHelper.SetTestMode_CalleeAutoAnswerAndHangupAfter30Seconds(testFixtureApp);
+
+        //    currentCall = null;
+        //    List<ShareSource> shareSources = new List<ShareSource>();
+
+        //    phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
+        //    {
+        //        if (r.IsSuccess)
+        //        {
+        //            currentCall = r.Data;
+        //            currentCall.OnDisconnected += (call) =>
+        //            {
+        //                Console.WriteLine("onDisconnected");
+        //                MessageHelper.BreakLoop();
+        //            };
+        //            currentCall.OnConnected += (call) =>
+        //            {
+        //                Console.WriteLine("onConnected");
+        //                Console.WriteLine("select share source");
+        //                currentCall.FetchShareSources(ShareSourceType.Application, result =>
+        //                {
+        //                    if (r.IsSuccess)
+        //                    {
+        //                        shareSources = result.Data;
+        //                    }
+        //                    else
+        //                    {
+        //                        Console.WriteLine($"select share source failed. Error: {result.Error.ErrorCode}: {result.Error.Reason}");
+        //                    }
+        //                });
+        //            };
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine($"dial fail: {r.Error.ErrorCode}:{r.Error.Reason}");
+        //            currentCall = r.Data;
+        //            MessageHelper.BreakLoop();
+        //        }
+        //    });
+
+        //    MessageHelper.RunDispatcherLoop();
+
+        //    Assert.IsTrue(shareSources.Count > 0);
+        //    Assert.IsNotNull(shareSources[0].SourceId);
+        //    Assert.IsNotNull(shareSources[0].Name);
+        //}
+
+        //[TestMethod()]
+        //public void OutgoingSelectShareSourceDesktopAndApplicationTest()
+        //{
+        //    //call scene：
+        //    //1. caller: callout
+        //    //2. callee: answer
+        //    //3. caller: select share source
+        //    //4. callee: hangup
+        //    MessageHelper.SetTestMode_CalleeAutoAnswerAndHangupAfter30Seconds(testFixtureApp);
+
+        //    currentCall = null;
+        //    List<ShareSource> shareSources = new List<ShareSource>();
+
+        //    phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
+        //    {
+        //        if (r.IsSuccess)
+        //        {
+        //            currentCall = r.Data;
+        //            currentCall.OnDisconnected += (call) =>
+        //            {
+        //                Console.WriteLine("onDisconnected");
+        //                MessageHelper.BreakLoop();
+        //            };
+        //            currentCall.OnConnected += (call) =>
+        //            {
+        //                Console.WriteLine("onConnected");
+        //                Console.WriteLine("select share source");
+        //                currentCall.FetchShareSources(ShareSourceType.Desktop, result =>
+        //                {
+        //                    if (r.IsSuccess)
+        //                    {
+        //                        shareSources.AddRange(result.Data);
+        //                    }
+        //                    else
+        //                    {
+        //                        Console.WriteLine($"select share source of desktop failed. Error: {result.Error.ErrorCode}: {result.Error.Reason}");
+        //                    }
+        //                });
+        //                currentCall.FetchShareSources(ShareSourceType.Application, result =>
+        //                {
+        //                    if (r.IsSuccess)
+        //                    {
+        //                        shareSources.AddRange(result.Data);
+        //                    }
+        //                    else
+        //                    {
+        //                        Console.WriteLine($"select share source of application failed. Error: {result.Error.ErrorCode}: {result.Error.Reason}");
+        //                    }
+        //                });
+        //            };
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine($"dial fail: {r.Error.ErrorCode}:{r.Error.Reason}");
+        //            currentCall = r.Data;
+        //            MessageHelper.BreakLoop();
+        //        }
+        //    });
+
+        //    MessageHelper.RunDispatcherLoop();
+
+        //    Assert.IsTrue(shareSources.Count > 1);
+        //    Assert.IsNotNull(shareSources[0].SourceId);
+        //    Assert.IsNotNull(shareSources[0].Name);
+
+        //    Assert.IsNotNull(shareSources[1].SourceId);
+        //    Assert.IsNotNull(shareSources[1].Name);
+        //}
+
+        //[TestMethod()]
+        //public void OutgoingShareDesktopTest()
+        //{
+        //    //call scene：
+        //    //1. caller: callout
+        //    //2. callee: answer
+        //    //3. caller: select share source desktop
+        //    //4. caller: start share
+        //    //5. callee: hangup
+        //    MessageHelper.SetTestMode_CalleeAutoAnswerAndHangupAfter30Seconds(testFixtureApp);
+
+        //    currentCall = null;
+        //    List<ShareSource> shareSources = new List<ShareSource>();
+        //    List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+
+        //    phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
+        //    {
+        //        if (r.IsSuccess)
+        //        {
+        //            currentCall = r.Data;
+        //            currentCall.OnDisconnected += (call) =>
+        //            {
+        //                Console.WriteLine("onDisconnected");
+        //                MessageHelper.BreakLoop();
+        //            };
+        //            currentCall.OnConnected += (call) =>
+        //            {
+        //                Console.WriteLine("onConnected");
+        //                Console.WriteLine("select share source");
+        //                currentCall.FetchShareSources(ShareSourceType.Desktop, result =>
+        //                {
+        //                    if (result.IsSuccess)
+        //                    {
+        //                        shareSources = result.Data;
+        //                        currentCall.StartShare(shareSources[0].SourceId, startShareResult =>
+        //                        {
+        //                            Console.WriteLine($"startShare success is {result.IsSuccess}");
+        //                        });
+        //                    }
+        //                    else
+        //                    {
+        //                        Console.WriteLine($"select share source failed. Error: {result.Error.ErrorCode}: {result.Error.Reason}");
+        //                    }
+        //                });
+        //            };
+        //            currentCall.OnMediaChanged += (callMediaChangedEvent) =>
+        //            {
+        //                Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
+        //                if (callMediaChangedEvent is SendingShareEvent)
+        //                {
+        //                    mediaEvents.Add(callMediaChangedEvent);
+        //                    callData.listIsSendingShare.Add(currentCall.IsSendingShare);
+        //                    if (((SendingShareEvent)callMediaChangedEvent).IsSending == true)
+        //                    {
+        //                        currentCall.StopShare( StopShareResult=>
+        //                        {
+        //                            Console.WriteLine($"stop share success is {StopShareResult.IsSuccess}");
+        //                        });
+                                
+        //                    }
+        //                }
+        //            };
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine($"dial fail: {r.Error.ErrorCode}:{r.Error.Reason}");
+        //            currentCall = r.Data;
+        //            MessageHelper.BreakLoop();
+        //        }
+        //    });
+
+        //    MessageHelper.RunDispatcherLoop();
+
+        //    Assert.IsTrue(shareSources.Count > 0);
+        //    Assert.IsNotNull(shareSources[0].SourceId);
+
+        //    Assert.AreEqual(2, mediaEvents.Count);
+        //    var mediaevent = mediaEvents[0] as SendingShareEvent;
+        //    Assert.IsNotNull(mediaevent);
+        //    Assert.IsTrue(mediaevent.IsSending);
+        //    mediaevent = mediaEvents[1] as SendingShareEvent;
+        //    Assert.IsNotNull(mediaevent);
+        //    Assert.IsFalse(mediaevent.IsSending);
+
+        //    Assert.AreEqual(2, callData.listIsSendingShare.Count);
+        //    Assert.IsTrue(callData.listIsSendingShare[0]);
+        //    Assert.IsFalse(callData.listIsSendingShare[1]);
+        //}
+
+        //[TestMethod()]
+        //public void OutgoingShareApplicationTest()
+        //{
+        //    //call scene：
+        //    //1. caller: callout
+        //    //2. callee: answer
+        //    //3. caller: select share source desktop
+        //    //4. caller: start share
+        //    //5. callee: hangup
+        //    MessageHelper.SetTestMode_CalleeAutoAnswerAndHangupAfter30Seconds(testFixtureApp);
+
+        //    currentCall = null;
+        //    List<ShareSource> shareSources = new List<ShareSource>();
+        //    List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+
+        //    phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
+        //    {
+        //        if (r.IsSuccess)
+        //        {
+        //            currentCall = r.Data;
+        //            currentCall.OnDisconnected += (call) =>
+        //            {
+        //                Console.WriteLine("onDisconnected");
+        //                MessageHelper.BreakLoop();
+        //            };
+        //            currentCall.OnConnected += (call) =>
+        //            {
+        //                Console.WriteLine("onConnected");
+        //                Console.WriteLine("select share source");
+        //                currentCall.FetchShareSources(ShareSourceType.Application, result =>
+        //                {
+        //                    if (result.IsSuccess)
+        //                    {
+        //                        shareSources = result.Data;
+        //                        currentCall.StartShare(shareSources[0].SourceId, startShareResult =>
+        //                        {
+        //                            Console.WriteLine($"startShare success is {startShareResult.IsSuccess}");
+        //                        });
+        //                    }
+        //                    else
+        //                    {
+        //                        Console.WriteLine($"select share source failed. Error: {result.Error.ErrorCode}: {result.Error.Reason}");
+        //                    }
+        //                });
+        //            };
+        //            currentCall.OnMediaChanged += (callMediaChangedEvent) =>
+        //            {
+        //                Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
+        //                if (callMediaChangedEvent is SendingShareEvent)
+        //                {
+        //                    mediaEvents.Add(callMediaChangedEvent);
+        //                    callData.listIsSendingShare.Add(currentCall.IsSendingShare);
+        //                    if (((SendingShareEvent)callMediaChangedEvent).IsSending == true)
+        //                    {
+        //                        currentCall.StopShare(StopShareResult =>
+        //                        {
+        //                            Console.WriteLine($"stop share success is {StopShareResult.IsSuccess}");
+        //                        });
+
+        //                    }
+        //                }
+        //            };
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine($"dial fail: {r.Error.ErrorCode}:{r.Error.Reason}");
+        //            currentCall = r.Data;
+        //            MessageHelper.BreakLoop();
+        //        }
+        //    });
+
+        //    MessageHelper.RunDispatcherLoop();
+
+        //    Assert.IsTrue(shareSources.Count > 0);
+        //    Assert.IsNotNull(shareSources[0].SourceId);
+
+        //    Assert.AreEqual(2, mediaEvents.Count);
+        //    var mediaevent = mediaEvents[0] as SendingShareEvent;
+        //    Assert.IsNotNull(mediaevent);
+        //    Assert.IsTrue(mediaevent.IsSending);
+        //    mediaevent = mediaEvents[1] as SendingShareEvent;
+        //    Assert.IsNotNull(mediaevent);
+        //    Assert.IsFalse(mediaevent.IsSending);
+
+        //    Assert.AreEqual(2, callData.listIsSendingShare.Count);
+        //    Assert.IsTrue(callData.listIsSendingShare[0]);
+        //    Assert.IsFalse(callData.listIsSendingShare[1]);
+        //}
+
+        //[TestMethod()]
+        //public void OutgoingShareApplicationMultiTimesTest()
+        //{
+        //    //call scene：
+        //    //1. caller: callout
+        //    //2. callee: answer
+        //    //3. caller: select share source desktop
+        //    //4. caller: start share desktop
+        //    //5. caller: start share another application
+        //    //6. callee: hangup
+        //    MessageHelper.SetTestMode_CalleeAutoAnswerAndHangupAfter30Seconds(testFixtureApp);
+
+        //    currentCall = null;
+        //    List<ShareSource> shareSources = new List<ShareSource>();
+        //    List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+
+        //    phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
+        //    {
+        //        if (r.IsSuccess)
+        //        {
+        //            currentCall = r.Data;
+        //            currentCall.OnDisconnected += (call) =>
+        //            {
+        //                Console.WriteLine("onDisconnected");
+        //                MessageHelper.BreakLoop();
+        //            };
+        //            currentCall.OnConnected += (call) =>
+        //            {
+        //                Console.WriteLine("onConnected");
+        //                Console.WriteLine("select share source");
+        //                currentCall.FetchShareSources(ShareSourceType.Application, result =>
+        //                {
+        //                    if (result.IsSuccess)
+        //                    {
+        //                        shareSources = result.Data;
+        //                        currentCall.StartShare(shareSources[0].SourceId, startShareResult =>
+        //                        {
+        //                            Console.WriteLine($"startShare success is {result.IsSuccess}");
+        //                        });
+        //                    }
+        //                    else
+        //                    {
+        //                        Console.WriteLine($"select share source failed. Error: {result.Error.ErrorCode}: {result.Error.Reason}");
+        //                    }
+        //                });
+        //            };
+        //            currentCall.OnMediaChanged += (callMediaChangedEvent) =>
+        //            {
+        //                Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
+        //                if (callMediaChangedEvent is SendingShareEvent)
+        //                {
+        //                    mediaEvents.Add(callMediaChangedEvent);
+        //                    callData.listIsSendingShare.Add(currentCall.IsSendingShare);
+        //                    if (shareSources.Count >1 && ((SendingShareEvent)callMediaChangedEvent).IsSending == true)
+        //                    {
+        //                        currentCall.StartShare(shareSources[1].SourceId, startShareResult =>
+        //                        {
+        //                            Console.WriteLine($"startShare success is {startShareResult.IsSuccess}");
+        //                        });
+
+        //                    }
+        //                }
+        //            };
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine($"dial fail: {r.Error.ErrorCode}:{r.Error.Reason}");
+        //            currentCall = r.Data;
+        //            MessageHelper.BreakLoop();
+        //        }
+        //    });
+
+        //    MessageHelper.RunDispatcherLoop();
+
+        //    Assert.IsTrue(shareSources.Count > 0);
+        //    Assert.IsNotNull(shareSources[0].SourceId);
+        //    if (shareSources.Count > 1)
+        //    {
+        //        Assert.IsNotNull(shareSources[1].SourceId);
+        //        Assert.AreEqual(2, mediaEvents.Count);
+        //        var mediaevent1 = mediaEvents[1] as SendingShareEvent;
+        //        Assert.IsNotNull(mediaevent1);
+        //        Assert.IsTrue(mediaevent1.IsSending);
+
+        //        Assert.AreEqual(2, callData.listIsSendingShare.Count);
+        //        Assert.IsTrue(callData.listIsSendingShare[1]);
+        //    }
+            
+        //    var mediaevent = mediaEvents[0] as SendingShareEvent;
+        //    Assert.IsNotNull(mediaevent);
+        //    Assert.IsTrue(mediaevent.IsSending);        
+        //    Assert.IsTrue(callData.listIsSendingShare[0]);       
+        //}
+        #endregion
 
         [TestMethod()]
         public void OutgoingMediaChangedReceivingVideoEventMuteTest()
@@ -2008,7 +2453,7 @@ namespace SparkSDK.Tests
             //1. remote: callout
             //2. local: answer
             //3. local: hangup
-            MessageHelper.SetTestMode_RemoteDialout(testFixtureApp, self.Emails[0]);
+            MessageHelper.SetTestMode_RemoteDialout(testFixtureApp, self.Id);
             MessageHelper.RunDispatcherLoop();
 
             phone.OnIncoming -= Phone_onIncomingCallStateEventTest;
@@ -2055,7 +2500,7 @@ namespace SparkSDK.Tests
             //call scene：
             //1. remote: callout
             //2. local: reject
-            MessageHelper.SetTestMode_RemoteDialout(testFixtureApp, self.Emails[0]);
+            MessageHelper.SetTestMode_RemoteDialout(testFixtureApp, self.Id);
             MessageHelper.RunDispatcherLoop();
 
             phone.OnIncoming -= Phone_onIncomingCallRejectTest;
@@ -2457,6 +2902,7 @@ namespace SparkSDK.Tests
         public List<bool> listIsRemoteSendingShare;
         public List<bool> listIsSendingVideo;
         public List<bool> listIsSendingAudio;
+        public List<bool> listIsSendingShare;
         public List<bool> listIsReceivingVideo;
         public List<bool> listIsReceivingAudio;
         public List<bool> listIsReceivingShare;
@@ -2480,6 +2926,7 @@ namespace SparkSDK.Tests
             listIsRemoteSendingShare = new List<bool>();
             listIsSendingVideo = new List<bool>();
             listIsSendingAudio = new List<bool>();
+            listIsSendingShare = new List<bool>();
             listIsReceivingVideo = new List<bool>();
             listIsReceivingAudio = new List<bool>();
             listIsReceivingShare = new List<bool>();
@@ -2487,235 +2934,5 @@ namespace SparkSDK.Tests
         }
     }
 
-    class TimerHelper
-    {
-        public static System.Timers.Timer StartTimer(int interval, System.Timers.ElapsedEventHandler timeOutCallback)
-        {
-            System.Timers.Timer t = new System.Timers.Timer(interval);
-            t.Elapsed += timeOutCallback;
-            t.AutoReset = false;
-            t.Enabled = true;
-
-            return t;
-        }
-    }
-
-    public class MessageHelper
-    {
-        private static SparkSDKTests.ServiceReference.TestFixtureServiceClient proxy;
-
-        public static void Init()
-        {
-            proxy = new SparkSDKTests.ServiceReference.TestFixtureServiceClient();
-            proxy.Open();
-        }
-
-
-        static bool breakLoopSignal = false;
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern bool PeekMessage(
-           ref MSG lpMsg,
-           Int32 hwnd,
-           Int32 wMsgFilterMin,
-           Int32 wMsgFilterMax,
-           PeekMessageOption wRemoveMsg);
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern bool TranslateMessage(ref MSG lpMsg);
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern Int32 DispatchMessage(ref MSG lpMsg);
-
-        private enum PeekMessageOption
-        {
-            PM_NOREMOVE = 0,
-            PM_REMOVE
-        }
-        public const int WM_QUIT = 0x0012;
-        public const int WM_COPYDATA = 0x004A;
-
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct CopyDataStruct
-        {
-            public IntPtr dwData;
-            public int cbData;
-
-            [MarshalAs(UnmanagedType.LPStr)]
-            public string lpData;
-        }
-
-
-        public static void RunDispatcherLoop()
-        {
-            MSG msg = new MSG();
-            // max loop time 2 minute
-            var t = TimerHelper.StartTimer(120000, (o,e)=>
-            {
-                breakLoopSignal = true;
-            });
-
-            while (true)
-            {
-                if (PeekMessage(ref msg, 0, 0, 0, PeekMessageOption.PM_REMOVE))
-                {
-                    if (msg.message == WM_QUIT)
-                    {
-                        Console.WriteLine("break loop");
-                        break;
-                    }
-
-                    TranslateMessage(ref msg);
-                    DispatchMessage(ref msg);
-                }
-
-                if (breakLoopSignal)
-                {
-                    breakLoopSignal = false;
-                    t.Stop();
-                    t.Close();
-                    break;
-                }
-            }
-        }
-
-        public static void BreakLoop()
-        {
-            breakLoopSignal = true;
-        }
-
-
-
-
-        [DllImport("User32.dll", EntryPoint = "SendMessage")]
-        private static extern int SendMessage
-        (
-            IntPtr hWnd,                   //目标窗体句柄
-            int Msg,                       //WM_COPYDATA
-            int wParam,                    //自定义数值
-            ref CopyDataStruct lParam     //结构体
-        );
-
-        [DllImport("User32.dll", EntryPoint = "FindWindow")]
-        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-
-        public static void SendMessage(string windowName, string strMsg)
-        {
-            StackTrace st = new StackTrace(true);
-            StackFrame sf = st.GetFrame(2);
-
-            MessageHelper.proxy.SendCommandMsg(sf.GetMethod().Name + ":" + strMsg);
-            Thread.Sleep(500);
-
-            //if (strMsg == null) return;
-
-            //IntPtr hwnd = FindWindow(null, windowName);
-
-            //if (hwnd != IntPtr.Zero)
-            //{
-            //    CopyDataStruct cds;
-
-            //    cds.dwData = IntPtr.Zero;
-            //    cds.lpData = strMsg;
-
-            //    cds.cbData = System.Text.Encoding.Default.GetBytes(strMsg).Length + 1;
-
-            //    int fromWindowHandler = 0;
-            //    SendMessage(hwnd, WM_COPYDATA, fromWindowHandler, ref cds);
-            //}
-        }
-
-        public static void SendMessageByProcess(string processName, string strMsg)
-        {
-            if (strMsg == null) return;
-            var process = Process.GetProcessesByName(processName);
-            if (process.FirstOrDefault() == null) return;
-            var hwnd = process.FirstOrDefault().MainWindowHandle;
-            if (hwnd == IntPtr.Zero) return;
-
-            if (hwnd != IntPtr.Zero)
-            {
-                CopyDataStruct cds;
-
-                cds.dwData = IntPtr.Zero;
-                cds.lpData = strMsg;
-
-                cds.cbData = System.Text.Encoding.Default.GetBytes(strMsg).Length + 1;
-
-                int fromWindowHandler = 0;
-                SendMessage(hwnd, WM_COPYDATA, fromWindowHandler, ref cds);
-
-            }
-        }
-
-        public static void SetTestMode_CalleeAutoAnswerAndHangupAfter30Seconds(string windowName)
-        {
-            MessageHelper.SendMessage(windowName, "Enable");
-            MessageHelper.SendMessage(windowName, "AutoAnswer");
-            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
-        }
-
-        public static void SetTestMode_CalleeAutoDecline(string windowName)
-        {
-            MessageHelper.SendMessage(windowName, "Enable");
-            MessageHelper.SendMessage(windowName, "AutoDecline");
-        }
-
-        public static void SetTestMode_CalleeAutoAnswerAndMuteVideoAndHangupAfter30Seconds(string windowName)
-        {
-            MessageHelper.SendMessage(windowName, "Enable");
-            MessageHelper.SendMessage(windowName, "AutoAnswer");
-            MessageHelper.SendMessage(windowName, "MuteVideo");
-            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
-        }
-
-        public static void SetTestMode_CalleeAutoAnswerAndMuteVideoAndUnMuteVideoAndHangupAfter30Seconds(string windowName)
-        {
-            MessageHelper.SendMessage(windowName, "Enable");
-            MessageHelper.SendMessage(windowName, "AutoAnswer");
-            MessageHelper.SendMessage(windowName, "MuteVideo:5000");
-            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
-        }
-
-        public static void SetTestMode_CalleeAutoAnswerAndMuteAudioAndHangupAfter30Seconds(string windowName)
-        {
-            MessageHelper.SendMessage(windowName, "Enable");
-            MessageHelper.SendMessage(windowName, "AutoAnswer");
-            MessageHelper.SendMessage(windowName, "MuteAudio");
-            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
-        }
-
-        public static void SetTestMode_CalleeAutoAnswerAndMuteAudioAndUnMuteAudioAndHangupAfter30Seconds(string windowName)
-        {
-            MessageHelper.SendMessage(windowName, "Enable");
-            MessageHelper.SendMessage(windowName, "AutoAnswer");
-            MessageHelper.SendMessage(windowName, "MuteAudio:5000");
-            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
-        }
-
-        public static void SetTestMode_CalleeAutoAnswerAndStartShareAndHangupAfter30s(string windowName)
-        {
-            MessageHelper.SendMessage(windowName, "Enable");
-            MessageHelper.SendMessage(windowName, "AutoAnswer");
-            MessageHelper.SendMessage(windowName, "StartShare");
-            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
-        }
-
-        public static void SetTestMode_CalleeAutoAnswerAndStartShare15sAndHangupAfter30s(string windowName)
-        {
-            MessageHelper.SendMessage(windowName, "Enable");
-            MessageHelper.SendMessage(windowName, "AutoAnswer");
-            MessageHelper.SendMessage(windowName, "StartShare:10000");
-            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
-        }
-
-        public static void SetTestMode_RemoteDialout(string windowName, string address)
-        {
-            MessageHelper.SendMessage(windowName, "Enable");
-            MessageHelper.SendMessage(windowName, "Dial:"+ address);
-        }
-
-        public static void CloseTestFixtureApp(string windowName)
-        {
-            MessageHelper.SendMessage(windowName, "CloseApp");
-        }
-    }
+    
 }

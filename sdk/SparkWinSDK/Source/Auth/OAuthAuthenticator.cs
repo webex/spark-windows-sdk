@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,7 @@ namespace SparkSDK
     public class OAuthAuthenticator : IAuthenticator
     {
         private SparkNet.CoreFramework m_core;
-        private bool hasRegsterToCore = false;
+        private bool isRegisteredToCore = false;
         private AccessToken accessTokenStore;
 
         private readonly string clientId;
@@ -69,7 +69,7 @@ namespace SparkSDK
                 return;
             }
 
-            if (!hasRegsterToCore)
+            if (!isRegisteredToCore)
             {
                 RegisterToCore();
             }
@@ -92,7 +92,7 @@ namespace SparkSDK
         /// <remarks>Since: 0.1.0</remarks>
         public OAuthAuthenticator(string clientId, string clientSecret, string scope, string redirectUri)
         {
-            this.hasRegsterToCore = false;
+            this.isRegisteredToCore = false;
             this.isAuthorized = false;
             this.clientId = clientId;
             this.clientSecret = clientSecret;
@@ -127,7 +127,7 @@ namespace SparkSDK
             }
             AuthorizeAction = completionHandler;
 
-            if(!hasRegsterToCore)
+            if(!isRegisteredToCore)
             {
                 RegisterToCore();
             }
@@ -160,6 +160,21 @@ namespace SparkSDK
         }
 
         /// <summary>
+        /// Returns an new access token of this authenticator.
+        /// This may involve long-running operations such as service calls.
+        /// If the access token could not be retrieved then the completion handler will be called with null.
+        /// </summary>
+        /// <param name="completionHandler">The completion event handler.</param>
+        /// <remarks>Since: 0.1.7</remarks>
+        public void RefreshToken(Action<SparkApiEventArgs<string>> completionHandler)
+        {
+            this.AccessTokenAction = completionHandler;
+
+            // fetch a new access token.
+            m_core.requestRefreshAccessToken();
+        }
+
+        /// <summary>
         /// Deauthorizes the current user and clears any persistent state with regards to the current user.
         /// </summary>
         /// <remarks>Since: 0.1.0</remarks>
@@ -174,7 +189,7 @@ namespace SparkSDK
 
         private void RegisterToCore()
         {
-            if (hasRegsterToCore)
+            if (isRegisteredToCore)
             {
                 return;
             }
@@ -182,17 +197,17 @@ namespace SparkSDK
             m_core.m_CallbackEvent += OnCoreCallBack;
             m_core.setApplicationIntegrationProperties(this.clientId, this.clientSecret, this.scope, this.redirectUri);
 
-            hasRegsterToCore = true;
+            isRegisteredToCore = true;
         }
         private void UnRegisterToCore()
         {
-            if (!hasRegsterToCore)
+            if (!isRegisteredToCore)
             {
                 return;
             }
             m_core.m_CallbackEvent -= OnCoreCallBack;
             m_core = null;
-            hasRegsterToCore = false;
+            isRegisteredToCore = false;
         }
 
 

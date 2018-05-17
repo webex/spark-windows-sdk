@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using RestSharp;
 
@@ -30,11 +31,12 @@ namespace SparkSDK
 {
     internal class RestSharpClient : IServiceRequestClient
     {
-        public void Execute<T>(ServiceRequest serviceRequest, Action<SparkApiEventArgs<T>> completedhandler) where T : new()
+        public void Execute<T>(ServiceRequest serviceRequest, Action<ServiceRequest.Response<T>> completedhandler) where T : new()
         {
             if (serviceRequest == null)
             {
-                completedhandler?.Invoke(new SparkApiEventArgs<T>(false, null, default(T)));
+                SDKLogger.Instance.Error("serviceRequest is null.");
+                completedhandler?.Invoke(new ServiceRequest.Response<T>() { StatusCode = 0});
                 return;
             }
 
@@ -64,25 +66,30 @@ namespace SparkSDK
             {
                 request.RootElement = serviceRequest.RootElement;
             }
+            //Cisco Spark platform is dropping support for TLS 1.0 as of March 16, 2018
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
 
-            var client = new RestClient();
-            client.BaseUrl = new System.Uri(serviceRequest.baseUri);
+            var client = new RestClient()
+            {
+                BaseUrl = new System.Uri(serviceRequest.BaseUri)
+            };
+            
 
-            SDKLogger.Instance.Info($"http request[{serviceRequest.Method.ToString()}]: {serviceRequest.baseUri + request.Resource}" );
+            SDKLogger.Instance.Info($"http request[{serviceRequest.Method.ToString()}]: {serviceRequest.BaseUri + request.Resource}" );
             client.ExecuteAsync<T>(request, response =>
             {
-                if (response.StatusCode != System.Net.HttpStatusCode.OK
-                && response.StatusCode != System.Net.HttpStatusCode.NoContent)
+                var r = new ServiceRequest.Response<T>();
+                r.StatusCode = (int)response.StatusCode;
+                r.StatusDescription = response.StatusDescription;
+                r.Headers = new List<KeyValuePair<string, object>>();
+                foreach (var i in response.Headers)
                 {
-                    string httpRspMsg = response.StatusCode + ":" + response.StatusDescription;
-                    SDKLogger.Instance.Error($"http response error: {httpRspMsg}");
-                    completedhandler?.Invoke(new SparkApiEventArgs<T>(false, new SparkError(SparkErrorCode.ServiceFailed, httpRspMsg), default(T)));
-                    return;
+                    r.Headers.Add(new KeyValuePair<string, object>(i.Name, i.Value));
                 }
 
-                SDKLogger.Instance.Info("http response success");
-                SDKLogger.Instance.Debug("http response content: {0}", response.Content);
-                completedhandler?.Invoke(new SparkApiEventArgs<T>(true, null, (T)response.Data));
+                r.Data = response.Data;
+
+                completedhandler?.Invoke(r);
             });
         }
     }

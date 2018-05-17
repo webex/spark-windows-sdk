@@ -1,8 +1,8 @@
 
 REM @echo OFF
 
-if exist "%ProgramFiles(x86)%\MSBuild\14.0\bin" set MSBUILDDIR=%ProgramFiles(x86)%\MSBuild\14.0\bin
 
+if exist "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin" set MSBUILDDIR=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin
 echo %MSBUILDDIR%
 
 pushd .

@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -63,6 +63,12 @@ namespace SparkSDK
         /// </summary>
         /// <remarks>Since: 0.1.0</remarks>
         public string PersonDisplayName { get; set; }
+        /// <summary>
+        /// The oganization id of the person is in.
+        /// </summary>
+        /// <remarks>Since: 0.1.0</remarks>
+        public string PersonOrgId { get; set; }
+        
 
         /// <summary>
         /// True if the person in this membership is a moderator of the team.
