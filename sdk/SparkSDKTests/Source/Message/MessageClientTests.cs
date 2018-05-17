@@ -88,7 +88,7 @@ namespace SparkSDK.Tests
             }
             Assert.IsNotNull(CreateMembership(myRoom.Id, null, calleePersonId, false));
 
-            fileUrl = Directory.GetCurrentDirectory() + "\\" + "WebexTeams.jpg";
+            fileUrl = Directory.GetCurrentDirectory() + "\\Resources\\" + "WebexTeams.jpg";
 
             Thread.Sleep(10000);
         }
