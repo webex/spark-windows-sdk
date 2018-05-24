@@ -27,7 +27,6 @@
     </DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>x86</PlatformTarget>
-    <NoWarn>CS1587</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,8 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>x86</PlatformTarget>
-    <DocumentationFile>..\binary\[build]\bin\x86\Release\SparkSDK.XML</DocumentationFile>
-    <NoWarn>CS1587</NoWarn>
+    <DocumentationFile>..\binary\[build]\bin\x86\Release\SparkSDK.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -49,6 +47,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>..\binary\[build]\bin\x86\Release\</OutputPath>
@@ -58,6 +57,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>..\binary\[build]\bin\x86\Release\SparkSDK.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -68,13 +68,14 @@
       <HintPath>..\solutions\WinSDK4Desktop\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="spark-client-framework-dot-net, Version=1.0.6614.22673, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.0.1.6\lib\net452\spark-client-framework-dot-net.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="spark-client-framework-dot-net, Version=1.0.6710.19493, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.0.2.1\lib\net452\spark-client-framework-dot-net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -97,6 +98,7 @@
     <Compile Include="Source\Membership\MembershipClient.cs" />
     <Compile Include="Source\Message\Message.cs" />
     <Compile Include="Source\Message\MessageClient.cs" />
+    <Compile Include="Source\Message\MessageEvent.cs" />
     <Compile Include="Source\Person\Person.cs" />
     <Compile Include="Source\Person\PersonClient.cs" />
     <Compile Include="Source\Phone\Call.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Source\Phone\H264LicensePrompter.cs" />
     <Compile Include="Source\Phone\MediaOption.cs" />
     <Compile Include="Source\Phone\Phone.cs" />
+    <Compile Include="Source\Phone\ShareSource.cs" />
     <Compile Include="Source\Room\Room.cs" />
     <Compile Include="Source\Room\RoomClient.cs" />
     <Compile Include="Source\TeamMembership\TeamMembership.cs" />
@@ -114,6 +117,7 @@
     <Compile Include="Source\Team\Team.cs" />
     <Compile Include="Source\Team\TeamClient.cs" />
     <Compile Include="Source\Utils\StringExtention.cs" />
+    <Compile Include="Source\Utils\TimerHelper.cs" />
     <Compile Include="Source\Webhook\Webhook.cs" />
     <Compile Include="Source\Webhook\WebhookClient.cs" />
     <Compile Include="Source\Spark.cs" />
@@ -126,12 +130,12 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.0.1.6\build\Cisco.Spark.WindowsSDK.targets" Condition="Exists('..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.0.1.6\build\Cisco.Spark.WindowsSDK.targets')" />
+  <Import Project="..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.0.2.1\build\Cisco.Spark.WindowsSDK.targets" Condition="Exists('..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.0.2.1\build\Cisco.Spark.WindowsSDK.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.0.1.6\build\Cisco.Spark.WindowsSDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.0.1.6\build\Cisco.Spark.WindowsSDK.targets'))" />
+    <Error Condition="!Exists('..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.0.2.1\build\Cisco.Spark.WindowsSDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.0.2.1\build\Cisco.Spark.WindowsSDK.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

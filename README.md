@@ -7,7 +7,7 @@
  
 The Cisco Spark Windows SDK makes it easy to integrate secure and convenient Cisco Spark calling and messaging features in your Windows applications.
 
-This SDK is built with **Vistual Studio 2015** and requires:
+This SDK is built with **Vistual Studio 2017** and requires:
 
 - .NET Framework 4.5.2 or higher version
 - Win8 or Win10
@@ -95,6 +95,7 @@ Here are some examples of how to use the Windows SDK in your application. More d
 
     ```c#
     // dial
+    // calleeAddress can be email address, person ID, or a room ID
     spark?.Phone.Dial(calleeAddress, MediaOption.AudioVideoShare(curCallView.LocalViewHandle, curCallView.RemoteViewHandle, curCallView.RemoteShareViewHandle), result =>
     {
         if (result.Success)
@@ -149,7 +150,62 @@ Here are some examples of how to use the Windows SDK in your application. More d
     
     ```
 
-6. Create a new Cisco Spark space, add a user to the space, and send a message:
+6. Start a screen share
+    ```c#
+    // Fetch all shareable desktop sources
+    this.currentCall.FetchShareSources(ShareSourceType.Desktop, result =>
+    {
+        if (result.IsSuccess)
+        {
+            List<ShareSource> ShareSourceList = result.Data;
+        }
+    });
+    
+    // Fetch all shareable application sources
+    this.currentCall.FetchShareSources(ShareSourceType.Application, result =>
+    {
+        if (result.IsSuccess)
+        {
+            List<ShareSource> ShareSourceList = result.Data;
+        }
+    });
+    
+    // Start share a selected share source.
+    this.currentCall.StartShare(sourceId, r =>
+    {
+        if (r.IsSuccess)
+        {
+            System.Console.WriteLine("Start share success.");
+        }
+        else
+        {
+            System.Console.WriteLine($"Start share failed! Error: {r.Error?.ErrorCode.ToString()} {r.Error?.Reason}");
+        }
+    });
+    ```
+
+7. Receive a screen share
+    ```c#
+    // set share view handle when invoke dial method.
+    spark?.Phone.Dial(calleeAddress, MediaOption.AudioVideoShare(curCallView.LocalViewHandle, curCallView.RemoteViewHandle, curCallView.RemoteShareViewHandle), result =>
+    {});
+    
+    // or set set share view handle when receive RemoteSendingShareEvent
+    currentCall.OnMediaChanged += CurrentCall_onMediaChanged;
+    private void CurrentCall_onMediaChanged(MediaChangedEvent mediaChgEvent)
+    {
+        if (mediaChgEvent is RemoteSendingShareEvent)
+        {
+            var remoteSendingShareEvent = mediaChgEvent as RemoteSendingShareEvent;
+            if (remoteSendingShareEvent.IsSending)
+            {
+                currentCall.SetRemoteShareView(curCallView.RemoteShareViewHandle);
+            }
+        }
+    }
+    ```
+
+8. Create a new Cisco Spark space, add a user to the space:
 
     ```c#
     // Create a Cisco Spark room:
@@ -181,7 +237,136 @@ Here are some examples of how to use the Windows SDK in your application. More d
     });
     
     ```
+9. Post a message
+    ```c#
+    // Post a message to a person by email or person ID.
+    spark?.Messages.PostToPerson(toPerson, text, files, r =>
+    {
+        if (r.IsSuccess)
+        {
+            Message message = r.Data;
+            System.Console.WriteLine($"{message.PersonEmail} {message.Created}");
+            System.Console.WriteLine($"{message.Text}");
+        }
+        else
+        {
+            System.Console.WriteLine($"send the message failed. {r.Error.ErrorCode} {r.Error.Reason}");
+        }
+    });
+    
+    // Post a message to a room by roomId.
+    spark?.Messages.PostToRoom(roomId, text, mentions, files, r =>
+    {
+        if (r.IsSuccess)
+        {
+            Message message = r.Data;
+            System.Console.WriteLine($"{message.PersonEmail} {message.Created}");
+            System.Console.WriteLine($"{message.Text}");
+        }
+        else
+        {
+            System.Console.WriteLine($"send the message failed. {r.Error.ErrorCode} {r.Error.Reason}");
+        }
+    });
+    ```
+    
+10. Mention 
+    ```c#
+    // Mention list
+    List<Mention> Mentions = new List<Mention>();
+    
+    // Mention All
+    Mentions.Add(new MentionAll());
+    spark?.Messages.PostToRoom(roomId, text, Mentions, files, r =>
+    {
+        if (r.IsSuccess)
+        {
+            Message message = r.Data;
+            System.Console.WriteLine($"{message.PersonEmail} {message.Created}");
+            System.Console.WriteLine($"{message.Text}");
+        }
+        else
+        {
+            System.Console.WriteLine($"send the message failed. {r.Error.ErrorCode} {r.Error.Reason}");
+        }
+    });
+    
+    // Mention one person
+    Mentions.Add(new MentionPerson(personId));
+    spark?.Messages.PostToRoom(roomId, text, Mentions, files, r =>
+    {
+        if (r.IsSuccess)
+        {
+            Message message = r.Data;
+            System.Console.WriteLine($"{message.PersonEmail} {message.Created}");
+            System.Console.WriteLine($"{message.Text}");
+        }
+        else
+        {
+            System.Console.WriteLine($"send the message failed. {r.Error.ErrorCode} {r.Error.Reason}");
+        }
+    });
+    
+    // Receive a Mention: See receive a message.
+    
+    ```
+11. Receive a message 
+    ```c#
+    spark?.Messages.OnEvent += OnMessageEvent;
+    private void OnMessageEvent(MessageEvent e)
+    {
+        if (e is MessageArrived)
+        {
+            System.Console.WriteLine("received a message.");
+            var messageArrived = e as MessageArrived;
+            var msgInfo = messageArrived?.Message;
+            if (msgInfo != null)
+            {
+                // self is mentioned
+                if (msgInfo.IsSelfMentioned)
+                {
+                    System.Console.WriteLine($"{msgInfo.PersonEmail} mentioned you.");
+                }
 
+                // message text
+                System.Console.WriteLine($"{msgInfo.PersonEmail} {msgInfo.Created}");
+                System.Console.WriteLine($"{msgInfo.Text}");
+
+                // received attached files.
+                if (msgInfo.Files != null && msgInfo.Files.Count > 0)
+                {
+                    foreach (var file in msgInfo.Files)
+                    {
+                        // download thumbnail if exist.
+                        if (file.RemoteThumbnail != null)
+                        {
+                            spark?.Messages.DownloadThumbnail(file, to, r =>
+                            {
+                                if (r.IsSuccess)
+                                {
+                                    // callback download path.
+                                    ThumbnailPath = r.Data;
+                                }
+                            });
+                        }
+                        // download file
+                        spark?.Messages.DownloadFile(file, downloadPath, r =>
+                        {
+                            if (r.IsSuccess)
+                            {
+                                System.Console.WriteLine($"downloading {r.Data}%");
+                            }
+                            else
+                            {
+                                System.Console.WriteLine($"download failed {r.Data}");
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    }
+    ```
 
 ## Contribute
 
@@ -189,6 +374,6 @@ Pull requests welcome. To suggest changes to the SDK, please fork this repositor
 
 ## License
 
-&copy; 2016-2017 Cisco Systems, Inc. and/or its affiliates. All Rights Reserved.
+&copy; 2016-2018 Cisco Systems, Inc. and/or its affiliates. All Rights Reserved.
 
 See [LICENSE](https://github.com/ciscospark/spark-windows-sdk/blob/master/LICENSE) for details.

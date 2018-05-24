@@ -1,6 +1,6 @@
 ﻿
 #region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ namespace SparkSDK
     /// <remarks>Since: 0.1.0</remarks>
     public sealed class Phone
     {
-        private bool hasRegsterToCore = false;
+        private bool isRegisteredToCore = false;
         readonly IAuthenticator authenticator;
         private static volatile Phone instance = null;
         private static readonly object lockHelper = new object();
@@ -50,7 +50,7 @@ namespace SparkSDK
             this.authenticator = authenticator;
             this.currentCall = new Call(this);
             prompter = new H264LicensePrompter();
-            hasRegsterToCore = false;
+            isRegisteredToCore = false;
             isMercuryConnected = false;
             AudioMaxBandwidth = (UInt32)DefaultBandwidth.MaxBandwidthAudio;
             VideoMaxBandwidth = (UInt32)DefaultBandwidth.MaxBandwidth720p;
@@ -61,7 +61,7 @@ namespace SparkSDK
 
         private void RegisterToCore()
         {
-            if (hasRegsterToCore)
+            if (isRegisteredToCore)
             {
                 return;
             }
@@ -71,11 +71,11 @@ namespace SparkSDK
             m_core_deviceManager = SCFCore.Instance.m_core_deviceManager;
             m_core.m_CallbackEvent += OnCoreCallBackPhone;
 
-            hasRegsterToCore = true;
+            isRegisteredToCore = true;
         }
         internal void UnRegisterToCore()
         {
-            if (!hasRegsterToCore)
+            if (!isRegisteredToCore)
             {
                 return;
             }
@@ -84,7 +84,7 @@ namespace SparkSDK
             m_core_telephoneService = null;
             m_core_conversationService = null;
             m_core_deviceManager = null;
-            hasRegsterToCore = false;
+            isRegisteredToCore = false;
             instance = null;
         }
 
@@ -381,6 +381,7 @@ namespace SparkSDK
                 }
                 m_core_telephoneService.setAudioMaxBandwidth(currentCall.CallId, AudioMaxBandwidth);
                 m_core_telephoneService.setVideoMaxBandwidth(currentCall.CallId, VideoMaxBandwidth);
+                m_core_telephoneService.setScreenShareMaxBandwidth(currentCall.CallId, ShareMaxBandwidth);
                 m_core_telephoneService?.joinCall(currentCall.CallId);
 
                 currentCall?.TrigerAnswerCompletedHandler(new SparkApiEventArgs(true, null));
@@ -578,12 +579,12 @@ namespace SparkSDK
             }
         }
 
-        private bool ParseHydraId(string address, ref bool isRoomCall, ref string outputAddress)
+        private bool ParseHydraId(string address, ref bool isRoom, ref string outputAddress)
         {
             string peopleUrl = "ciscospark://us/PEOPLE/";
             string roomUrl = "ciscospark://us/ROOM/";
 
-            isRoomCall = false;
+            isRoom = false;
             outputAddress = null;
 
             try
@@ -596,7 +597,7 @@ namespace SparkSDK
                 else if (decodedStr.StartsWith(roomUrl))
                 {
                     outputAddress = decodedStr.Substring(roomUrl.Length);
-                    isRoomCall = true;
+                    isRoom = true;
                 }
                 else
                 {
@@ -694,9 +695,12 @@ namespace SparkSDK
                 case SCFEventType.CameraPreviewReady:
                     OnCameraPreviewReady(error, status);
                     break;
+                case SCFEventType.LocalContentSharingStarted:
+                case SCFEventType.LocalContentSharingStop:
                 case SCFEventType.RemoteContentSharingStarted:
                 case SCFEventType.RemoteContentSharingStop:
                 case SCFEventType.EnumeratedShareSourcesCallback:
+                case SCFEventType.EnumeratedAppShareSourcesCallback:
                     OnRemoteContentSharingStateChanged(type);
                     break;
                 
@@ -737,7 +741,7 @@ namespace SparkSDK
                 var tmpCallMembership = new CallMembership()
                 {
                     IsInitiator = item.creator,
-                    PersonId = item.contactId,
+                    PersonId = StringExtention.EncodeHydraId(StringExtention.HydraIdType.People, item.contactId),
                     State = ConvertToCallMembershipStateEnum(item.state),
                     Email = item.email,
                     SipUrl = item.sipUrl,
@@ -922,7 +926,7 @@ namespace SparkSDK
         private void OnJwtAccessTokenExpired()
         {
             SDKLogger.Instance.Info("");
-            authenticator?.AccessToken(r =>
+            authenticator?.RefreshToken(r =>
             {
                 if (!r.IsSuccess)
                 {
@@ -1146,23 +1150,34 @@ namespace SparkSDK
 
         private void OnRemoteContentSharingStateChanged(SCFEventType type)
         {
-            if (type == SCFEventType.RemoteContentSharingStarted)
+            switch (type)
             {
-                currentCall?.TrigerOnMediaChanged(new RemoteSendingShareEvent(currentCall, true));
-                if (currentCall != null
-                    && currentCall.MediaOption.RemoteShareViewPtr.HasValue)
-                {
-                    currentCall.SetRemoteShareView(currentCall.MediaOption.RemoteShareViewPtr.Value);
-                }
+                case SCFEventType.LocalContentSharingStarted:
+                    currentCall?.TrigerOnMediaChanged(new SendingShareEvent(currentCall, true));
+                    break;
+                case SCFEventType.LocalContentSharingStop:
+                    currentCall?.TrigerOnMediaChanged(new SendingShareEvent(currentCall, false));
+                    break;
+                case SCFEventType.RemoteContentSharingStarted:
+                    currentCall?.TrigerOnMediaChanged(new RemoteSendingShareEvent(currentCall, true));
+                    if (currentCall != null
+                        && currentCall.MediaOption.RemoteShareViewPtr.HasValue)
+                    {
+                        currentCall.SetRemoteShareView(currentCall.MediaOption.RemoteShareViewPtr.Value);
+                    }
+                    break;
+                case SCFEventType.RemoteContentSharingStop:
+                    currentCall?.TrigerOnMediaChanged(new RemoteSendingShareEvent(currentCall, false));
+                    break;
+                case SCFEventType.EnumeratedShareSourcesCallback:
+                    currentCall?.TrigerOnSelectShareSource(ShareSourceType.Desktop);
+                    break;
+                case SCFEventType.EnumeratedAppShareSourcesCallback:
+                    currentCall?.TrigerOnSelectShareSource(ShareSourceType.Application);
+                    break;
+                default:
+                    break;
             }
-            else if (type == SCFEventType.RemoteContentSharingStop)
-            {
-                currentCall?.TrigerOnMediaChanged(new RemoteSendingShareEvent(currentCall, false));
-            }
-            //else if (type == SCFEventType.EnumeratedShareSourcesCallback)
-            //{
-            //    currentCall?.TrigerOnSelectShareSource();
-            //}
         }
         private CallDisconnectedEvent ConvertToCallDisconnectReasonType(string reason)
         {

@@ -28,35 +28,46 @@ using System.Text;
 namespace SparkSDK
 {
     /// <summary>
-    /// The status of a Call. 
+    /// A abstract data type represents a message event.
     /// </summary>
     /// <remarks>Since: 0.1.0</remarks>
-    public enum CallStatus
+    public abstract class MessageEvent
     {
+    }
+    /// <summary>
+    /// The event of a message arrived.
+    /// </summary>
+    public class MessageArrived : MessageEvent
+    {
+        private Message message;
+        internal MessageArrived(Message message)
+        {
+            this.message = message;
+        }
         /// <summary>
-        /// For the outgoing call, the call has dialed.
-        /// For the incoming call, the call has received.
+        /// Gets the arrived message.
         /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Initiated,
-
+        public Message Message
+        {
+            get { return this.message; }
+        }
+    }
+    /// <summary>
+    /// The event of a message is deleted.
+    /// </summary>
+    public class MessageDeleted : MessageEvent
+    {
+        private string messageId;
+        internal MessageDeleted(string messageId)
+        {
+            this.messageId = messageId;
+        }
         /// <summary>
-        /// For the outgoing call, the call is ringing the remote party.
-        /// For the incoming call, the call is ringing the local party.
+        /// Gets the message id which is deleted.
         /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Ringing,
-
-        /// <summary>
-        /// The call is answered.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Connected,
-
-        /// <summary>
-        /// The call is terminated.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Disconnected,
+        public string MessageId
+        {
+            get { return this.messageId; }
+        }
     }
 }

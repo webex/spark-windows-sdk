@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -46,6 +46,31 @@ namespace SparkSDK
         Group
     }
 
+    /// <summary>
+    /// The enumeration of sorting result
+    /// </summary>
+    /// <remarks>Since: 0.2.0</remarks>
+    public enum RoomSortType
+    {
+        /// <summary>
+        /// sort result by id
+        /// </summary>
+        /// <remarks>Since: 0.2.0</remarks>
+        ById,
+
+        /// <summary>
+        /// last active room comes first
+        /// </summary>
+        /// <remarks>Since: 0.2.0</remarks>
+        ByLastActivity,
+
+        /// <summary>
+        /// last created room comes first
+        /// </summary>
+        /// <remarks>Since: 0.2.0</remarks>
+        ByCreated
+
+    }
 
     /// <summary>
     /// A data type represents a Room at Cisco Spark cloud.

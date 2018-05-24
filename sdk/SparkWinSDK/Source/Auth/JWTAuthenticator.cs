@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,12 +38,12 @@ namespace SparkSDK
     /// <remarks>Since: 0.1.0</remarks>
     public sealed class JWTAuthenticator : IAuthenticator
     {
-        private bool hasRegsterToCore = false;
+        private bool isRegisteredToCore = false;
         private string jwt;
         private JWTAccessToken jwtAccessTokenStore;
         private JWTAuthClient client;
         private bool isAuthorized;
-        internal bool mercuryConnected { get; set; }
+        internal bool MercuryConnected { get; set; }
         private SparkNet.CoreFramework m_core;
 
         private event Action<SparkApiEventArgs> AuthorizeAction;
@@ -55,7 +55,7 @@ namespace SparkSDK
         /// <remarks>Since: 0.1.0</remarks>
         public JWTAuthenticator()
         {
-            this.hasRegsterToCore = false;
+            this.isRegisteredToCore = false;
             this.jwt = null;
             this.client = new JWTAuthClient();
             this.jwtAccessTokenStore = null;
@@ -66,24 +66,24 @@ namespace SparkSDK
 
         private void RegisterToCore()
         {
-            if (hasRegsterToCore)
+            if (isRegisteredToCore)
             {
                 return;
             }
             m_core = SCFCore.Instance.m_core;
             m_core.m_CallbackEvent += OnCoreCallBack;
 
-            hasRegsterToCore = true;
+            isRegisteredToCore = true;
         }
         private void UnRegisterToCore()
         {
-            if (!hasRegsterToCore)
+            if (!isRegisteredToCore)
             {
                 return;
             }
             m_core.m_CallbackEvent -= OnCoreCallBack;
             m_core = null;
-            hasRegsterToCore = false;
+            isRegisteredToCore = false;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace SparkSDK
                 return;
             }
 
-            if (!hasRegsterToCore)
+            if (!isRegisteredToCore)
             {
                 RegisterToCore();
             }
@@ -189,7 +189,57 @@ namespace SparkSDK
             }
 
             // Fetch access token
-            this.client.FetchTokenFromJWTAsync(this.jwt, (response =>
+            this.client.FetchTokenFromJWTAsync(this.jwt, this, (response =>
+            {
+                // Success Get AccessToken
+                if (response != null && response.IsSuccess == true && response.Data != null)
+                {
+                    // Store AccessToken
+                    string rspToken = response.Data.Token;
+                    int rspExpiresIn = response.Data.ExpiresIn;
+
+                    this.jwtAccessTokenStore = new JWTAccessToken(rspToken, rspExpiresIn);
+
+                    // Set to Core
+                    if (isAuthorized)
+                    {
+                        SetAccessTokenToCore(rspToken, rspExpiresIn);
+                    }
+
+                    SDKLogger.Instance.Info("get jwt access token success.");
+                    // Callback to User
+                    completionHandler(new SparkApiEventArgs<string>(true, null, this.jwtAccessTokenStore.token));
+                    return;
+                }
+
+                SDKLogger.Instance.Error("fetch jwt token failed");
+                // Callback to User
+                completionHandler(new SparkApiEventArgs<string>(false, null, null));
+                return;
+            }));
+        }
+
+        /// <summary>
+        /// Returns an new access token of this authenticator.
+        /// This may involve long-running operations such as service calls.
+        /// If the access token could not be retrieved then the completion handler will be called with null.
+        /// </summary>
+        /// <param name="completionHandler">The completion event handler.</param>
+        /// <remarks>Since: 0.1.7</remarks>
+        public void RefreshToken(Action<SparkApiEventArgs<string>> completionHandler)
+        {
+            SDKLogger.Instance.Debug("get an new access token");
+
+            // check JWT if valid.
+            if (null == GetUnexpiredJwt())
+            {
+                SDKLogger.Instance.Error("the jwt has expired.");
+                completionHandler(new SparkApiEventArgs<string>(false, null, null));
+                return;
+            }
+
+            // Fetch access token
+            this.client.FetchTokenFromJWTAsync(this.jwt, this, (response =>
             {
                 // Success Get AccessToken
                 if (response != null && response.IsSuccess == true && response.Data != null)
@@ -286,7 +336,7 @@ namespace SparkSDK
 
                 if (expTime < DateTime.Now)
                 {
-                    SDKLogger.Instance.Error("JWT has expaired at {0}", expTime);
+                    SDKLogger.Instance.Error("JWT has expired at {0}", expTime);
                     return null;
                 }
             }

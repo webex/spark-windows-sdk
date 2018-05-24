@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -66,7 +66,7 @@ namespace SparkSDK
         /// The event type for the webhook.
         /// </summary>
         /// <remarks>Since: 0.1.0</remarks>
-        public string EventType { get; set; }
+        public string Event { get; set; }
 
         /// <summary>
         /// The filter that defines the webhook scope.
@@ -79,5 +79,16 @@ namespace SparkSDK
         /// </summary>
         /// <remarks>Since: 0.1.0</remarks>
         public DateTime Created { get; set; }
+
+        /// <summary>
+        /// The status of the webhook. Use <code>active</code> to reactivate a disabled webhook.
+        /// </summary>
+        public string Status { get; set; }
+
+        /// <summary>
+        /// The Secret use to generate payload signiture.
+        /// </summary>
+        public string Secret { get; set; }
+
     }
 }

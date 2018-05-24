@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -49,10 +49,9 @@ namespace SparkSDK
     {
         const string jwtAuthUri = "https://api.ciscospark.com/v1/jwt/login";
 
-
-        public void FetchTokenFromJWTAsync(string jwt, Action<SparkApiEventArgs<JWTAccessTokenInfo>> completionHandler)
+        public void FetchTokenFromJWTAsync(string jwt, IAuthenticator authenticator,Action<SparkApiEventArgs<JWTAccessTokenInfo>> completionHandler)
         {
-            var request = new ServiceRequest();
+            var request = new ServiceRequest(authenticator);
             request.Method = HttpMethod.POST;
             request.Resource = "jwt/login";
             request.AddHeaders("Authorization", jwt);
@@ -60,7 +59,7 @@ namespace SparkSDK
             request.AddBodyParameters("Cache-Control", "no-cache");
             request.AddBodyParameters("Accept-Encoding", "none");
 
-            request.Execute<JWTAccessTokenInfo>((response) =>
+            request.ExecuteAuth<JWTAccessTokenInfo>((response) =>
             {
                 completionHandler(response);
             });

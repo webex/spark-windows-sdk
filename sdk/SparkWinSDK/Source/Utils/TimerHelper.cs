@@ -24,39 +24,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SparkSDK
 {
-    /// <summary>
-    /// The status of a Call. 
-    /// </summary>
-    /// <remarks>Since: 0.1.0</remarks>
-    public enum CallStatus
+    internal class TimerHelper
     {
-        /// <summary>
-        /// For the outgoing call, the call has dialed.
-        /// For the incoming call, the call has received.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Initiated,
+        public static System.Timers.Timer StartTimer(int interval, System.Timers.ElapsedEventHandler timeOutCallback)
+        {
+            System.Timers.Timer t = new System.Timers.Timer(interval);
 
-        /// <summary>
-        /// For the outgoing call, the call is ringing the remote party.
-        /// For the incoming call, the call is ringing the local party.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Ringing,
+            t.Elapsed += timeOutCallback;
 
-        /// <summary>
-        /// The call is answered.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Connected,
+            t.AutoReset = false;
 
-        /// <summary>
-        /// The call is terminated.
-        /// </summary>
-        /// <remarks>Since: 0.1.0</remarks>
-        Disconnected,
+            t.Enabled = true;
+
+            return t;
+        }
+
+        public static void StopTimer(System.Timers.Timer t)
+        {
+            t?.Stop();
+        }
     }
 }

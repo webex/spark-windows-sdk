@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -62,9 +62,10 @@ namespace SparkSDK
         /// <param name="teamId">If not null, only list the rooms that are associated with the team by team id.</param>
         /// <param name="max">The maximum number of rooms in the response. If null, all rooms are listed.</param>
         /// <param name="type">If not null, only list the rooms of this type. Otherwise all rooms are listed.</param>
+        /// <param name="sortBy">If not null, sort results by roomId(id), most recent activity(lastactivity), or most recently created(created).</param>
         /// <param name="completionHandler">The completion handler.</param>
         /// <remarks>Since: 0.1.0</remarks>
-        public void List(string teamId, int? max, RoomType? type, Action<SparkApiEventArgs<List<Room>>> completionHandler)
+        public void List(string teamId, int? max, RoomType? type, RoomSortType? sortBy, Action<SparkApiEventArgs<List<Room>>> completionHandler)
         {
             ServiceRequest request = BuildRequest();
             request.Method = HttpMethod.GET;
@@ -72,6 +73,7 @@ namespace SparkSDK
             if (teamId != null) request.AddQueryParameters("teamId", teamId);
             if (max != null) request.AddQueryParameters("max", max);
             if (type != null) request.AddQueryParameters("type", type.ToString().ToLower());
+            if (sortBy != null) request.AddQueryParameters("sortBy", sortBy.ToString().ToLower());
 
             request.Execute<List<Room>>(completionHandler);
 

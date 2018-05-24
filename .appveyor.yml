@@ -1,11 +1,12 @@
 # version format
-version: 0.1.6.{build}
+version: 0.2.0.{build}
 
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform: x86
 
 # build Configuration, i.e. Debug, Release, etc.
 configuration: Release
+
 
 build:
   parallel: true                  # enable MSBuild parallel builds

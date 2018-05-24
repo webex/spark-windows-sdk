@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SparkSDK;
 #region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -358,11 +358,11 @@ namespace SparkSDK.Tests
         }
 
 
-        private List<Room> ListRooms(string teamId = null, int? max = null, RoomType? roomType = null)
+        private List<Room> ListRooms(string teamId = null, int? max = null, RoomType? roomType = null, RoomSortType? sortby = null)
         {
             var completion = new ManualResetEvent(false);
             var response = new SparkApiEventArgs<List<Room>>();
-            room.List(teamId, max, roomType, rsp =>
+            room.List(teamId, max, roomType, sortby, rsp =>
             {
                 response = rsp;
                 completion.Set();

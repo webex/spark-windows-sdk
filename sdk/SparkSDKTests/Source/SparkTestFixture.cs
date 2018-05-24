@@ -1,5 +1,5 @@
 ﻿#region License
-// Copyright (c) 2016-2017 Cisco Systems, Inc.
+// Copyright (c) 2016-2018 Cisco Systems, Inc.
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,10 @@ using System.Threading;
 using RestSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Configuration;
+using System.Net;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
+using System.Diagnostics;
 
 namespace SparkSDK.Tests
 {
@@ -36,19 +40,26 @@ namespace SparkSDK.Tests
     [TestClass]
     public class AssemblyFixture
     {
+        private static readonly string testFixtureApp = "TestFixtureApp";
+
         [AssemblyInitialize]
         public static void AssemblySetup(TestContext context)
         {
             Console.WriteLine("Assembly Initialize.");
             var fixture = SparkTestFixture.Instance;
+
+            MessageHelper.Init();
+            MessageHelper.CloseTestFixtureApp(testFixtureApp);
+            Thread.Sleep(50000);
         }
 
         [AssemblyCleanup]
         public static void AssemblyTeardown()
         {
             Console.WriteLine("Assembly Cleanup.");
+            MessageHelper.CloseTestFixtureApp(testFixtureApp);
             SparkTestFixture.Instance.UnLoad();
-            Thread.Sleep(10000);
+            Thread.Sleep(15000);
         }
     }
 
@@ -93,6 +104,10 @@ namespace SparkSDK.Tests
             {
             }
             public void AccessToken(Action<SparkSDK.SparkApiEventArgs<string>> completionHandler)
+            {
+                completionHandler(new SparkSDK.SparkApiEventArgs<string>(true, null, token));
+            }
+            public void RefreshToken(Action<SparkApiEventArgs<string>> completionHandler)
             {
                 completionHandler(new SparkSDK.SparkApiEventArgs<string>(true, null, token));
             }
@@ -218,6 +233,8 @@ namespace SparkSDK.Tests
                 scopes = scopes,
             });
 
+            //Cisco Spark platform is dropping support for TLS 1.0 as of March 16, 2018
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
             var client = new RestClient();
             client.BaseUrl = new System.Uri("https://conv-a.wbx2.com/conversation/api/v1/users/test_users_s");
 
@@ -532,6 +549,276 @@ namespace SparkSDK.Tests
         public Token token { get; set; }
     }
 
+    class TimerHelper
+    {
+        public static System.Timers.Timer StartTimer(int interval, System.Timers.ElapsedEventHandler timeOutCallback)
+        {
+            System.Timers.Timer t = new System.Timers.Timer(interval);
+            t.Elapsed += timeOutCallback;
+            t.AutoReset = false;
+            t.Enabled = true;
 
+            return t;
+        }
+    }
+
+    public class StringExtention
+    {
+        public static string Base64UrlDecode(string input)
+        {
+            var output = input;
+            output = output.Replace('-', '+'); // 62nd char of encoding
+            output = output.Replace('_', '/'); // 63rd char of encoding
+            switch (output.Length % 4) // Pad with trailing '='s
+            {
+                case 0: break; // No pad chars in this case
+                case 1: output += "==="; break; // Three pad chars
+                case 2: output += "=="; break; // Two pad chars
+                case 3: output += "="; break; // One pad char
+                default: throw new System.Exception("Illegal base64url string!");
+            }
+            var converted = Convert.FromBase64String(output); // Standard base64 decoder
+
+            return System.Text.Encoding.UTF8.GetString(converted);
+        }
+
+        public static string Base64UrlEncode(string input)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(input);
+            return System.Convert.ToBase64String(plainTextBytes).Replace("=", "").Replace('+', '-').Replace('/', '_'); ;
+        }
+        public enum HydraIdType
+        {
+            Error,
+            People,
+            Room,
+            Message,
+            Unknow,
+        }
+        public static HydraIdType GetHydraIdType(string address)
+        {
+            string peopleUrl = "ciscospark://us/PEOPLE/";
+            string roomUrl = "ciscospark://us/ROOM/";
+            string messageUrl = "ciscospark://us/MESSAGE/";
+
+            HydraIdType result = HydraIdType.Error;
+
+            try
+            {
+                var decodedStr = StringExtention.Base64UrlDecode(address);
+                if (decodedStr.StartsWith(peopleUrl))
+                {
+                    result = HydraIdType.People;
+                }
+                else if (decodedStr.StartsWith(roomUrl))
+                {
+                    result = HydraIdType.Room;
+                }
+                else if (decodedStr.StartsWith(messageUrl))
+                {
+                    result = HydraIdType.Message;
+                }
+                else
+                {
+                    result = HydraIdType.Unknow;
+                }
+            }
+            catch
+            {
+                result = HydraIdType.Error;
+            }
+
+
+            return result;
+        }
+    }
+
+    public class MessageHelper
+    {
+        private static SparkSDKTests.ServiceReference.TestFixtureServiceClient proxy;
+
+        public static void Init()
+        {
+            if (proxy == null)
+            {
+                proxy = new SparkSDKTests.ServiceReference.TestFixtureServiceClient();
+            }
+            if (proxy.State != System.ServiceModel.CommunicationState.Opened || proxy.State != System.ServiceModel.CommunicationState.Opening)
+            {
+                proxy.Open();
+            }
+        }
+
+
+        static bool breakLoopSignal = false;
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool PeekMessage(
+           ref MSG lpMsg,
+           Int32 hwnd,
+           Int32 wMsgFilterMin,
+           Int32 wMsgFilterMax,
+           PeekMessageOption wRemoveMsg);
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool TranslateMessage(ref MSG lpMsg);
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern Int32 DispatchMessage(ref MSG lpMsg);
+
+        private enum PeekMessageOption
+        {
+            PM_NOREMOVE = 0,
+            PM_REMOVE
+        }
+        public const int WM_QUIT = 0x0012;
+        public const int WM_COPYDATA = 0x004A;
+
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct CopyDataStruct
+        {
+            public IntPtr dwData;
+            public int cbData;
+
+            [MarshalAs(UnmanagedType.LPStr)]
+            public string lpData;
+        }
+
+
+        public static void RunDispatcherLoop()
+        {
+            MSG msg = new MSG();
+            // max loop time 2 minute
+            var t = TimerHelper.StartTimer(120000, (o, e) =>
+            {
+                breakLoopSignal = true;
+            });
+
+            while (true)
+            {
+                if (PeekMessage(ref msg, 0, 0, 0, PeekMessageOption.PM_REMOVE))
+                {
+                    if (msg.message == WM_QUIT)
+                    {
+                        Console.WriteLine("break loop");
+                        break;
+                    }
+
+                    TranslateMessage(ref msg);
+                    DispatchMessage(ref msg);
+                }
+
+                if (breakLoopSignal)
+                {
+                    breakLoopSignal = false;
+                    t.Stop();
+                    t.Close();
+                    break;
+                }
+            }
+        }
+
+        public static void BreakLoop()
+        {
+            breakLoopSignal = true;
+        }
+
+        public static void SendMessage(string windowName, string strMsg)
+        {
+            StackTrace st = new StackTrace(true);
+            StackFrame sf = st.GetFrame(2);
+
+            MessageHelper.proxy.SendCommandMsg(sf.GetMethod().Name + ":" + strMsg);
+            Thread.Sleep(500);
+        }
+
+        public static void SetTestMode_CalleeAutoAnswerAndHangupAfter30Seconds(string windowName)
+        {
+            MessageHelper.SendMessage(windowName, "Enable");
+            MessageHelper.SendMessage(windowName, "AutoAnswer");
+            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
+        }
+
+        public static void SetTestMode_CalleeAutoDecline(string windowName)
+        {
+            MessageHelper.SendMessage(windowName, "Enable");
+            MessageHelper.SendMessage(windowName, "AutoDecline");
+        }
+
+        public static void SetTestMode_CalleeAutoAnswerAndMuteVideoAndHangupAfter30Seconds(string windowName)
+        {
+            MessageHelper.SendMessage(windowName, "Enable");
+            MessageHelper.SendMessage(windowName, "AutoAnswer");
+            MessageHelper.SendMessage(windowName, "MuteVideo");
+            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
+        }
+
+        public static void SetTestMode_CalleeAutoAnswerAndMuteVideoAndUnMuteVideoAndHangupAfter30Seconds(string windowName)
+        {
+            MessageHelper.SendMessage(windowName, "Enable");
+            MessageHelper.SendMessage(windowName, "AutoAnswer");
+            MessageHelper.SendMessage(windowName, "MuteVideo:5000");
+            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
+        }
+
+        public static void SetTestMode_CalleeAutoAnswerAndMuteAudioAndHangupAfter30Seconds(string windowName)
+        {
+            MessageHelper.SendMessage(windowName, "Enable");
+            MessageHelper.SendMessage(windowName, "AutoAnswer");
+            MessageHelper.SendMessage(windowName, "MuteAudio");
+            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
+        }
+
+        public static void SetTestMode_CalleeAutoAnswerAndMuteAudioAndUnMuteAudioAndHangupAfter30Seconds(string windowName)
+        {
+            MessageHelper.SendMessage(windowName, "Enable");
+            MessageHelper.SendMessage(windowName, "AutoAnswer");
+            MessageHelper.SendMessage(windowName, "MuteAudio:5000");
+            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
+        }
+
+        public static void SetTestMode_CalleeAutoAnswerAndStartShareAndHangupAfter30s(string windowName)
+        {
+            MessageHelper.SendMessage(windowName, "Enable");
+            MessageHelper.SendMessage(windowName, "AutoAnswer");
+            MessageHelper.SendMessage(windowName, "StartShare");
+            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
+        }
+
+        public static void SetTestMode_CalleeAutoAnswerAndStartShare15sAndHangupAfter30s(string windowName)
+        {
+            MessageHelper.SendMessage(windowName, "Enable");
+            MessageHelper.SendMessage(windowName, "AutoAnswer");
+            MessageHelper.SendMessage(windowName, "StartShare:10000");
+            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
+        }
+
+        public static void SetTestMode_RemoteDialout(string windowName, string address)
+        {
+            MessageHelper.SendMessage(windowName, "Enable");
+            MessageHelper.SendMessage(windowName, "Dial:" + address);
+        }
+
+        // Message
+        public static void SetTestMode_RemoteSendDirectMessage(string windowName, string address, string text)
+        {
+            MessageHelper.SendMessage(windowName, "SendDirectMessage:" + address + ":" + text);
+        }
+        public static void SetTestMode_RemoteSendDirectMessageWithFiles(string windowName, string address, string text)
+        {
+            MessageHelper.SendMessage(windowName, "SendDirectMessageWithFiles:" + address + ":" + text);
+        }
+        public static void SetTestMode_RemoteSendRoomMessage(string windowName, string roomId, string text)
+        {
+            MessageHelper.SendMessage(windowName, "SendRoomMessage:" + roomId + ":" + text);
+        }
+        public static void SetTestMode_RemoteSendRoomMessageWithMention(string windowName, string roomId, string text, string mentioned)
+        {
+            MessageHelper.SendMessage(windowName, "SendRoomMessage:" + roomId + ":" + text+ ":" + mentioned);
+        }
+
+        public static void CloseTestFixtureApp(string windowName)
+        {
+            MessageHelper.SendMessage(windowName, "CloseApp");
+        }
+    }
 
 }

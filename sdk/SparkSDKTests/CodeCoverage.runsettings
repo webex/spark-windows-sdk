@@ -34,8 +34,9 @@ Included items must then not match any entries in the exclude list to remain inc
               </Include>  
               <Exclude>  
                 <ModulePath>.*spark-client-framework-dot-net.*</ModulePath>
-              <ModulePath>.*sparksdktest.*</ModulePath>
+                <ModulePath>.*sparksdktest.*</ModulePath>
                 <ModulePath>.*kitchensink.*</ModulePath>
+                <ModulePath>.*Moq.*</ModulePath>
               </Exclude>  
             </ModulePaths>  
 
