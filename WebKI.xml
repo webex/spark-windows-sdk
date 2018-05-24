@@ -37,6 +37,9 @@
   <HelpKINode Title="AVIODevice.Name property" Url="html/P_SparkSDK_AVIODevice_Name.htm" />
   <HelpKINode Title="AVIODevice.Type property" Url="html/P_SparkSDK_AVIODevice_Type.htm" />
   <HelpKINode Title="AVIODeviceType enumeration" Url="html/T_SparkSDK_AVIODeviceType.htm" />
+  <HelpKINode Title="ByCreated enumeration member" Url="html/T_SparkSDK_RoomSortType.htm" />
+  <HelpKINode Title="ById enumeration member" Url="html/T_SparkSDK_RoomSortType.htm" />
+  <HelpKINode Title="ByLastActivity enumeration member" Url="html/T_SparkSDK_RoomSortType.htm" />
   <HelpKINode Title="Call class">
     <HelpKINode Title="Call Class" Url="html/T_SparkSDK_Call.htm" />
     <HelpKINode Title="events" Url="html/Events_T_SparkSDK_Call.htm" />
@@ -745,6 +748,7 @@
     <HelpKINode Title="Message.RoomId Property " Url="html/P_SparkSDK_Message_RoomId.htm" />
   </HelpKINode>
   <HelpKINode Title="Rooms property" Url="html/P_SparkSDK_Spark_Rooms.htm" />
+  <HelpKINode Title="RoomSortType enumeration" Url="html/T_SparkSDK_RoomSortType.htm" />
   <HelpKINode Title="RoomType enumeration" Url="html/T_SparkSDK_RoomType.htm" />
   <HelpKINode Title="RoomType property" Url="html/P_SparkSDK_Message_RoomType.htm" />
   <HelpKINode Title="Secret property" Url="html/P_SparkSDK_Webhook_Secret.htm" />
@@ -906,6 +910,7 @@
   <HelpKINode Title="SparkSDK.RemoteVideoViewSizeChangedEvent class" Url="html/T_SparkSDK_RemoteVideoViewSizeChangedEvent.htm" />
   <HelpKINode Title="SparkSDK.Room class" Url="html/T_SparkSDK_Room.htm" />
   <HelpKINode Title="SparkSDK.RoomClient class" Url="html/T_SparkSDK_RoomClient.htm" />
+  <HelpKINode Title="SparkSDK.RoomSortType enumeration" Url="html/T_SparkSDK_RoomSortType.htm" />
   <HelpKINode Title="SparkSDK.RoomType enumeration" Url="html/T_SparkSDK_RoomType.htm" />
   <HelpKINode Title="SparkSDK.SendingAudioEvent class" Url="html/T_SparkSDK_SendingAudioEvent.htm" />
   <HelpKINode Title="SparkSDK.SendingShareEvent class" Url="html/T_SparkSDK_SendingShareEvent.htm" />
@@ -1005,8 +1010,8 @@
   <HelpKINode Title="Teams property" Url="html/P_SparkSDK_Spark_Teams.htm" />
   <HelpKINode Title="Text property" Url="html/P_SparkSDK_Message_Text.htm" />
   <HelpKINode Title="Thumbnail class">
-    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteFile_Thumbnail.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_LocalFile_Thumbnail.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_SparkSDK_RemoteFile_Thumbnail.htm" />
   </HelpKINode>
   <HelpKINode Title="Title property" Url="html/P_SparkSDK_Room_Title.htm" />
   <HelpKINode Title="To property" Url="html/P_SparkSDK_Call_To.htm" />
