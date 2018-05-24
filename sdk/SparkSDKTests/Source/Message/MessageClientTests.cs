@@ -90,7 +90,7 @@ namespace SparkSDK.Tests
 
             fileUrl = Directory.GetCurrentDirectory() + "\\Resources\\" + "WebexTeams.jpg";
 
-            Thread.Sleep(10000);
+            Thread.Sleep(30000);
         }
 
         [ClassCleanup]
