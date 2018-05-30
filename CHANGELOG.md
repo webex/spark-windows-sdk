@@ -1,9 +1,9 @@
 # change Log
 All notable changes to this project will be documented in this file.
 
-- [0.2.0 release]()
+- [1.4.0 release]()
 
-Initial release on 2018-05-29
+Initial release on 2018-05-30
 
 ##### Added
 - Support message end to end encription
