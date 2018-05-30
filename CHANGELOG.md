@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-### 1.4.0 release(https://github.com/ciscospark/spark-windows-sdk/releases/tag/1.4.0)
+### 1.4.0
 
 Initial release on 2018-05-30
 
@@ -11,7 +11,7 @@ Initial release on 2018-05-30
 - Support screen sharing for both sending and receiving
 - An Single sign-on[SSO] based authentication strategy used to authenticate a user on Cisco Spark.
 
-### [0.1.6 release](https://github.com/ciscospark/spark-windows-sdk/releases/tag/0.1.6)  
+### 0.1.6
 
 Initial release on 2018-02-13
 
