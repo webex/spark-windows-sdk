@@ -1,6 +1,5 @@
 # Cisco Spark Windows SDK
-[![NuGet version (Cisco.Spark.WindowsSDK)](https://img.shields.io/nuget/v/Cisco.Spark.WindowsSDK.svg?style=flat-square)](https://www.nuget.org/packages/Cisco.Spark.WindowsSDK/)
-[![Build status](https://ci.appveyor.com/api/projects/status/67u908ms00m4w7vh/branch/develop?svg=true)](https://ci.appveyor.com/project/ciscospark/spark-windows-sdk/branch/develop)
+[![Build status](https://ci.appveyor.com/api/projects/status/67u908ms00m4w7vh/branch/develop?svg=true)](https://ci.appveyor.com/project/ciscospark/spark-windows-sdk/branch/EFT/1.4.0)
 [![LICENSE](https://img.shields.io/github/license/ciscospark/spark-windows-sdk.svg)](https://github.com/ciscospark/spark-windows-sdk/blob/master/LICENSE)
 > The Cisco Spark™ Windows SDK
  
