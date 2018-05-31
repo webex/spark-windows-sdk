@@ -298,10 +298,7 @@ namespace SparkSDK.Tests
 
             var lstRoom = ListRooms(null, null, null, RoomSortType.ById);
             Assert.IsNotNull(lstRoom);
-
-            Validate(lstRoom[0]);
-            Assert.AreEqual(myRoomInfo.Title, lstRoom[0].Title);
-            Assert.AreEqual(myRoomInfo.Id, lstRoom[0].Id);
+            Assert.IsNotNull(lstRoom.Find(item => item.Id == myRoomInfo.Id));
         }
         [TestMethod()]
         public void ListBySortByCreatedTest()
