@@ -73,7 +73,26 @@ namespace SparkSDK
             if (teamId != null) request.AddQueryParameters("teamId", teamId);
             if (max != null) request.AddQueryParameters("max", max);
             if (type != null) request.AddQueryParameters("type", type.ToString().ToLower());
-            if (sortBy != null) request.AddQueryParameters("sortBy", sortBy.ToString().ToLower());
+            if (sortBy != null)
+            {
+                string strSortBy = null;
+                switch (sortBy)
+                {
+                    case RoomSortType.ById:
+                        strSortBy = "id";
+                        break;
+                    case RoomSortType.ByLastActivity:
+                        strSortBy = "lastactivity";
+                        break;
+                    case RoomSortType.ByCreated:
+                        strSortBy = "created";
+                        break;
+                    default:
+                        completionHandler?.Invoke(new SparkApiEventArgs<List<Room>>(false, new SparkError(SparkErrorCode.IllegalOperation, "sort type is invalid."), null));
+                        return;
+                }
+                request.AddQueryParameters("sortBy", strSortBy);
+            }
 
             request.Execute<List<Room>>(completionHandler);
 

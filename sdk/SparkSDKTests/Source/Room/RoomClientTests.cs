@@ -277,6 +277,46 @@ namespace SparkSDK.Tests
             fixture.DeleteTeam(myTeam.Id);
         }
 
+        [TestMethod()]
+        public void ListBySortByLastActivityTest()
+        {
+            myRoomInfo = CreateRoom(roomTitle);
+            Validate(myRoomInfo);
+
+            var lstRoom = ListRooms(null, null, null, RoomSortType.ByLastActivity);
+            Assert.IsNotNull(lstRoom);
+
+            Validate(lstRoom[0]);
+            Assert.AreEqual(myRoomInfo.Title, lstRoom[0].Title);
+            Assert.AreEqual(myRoomInfo.Id, lstRoom[0].Id);
+        }
+        [TestMethod()]
+        public void ListBySortByIdTest()
+        {
+            myRoomInfo = CreateRoom(roomTitle);
+            Validate(myRoomInfo);
+
+            var lstRoom = ListRooms(null, null, null, RoomSortType.ById);
+            Assert.IsNotNull(lstRoom);
+
+            Validate(lstRoom[0]);
+            Assert.AreEqual(myRoomInfo.Title, lstRoom[0].Title);
+            Assert.AreEqual(myRoomInfo.Id, lstRoom[0].Id);
+        }
+        [TestMethod()]
+        public void ListBySortByCreatedTest()
+        {
+            myRoomInfo = CreateRoom(roomTitle);
+            Validate(myRoomInfo);
+
+            var lstRoom = ListRooms(null, null, null, RoomSortType.ByCreated);
+            Assert.IsNotNull(lstRoom);
+
+            Validate(lstRoom[0]);
+            Assert.AreEqual(myRoomInfo.Title, lstRoom[0].Title);
+            Assert.AreEqual(myRoomInfo.Id, lstRoom[0].Id);
+        }
+
         private void Validate(Room room)
         {
             Assert.IsNotNull(room);
