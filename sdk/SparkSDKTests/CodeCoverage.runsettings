@@ -29,7 +29,7 @@ Included items must then not match any entries in the exclude list to remain inc
             <!-- Match assembly file paths: -->  
             <ModulePaths>  
               <Include>  
-                <ModulePath>.*\.dll$</ModulePath>  
+                <ModulePath>.*\SparkSDK.dll$</ModulePath>  
                 <!--<ModulePath>.*\.exe$</ModulePath>-->  
               </Include>  
               <Exclude>  
