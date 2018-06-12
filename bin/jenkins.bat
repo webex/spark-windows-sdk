@@ -10,10 +10,9 @@ copy c:\app.config sdk\SparkSDKTests\app.config
 REM .\bin\nuget.exe update -self
 bin\nuget.exe restore sdk\solutions\WinSDK4Desktop\WinSDK4Desktop.sln -NonInteractive
 
-echo copy scf libraries
-
 set SDKNuGetPackage=Cisco.Spark.WindowsSDK.1.4.0-EFT01
 echo SDKNuGetPackage is %SDKNuGetPackage%
+echo copy scf libraries to sdk\solutions\WinSDK4Desktop\packages\%SDKNuGetPackage%\
 copy /y spark-client-framework\scfLibrary\Release\*.dll sdk\solutions\WinSDK4Desktop\packages\\%SDKNuGetPackage%\\
 if not %errorlevel% == 0 ( 
 	echo update scf libraries failed.
