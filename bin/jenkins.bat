@@ -11,7 +11,10 @@ REM .\bin\nuget.exe update -self
 bin\nuget.exe restore sdk\solutions\WinSDK4Desktop\WinSDK4Desktop.sln -NonInteractive
 
 echo "copy scf libraries"
-xcopy /y spark-client-framework\scfLibrary\Release\*.dll sdk\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.1.4.0-EFT01\
+
+SDKNuGetPackage = Cisco.Spark.WindowsSDK.1.4.0-EFT01
+echo %SDKNuGetPackage%
+xcopy /y spark-client-framework\scfLibrary\Release\*.dll sdk\solutions\WinSDK4Desktop\packages\%SDKNuGetPackage%\
 
 "%MSBUILDDIR%\msbuild.exe" sdk\solutions\WinSDK4Desktop\WinSDK4Desktop.sln /t:Rebuild /p:Configuration="Debug" /p:Platform="x86"
 "%MSBUILDDIR%\msbuild.exe" sdk\solutions\WinSDK4Desktop\WinSDK4Desktop.sln /t:Rebuild /p:Configuration="Release" /p:Platform="x86"
