@@ -12,9 +12,17 @@ bin\nuget.exe restore sdk\solutions\WinSDK4Desktop\WinSDK4Desktop.sln -NonIntera
 
 echo "copy scf libraries"
 
-SDKNuGetPackage = Cisco.Spark.WindowsSDK.1.4.0-EFT01
+set SDKNuGetPackage = Cisco.Spark.WindowsSDK.1.4.0-EFT01
 echo %SDKNuGetPackage%
-xcopy /y spark-client-framework\scfLibrary\Release\*.dll sdk\solutions\WinSDK4Desktop\packages\%SDKNuGetPackage%\
+copy /y spark-client-framework\scfLibrary\Release\*.dll sdk\solutions\WinSDK4Desktop\packages\%SDKNuGetPackage%\
+
+if %errorlevel% == 0 (
+	echo "build release version success!"
+) else (
+	echo "build release version failed."
+	echo %errorlevel%
+	goto EXIT
+)
 
 "%MSBUILDDIR%\msbuild.exe" sdk\solutions\WinSDK4Desktop\WinSDK4Desktop.sln /t:Rebuild /p:Configuration="Debug" /p:Platform="x86"
 "%MSBUILDDIR%\msbuild.exe" sdk\solutions\WinSDK4Desktop\WinSDK4Desktop.sln /t:Rebuild /p:Configuration="Release" /p:Platform="x86"
@@ -23,3 +31,7 @@ popd
 call bin\mstest.bat
 
 call bin\packageNuGet.bat
+
+:EXIT
+echo %errorlevel% 
+EXIT /B %errorlevel%
