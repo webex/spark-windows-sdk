@@ -37,6 +37,13 @@ call bin\mstest.bat
 
 call bin\packageNuGet.bat
 
+echo generate API Doc
+"%MSBUILDDIR%\msbuild.exe" doc\SparkSDKDoc.shfbproj
+if not %errorlevel% == 0 (
+	echo generate API doc failed!
+	goto EXIT
+)
+
 :EXIT
 echo error level: %errorlevel% 
 EXIT /B %errorlevel%

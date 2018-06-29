@@ -92,6 +92,7 @@ namespace SparkSDK
             IsLocalRejectOrEndCall = false;
             IsGroup = false;
             IsWaittingVideoCodecActivate = false;
+            RemoteAuxVideos = new List<RemoteAuxVideo>();
         }
         /// <summary>
         /// The enumeration of directions of a call
@@ -438,6 +439,21 @@ namespace SparkSDK
             }
         }
 
+        public CallMembership ActiveSpeaker
+        {
+            get
+            {
+                string contactId = m_core_telephoneService.getContact(this.CallId, TrackType.Remote);
+                if (contactId == null || contactId.Length == 0)
+                {
+                    SDKLogger.Instance.Error($"get contactID by Remote Track failed.");
+                    return null;
+                }
+                var trackPersonId = StringExtention.EncodeHydraId(StringExtention.HydraIdType.People, contactId);
+                return Memberships.Find(x => x.PersonId == trackPersonId);
+            }
+        }
+
         /// <summary>
         /// Gets the memberships represent participants in this call.
         /// </summary>
@@ -729,6 +745,28 @@ namespace SparkSDK
             m_core_telephoneService.updateView(this.CallId, handle, TrackType.RemoteShare);
         }
 
+        internal int RemoteVideosCount { get; set; }
+
+        public List<RemoteAuxVideo> RemoteAuxVideos { get; internal set; }
+        public RemoteAuxVideo SubscribeRemoteAuxVideo(IntPtr handle)
+        {
+            if (RemoteAuxVideos.Count >= 4)
+            {
+                SDKLogger.Instance.Error("max count of remote auxiliary view is 4");
+                return null;
+            }
+            m_core_telephoneService.subscribeAuxVideo(this.CallId);
+
+            var newRemoteAuxView = new RemoteAuxVideo(this);
+            newRemoteAuxView.AddViewHandle(handle);
+            RemoteAuxVideos.Add(newRemoteAuxView);
+            return newRemoteAuxView;
+        }
+        public void UnsubscribeRemoteAuxVideo(RemoteAuxVideo remoteAuxVideo)
+        {
+            m_core_telephoneService.unSubscribeAuxVideo(this.CallId, remoteAuxVideo.track);
+        }
+
 
         /// <summary>
         /// Fetch enumerated sources with a kind of source type
@@ -913,6 +951,120 @@ namespace SparkSDK
                 SelectShareSourceCompletedHandler?.Invoke(new SparkApiEventArgs<List<ShareSource>>(true, null, result));
                 SelectShareSourceCompletedHandler = null;
             }
+        }
+
+        /// <summary>
+        /// A RemoteAuxVideo represents a remote auxiliary video.
+        /// </summary>
+        public class RemoteAuxVideo
+        {
+            public List<IntPtr> HandleList { get; internal set; }
+
+            public void AddViewHandle(IntPtr handle)
+            {
+                if (!HandleList.Contains(handle))
+                {
+                    HandleList.Add(handle);
+                    if(track > TrackType.Unknown)
+                    {
+                        this.currentCall?.m_core_telephoneService.setView(currentCall.CallId, handle, (SparkNet.TrackType)track);
+                    }
+                    
+                }
+            }
+            public void RemoveViewHandle(IntPtr handle)
+            {
+                if (HandleList.Contains(handle))
+                {
+                    HandleList.Remove(handle);
+                    if (track > TrackType.Unknown)
+                    {
+                        this.currentCall?.m_core_telephoneService.removeView(currentCall.CallId, handle, (SparkNet.TrackType)track);
+                    }
+                }
+            }
+            public void UpdateViewHandle(IntPtr handle)
+            {
+                if (HandleList.Contains(handle))
+                {
+                    if (track > TrackType.Unknown)
+                    {
+                        this.currentCall?.m_core_telephoneService.updateView(currentCall.CallId, handle, (SparkNet.TrackType)track);
+                    }
+                }
+            }
+            public CallMembership Person
+            {
+                get
+                {
+                    if (this.currentCall == null)
+                    {
+                        return null;
+                    }
+                    string contactId = this.currentCall.m_core_telephoneService.getContact(this.currentCall.CallId, (TrackType)track);
+                    if (contactId == null || contactId.Length == 0)
+                    {
+                        SDKLogger.Instance.Error($"get contactID by trackType[{track}] failed.");
+                        return null;
+                    }
+                    var trackPersonId = StringExtention.EncodeHydraId(StringExtention.HydraIdType.People, contactId);
+                    return this.currentCall.Memberships.Find(x => x.PersonId == trackPersonId);
+                }
+            }
+
+            private bool isSendingVideo;
+            public bool IsSendingVideo
+            {
+                get
+                {
+                    return this.isSendingVideo;
+                }
+                internal set
+                {
+                    isSendingVideo = value;
+                }
+            }
+
+            private bool isReceivingVideo = false;
+            public bool IsReceivingVideo
+            {
+                get
+                {
+                    return isReceivingVideo;
+                }
+                set
+                {
+                    SDKLogger.Instance.Info($"{value}");
+                    this.currentCall.m_core_telephoneService?.muteRemoteVideo(this.currentCall.CallId, !value, (TrackType)track);
+                    isReceivingVideo = value;
+                }
+            }
+
+            private VideoDimensions remoteVideoVideoSize;
+            public VideoDimensions RemoteAuxVideoSize
+            {
+                get
+                {
+                    if (this.currentCall.m_core_telephoneService?.getVideoSize(this.currentCall.CallId, (TrackType)track, ref remoteVideoVideoSize.Width, ref remoteVideoVideoSize.Height) != true)
+                    {
+                        SDKLogger.Instance.Error($"get remote track[{track}] video view size error.");
+                    }
+                    return remoteVideoVideoSize;
+                }
+            }
+
+            internal SparkNet.TrackType track { get; set; }
+            internal bool IsInUse { get; set; }
+            private Call currentCall;
+            private RemoteAuxVideo() { }
+            internal RemoteAuxVideo(Call currentCall)
+                :base()
+            {
+                this.currentCall = currentCall;
+                HandleList = new List<IntPtr>();
+            }
+
+
         }
     }
 }

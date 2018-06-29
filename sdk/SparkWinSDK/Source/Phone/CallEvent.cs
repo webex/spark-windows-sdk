@@ -78,6 +78,30 @@ namespace SparkSDK
     }
 
     /// <summary>
+    /// The media change event.
+    /// </summary>
+    /// <remarks>Since: 0.1.0</remarks>
+    public abstract class RemoteAuxVideoChangedEvent : MediaChangedEvent
+    {
+        protected Call.RemoteAuxVideo remoteAuxVideo;
+
+        protected RemoteAuxVideoChangedEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo)
+            : base(call)
+        {
+            this.remoteAuxVideo = remoteAuxVideo;
+        }
+
+        public Call.RemoteAuxVideo RemoteAuxVideo
+        {
+            get
+            {
+                return this.remoteAuxVideo;
+            }
+        }
+    }
+
+
+    /// <summary>
     /// The call membership changed event.
     /// </summary>
     /// <remarks>Since: 0.1.0</remarks>
@@ -153,6 +177,92 @@ namespace SparkSDK
         {
         }
     }
+    public class RemoteVideoStopEvent : MediaChangedEvent
+    {
+        internal RemoteVideoStopEvent(Call call)
+            : base(call)
+        {
+        }
+    }
+    //public class RemoteAuxVideoReadyEvent : MediaChangedEvent
+    //{
+    //    private Call.RemoteAuxVideo remoteAuxVideo;
+    //    internal RemoteAuxVideoReadyEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo)
+    //        : base(call)
+    //    {
+    //        this.remoteAuxVideo = remoteAuxVideo;
+    //    }
+
+    //    public Call.RemoteAuxVideo RemoteAuxVideo
+    //    {
+    //        get
+    //        {
+    //            return this.remoteAuxVideo;
+    //        }
+    //    }
+    //}
+
+    //public class RemoteAuxVideoStopEvent : MediaChangedEvent
+    //{
+    //    private Call.RemoteAuxVideo remoteAuxVideo;
+    //    internal RemoteAuxVideoStopEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo)
+    //        : base(call)
+    //    {
+    //        this.remoteAuxVideo = remoteAuxVideo;
+    //    }
+
+    //    public Call.RemoteAuxVideo RemoteAuxVideo
+    //    {
+    //        get
+    //        {
+    //            return this.remoteAuxVideo;
+    //        }
+    //    }
+    //}
+
+    public class RemoteAuxVideosCountChangedEvent : MediaChangedEvent
+    {
+        private int count;
+        internal RemoteAuxVideosCountChangedEvent(Call call, int count)
+            : base(call)
+        {
+            this.count = count;
+        }
+        public int Count
+        {
+            get
+            {
+                return this.count;
+            }
+        }
+    }
+
+    public class RemoteAuxVideoPersonChangedEvent : RemoteAuxVideoChangedEvent
+    {
+        internal RemoteAuxVideoPersonChangedEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo)
+            : base(call, remoteAuxVideo)
+        {
+        }
+    }
+    public class ActiveSpeakerChangedEvent : MediaChangedEvent
+    {
+        private CallMembership activeSpeaker;
+        internal ActiveSpeakerChangedEvent(Call call, CallMembership activeSpeaker)
+            : base(call)
+        {
+            this.activeSpeaker = activeSpeaker;
+        }
+
+        public CallMembership ActiveSpeaker
+        {
+            get
+            {
+                return this.activeSpeaker;
+            }
+        }
+    }
+
+
 
     /// <summary>
     /// This is triggered when ready for show local video. 
@@ -389,6 +499,48 @@ namespace SparkSDK
         {
         }
     }
+    
+    public class RemoteAuxVideoSizeChangedEvent : RemoteAuxVideoChangedEvent
+    {
+        internal RemoteAuxVideoSizeChangedEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo)
+            : base(call, remoteAuxVideo)
+        {
+        }
+    }
+    public class IsAuxVideoStreamInUseChanged : RemoteAuxVideoChangedEvent
+    {
+        private bool isInUse;
+        internal IsAuxVideoStreamInUseChanged(Call call, Call.RemoteAuxVideo remoteAuxVideo, bool isInUse)
+            : base(call, remoteAuxVideo)
+        {
+            this.isInUse = isInUse;
+        }
+
+        public bool IsInUse
+        {
+            get
+            {
+                return this.isInUse;
+            }
+        }
+    }
+    public class RemoteAuxSendingVideoEvent : RemoteAuxVideoChangedEvent
+    {
+        private bool isSending;
+        internal RemoteAuxSendingVideoEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo, bool isSending)
+            : base(call, remoteAuxVideo)
+        {
+            this.isSending = isSending;
+        }
+        public bool IsSending
+        {
+            get
+            {
+                return this.isSending;
+            }
+        }
+    }
+    
 
     /// <summary>
     /// This might be triggered when the local party muted or unmuted the video

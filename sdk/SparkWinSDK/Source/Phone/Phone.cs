@@ -668,6 +668,9 @@ namespace SparkSDK
                 case SCFEventType.LocalVideoReady:
                     OnVideoReady(type, (SparkNet.TrackType)error);
                     break;
+                case SCFEventType.RemoteVideoStop:
+                    OnRemoteVideoStop((SparkNet.TrackType)error);
+                    break;
                 case SCFEventType.CallConversationChanged:
                     currentCall.CallId = m_core_telephoneService.getCurrentCallId();
                     break;
@@ -703,11 +706,85 @@ namespace SparkSDK
                 case SCFEventType.EnumeratedAppShareSourcesCallback:
                     OnRemoteContentSharingStateChanged(type);
                     break;
-                
+
+                case SCFEventType.VideoTrackPersonChanged:
+                    OnVideoTrackPersonChanged((TrackType)error, status);
+                    break;
+                case SCFEventType.RemoteVideoCountChanged:
+                    if (error >= 0)
+                    {
+                        if (currentCall?.RemoteVideosCount != error)
+                        {
+                            currentCall.RemoteVideosCount = error;
+                            SDKLogger.Instance.Debug($"remote auxiliary videos count changed to {error}");
+                            currentCall?.TrigerOnMediaChanged(new RemoteAuxVideosCountChangedEvent(currentCall, error));
+                        }        
+                    }
+                    break;
+                case SCFEventType.IsAuxVideoStreamInUseChanged:
+                    OnIsAuxVideoStreamInUseChanged((TrackType)error, status);
+                    break;
+                case SCFEventType.IsVideoStreamingChanged:
+                    OnIsVideoStreamingChanged((TrackType)error, status);
+                    break;
                 default:
                     break;
             }
         }
+
+        private void OnVideoTrackPersonChanged(TrackType trackType, string callId)
+        {
+            SDKLogger.Instance.Debug($"trackType[{trackType}], callID[{callId}]");
+            if (trackType == TrackType.Remote)
+            {
+                SDKLogger.Instance.Debug("active speaker changed");
+                currentCall?.TrigerOnMediaChanged(new ActiveSpeakerChangedEvent(currentCall, currentCall.ActiveSpeaker));
+            }
+            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            {
+                var find = currentCall?.RemoteAuxVideos.Find(x =>(x.track == trackType));
+                if (find != null)
+                {
+                    SDKLogger.Instance.Debug($"{trackType} person changed");
+                    currentCall?.TrigerOnMediaChanged(new RemoteAuxVideoPersonChangedEvent(currentCall, find));
+                }      
+            }
+        }
+
+        private void OnIsAuxVideoStreamInUseChanged(TrackType trackType, string callId)
+        {
+            bool isInUse = m_core_telephoneService.getIsVideoTrackInUse(callId, trackType);
+            
+            if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            {
+                var find = currentCall?.RemoteAuxVideos.Find(x => (x.track == trackType));
+                if (find != null)
+                {
+                    //if (find.IsInUse != isInUse)
+                    //{
+                        find.IsInUse = isInUse;
+                        SDKLogger.Instance.Debug($"callID[{callId}] trackType[{trackType}] InUse[{isInUse}]");
+                        currentCall?.TrigerOnMediaChanged(new IsAuxVideoStreamInUseChanged(currentCall, find, isInUse));
+                    //}
+                }
+            }
+        }
+        private void OnIsVideoStreamingChanged(TrackType trackType, string callId)
+        {
+            bool isStreaming = m_core_telephoneService.getIsVideoStreaming(callId, trackType);
+            SDKLogger.Instance.Debug($"callID[{callId}] trackType[{trackType}] IsStreaming[{isStreaming}]");
+
+            if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            {
+                var find = currentCall?.RemoteAuxVideos.Find(x => (x.track == trackType));
+                if (find != null)
+                {
+                    find.IsSendingVideo = isStreaming;                    
+                    currentCall?.TrigerOnMediaChanged(new RemoteAuxSendingVideoEvent(currentCall, find, isStreaming));
+                }
+            }
+        }
+
         private void OnParticipantsChanged(int error, string callId)
         {
             List<CallMembership> tmpMemberships = new List<CallMembership>();
@@ -1051,16 +1128,31 @@ namespace SparkSDK
             SDKLogger.Instance.Debug($"{type.ToString()} {videoTrackType.ToString()}");
             switch (type)
             {
-                case SCFEventType.RemoteVideoReady:
-                    if(videoTrackType == TrackType.Remote)
+                case SCFEventType.RemoteVideoReady:       
+                    if (videoTrackType == TrackType.Remote)
                     {
                         currentCall?.TrigerOnMediaChanged(new RemoteVideoReadyEvent(currentCall));
-                        if (currentCall != null 
+                        if (currentCall != null
                             && currentCall.MediaOption != null
                             && currentCall.MediaOption.RemoteViewPtr != null
                             && currentCall.MediaOption.RemoteViewPtr.HasValue)
                         {
                             currentCall.SetRemoteView(currentCall.MediaOption.RemoteViewPtr.Value);
+                        }
+                    }
+                    else if (videoTrackType >= TrackType.RemoteAux1 && videoTrackType < TrackType.RemoteShare)
+                    {
+                        int index = (int)videoTrackType - (int)TrackType.RemoteAux1;
+                        var find = currentCall?.RemoteAuxVideos.Find(x =>(x.track == 0));
+
+                        if (find != null && currentCall.CallId != null)
+                        {
+                            find.track = videoTrackType;
+                            //currentCall?.TrigerOnMediaChanged(new RemoteAuxVideoReadyEvent(currentCall, find));
+                            foreach (var item in find.HandleList)
+                            {
+                                m_core_telephoneService.setView(currentCall.CallId, item, videoTrackType);
+                            }
                         }
                     }
                     break;
@@ -1076,6 +1168,35 @@ namespace SparkSDK
                     break;
                 default:
                     break;
+            }
+        }
+        private void OnRemoteVideoStop(SparkNet.TrackType trackType)
+        {    
+            if (trackType == TrackType.Remote)
+            {
+                currentCall?.TrigerOnMediaChanged(new RemoteVideoStopEvent(currentCall));
+                if (currentCall != null
+                    && currentCall.MediaOption != null
+                    && currentCall.MediaOption.RemoteViewPtr != null
+                    && currentCall.MediaOption.RemoteViewPtr.HasValue)
+                {
+                    m_core_telephoneService.removeView(currentCall.CallId, currentCall.MediaOption.RemoteViewPtr.Value, trackType);
+                }
+            }
+            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            {
+                var find = currentCall?.RemoteAuxVideos.Find(x =>(x.track == trackType));
+                if (find != null && currentCall.CallId != null)
+                {
+                    //currentCall?.TrigerOnMediaChanged(new RemoteAuxVideoStopEvent(currentCall, find));
+
+                    var handleList = new List<IntPtr>(find.HandleList);
+                    foreach (var item in handleList)
+                    {
+                        find.RemoveViewHandle(item);
+                    }
+                    currentCall?.RemoteAuxVideos.Remove(find);
+                }
             }
         }
         private void OnAudioMutedStateChanged(SparkNet.TrackType trackType, string status)
@@ -1132,9 +1253,14 @@ namespace SparkSDK
             {
                 currentCall?.TrigerOnMediaChanged(new RemoteVideoViewSizeChangedEvent(currentCall));
             }
-            else
+            else if(trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
             {
-
+                var find = currentCall?.RemoteAuxVideos.Find(x =>(x.track == trackType));
+                if (find != null)
+                {
+                    SDKLogger.Instance.Debug($"{trackType} person changed");
+                    currentCall?.TrigerOnMediaChanged(new RemoteAuxVideoSizeChangedEvent(currentCall, find));
+                }                
             }
         }
         private void OnDTMFStatusChanged(SparkNet.DTMFCapStatus dtmfStatus, string status)
