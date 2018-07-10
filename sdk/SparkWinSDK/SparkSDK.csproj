@@ -71,9 +71,6 @@
     <Reference Include="spark-client-framework-dot-net, Version=1.0.6710.19493, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.1.4.0-EFT01\lib\net452\spark-client-framework-dot-net.dll</HintPath>
     </Reference>
-    <Reference Include="SparkSDK, Version=0.1.0.0, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.1.4.0-EFT01\lib\net452\SparkSDK.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
