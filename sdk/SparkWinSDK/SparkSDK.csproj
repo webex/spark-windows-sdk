@@ -68,9 +68,11 @@
       <HintPath>..\solutions\WinSDK4Desktop\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="spark-client-framework-dot-net, Version=1.0.6740.26464, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\binary\[build]\bin\x86\Debug\spark-client-framework-dot-net.dll</HintPath>
+    <Reference Include="spark-client-framework-dot-net, Version=1.0.6710.19493, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.1.4.0-EFT01\lib\net452\spark-client-framework-dot-net.dll</HintPath>
+    </Reference>
+    <Reference Include="SparkSDK, Version=0.1.0.0, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.1.4.0-EFT01\lib\net452\SparkSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -131,6 +133,13 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.1.4.0-EFT01\build\Cisco.Spark.WindowsSDK.targets" Condition="Exists('..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.1.4.0-EFT01\build\Cisco.Spark.WindowsSDK.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.1.4.0-EFT01\build\Cisco.Spark.WindowsSDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\solutions\WinSDK4Desktop\packages\Cisco.Spark.WindowsSDK.1.4.0-EFT01\build\Cisco.Spark.WindowsSDK.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
