@@ -18,6 +18,11 @@ if not %errorlevel% == 0 (
 	echo update scf libraries failed.
 	goto EXIT 
 )
+copy /y spark-client-framework\scfLibrary\Release\spark-client-framework-dot-net.dll sdk\solutions\WinSDK4Desktop\packages\%SDKNuGetPackage%\lib\net452\
+if not %errorlevel% == 0 ( 
+	echo update scf libraries failed.
+	goto EXIT 
+)
 
 "%MSBUILDDIR%\msbuild.exe" sdk\solutions\WinSDK4Desktop\WinSDK4Desktop.sln /t:Rebuild /p:Configuration="Debug" /p:Platform="x86"
 if not %errorlevel% == 0 ( 
