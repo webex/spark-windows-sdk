@@ -1043,12 +1043,17 @@ namespace SparkSDK.Tests
 
             MessageHelper.RunDispatcherLoop();
 
-            Assert.IsTrue(mediaEvents.Count > 0);
+            Assert.IsTrue(mediaEvents.Count >= 2);
             var mediaevent = mediaEvents[0] as RemoteSendingAudioEvent;
             Assert.IsNotNull(mediaevent);
+            Assert.IsTrue(mediaevent.IsSending);
+            mediaevent = mediaEvents[1] as RemoteSendingAudioEvent;
+            Assert.IsNotNull(mediaevent);
             Assert.IsFalse(mediaevent.IsSending);
-            Assert.IsTrue(callData.listIsRemoteSendingAudio.Count > 0);
-            Assert.IsFalse(callData.listIsRemoteSendingAudio[0]);
+
+            Assert.IsTrue(callData.listIsRemoteSendingAudio.Count >= 2);
+            Assert.IsTrue(callData.listIsRemoteSendingAudio[0]);
+            Assert.IsFalse(callData.listIsRemoteSendingAudio[1]);
         }
 
 
@@ -1096,16 +1101,21 @@ namespace SparkSDK.Tests
 
             MessageHelper.RunDispatcherLoop();
 
-            Assert.AreEqual(2, mediaEvents.Count);
+            Assert.AreEqual(3, mediaEvents.Count);
             var mediaevent = mediaEvents[0] as RemoteSendingAudioEvent;
             Assert.IsNotNull(mediaevent);
-            Assert.IsFalse(mediaevent.IsSending);
+            Assert.IsTrue(mediaevent.IsSending);
             mediaevent = mediaEvents[1] as RemoteSendingAudioEvent;
             Assert.IsNotNull(mediaevent);
+            Assert.IsFalse(mediaevent.IsSending);
+            mediaevent = mediaEvents[2] as RemoteSendingAudioEvent;
+            Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsSending);
-            Assert.AreEqual(2, callData.listIsRemoteSendingAudio.Count);
-            Assert.IsFalse(callData.listIsRemoteSendingAudio[0]);
-            Assert.IsTrue(callData.listIsRemoteSendingAudio[1]);
+
+            Assert.AreEqual(3, callData.listIsRemoteSendingAudio.Count);
+            Assert.IsTrue(callData.listIsRemoteSendingAudio[0]);
+            Assert.IsFalse(callData.listIsRemoteSendingAudio[1]);
+            Assert.IsTrue(callData.listIsRemoteSendingAudio[2]);
         }
 
         [TestMethod()]
@@ -1157,12 +1167,17 @@ namespace SparkSDK.Tests
 
             MessageHelper.RunDispatcherLoop();
 
-            Assert.IsTrue(mediaEvents.Count > 0);
+            Assert.IsTrue(mediaEvents.Count >= 2);
             var mediaevent = mediaEvents[0] as SendingVideoEvent;
             Assert.IsNotNull(mediaevent);
+            Assert.IsTrue(mediaevent.IsSending);
+            mediaevent = mediaEvents[1] as SendingVideoEvent;
+            Assert.IsNotNull(mediaevent);
             Assert.IsFalse(mediaevent.IsSending);
-            Assert.IsTrue(callData.listIsSendingVideo.Count > 0);
-            Assert.IsFalse(callData.listIsSendingVideo[0]);
+
+            Assert.IsTrue(callData.listIsSendingVideo.Count >= 2);
+            Assert.IsTrue(callData.listIsSendingVideo[0]);
+            Assert.IsFalse(callData.listIsSendingVideo[1]);
         }
 
         [TestMethod()]
@@ -1221,16 +1236,21 @@ namespace SparkSDK.Tests
 
             MessageHelper.RunDispatcherLoop();
 
-            Assert.AreEqual(2, mediaEvents.Count);
+            Assert.AreEqual(3, mediaEvents.Count);
             var mediaevent = mediaEvents[0] as SendingVideoEvent;
             Assert.IsNotNull(mediaevent);
-            Assert.IsFalse(mediaevent.IsSending);
+            Assert.IsTrue(mediaevent.IsSending);
             mediaevent = mediaEvents[1] as SendingVideoEvent;
             Assert.IsNotNull(mediaevent);
+            Assert.IsFalse(mediaevent.IsSending);
+            mediaevent = mediaEvents[2] as SendingVideoEvent;
+            Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsSending);
-            Assert.AreEqual(2, callData.listIsSendingVideo.Count);
-            Assert.IsFalse(callData.listIsSendingVideo[0]);
-            Assert.IsTrue(callData.listIsSendingVideo[1]);
+
+            Assert.AreEqual(3, callData.listIsSendingVideo.Count);
+            Assert.IsTrue(callData.listIsSendingVideo[0]);
+            Assert.IsFalse(callData.listIsSendingVideo[1]);
+            Assert.IsTrue(callData.listIsSendingVideo[2]);
         }
 
 
