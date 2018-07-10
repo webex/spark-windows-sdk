@@ -888,9 +888,7 @@ namespace SparkSDK.Tests
             MessageHelper.RunDispatcherLoop();
 
             Assert.IsTrue(mediaEvents.Count > 0);
-            Assert.IsTrue(mediaEvents[0] is LocalVideoReadyEvent);
-            Assert.IsTrue(mediaEvents[1] is LocalVideoViewSizeChangedEvent);
-            Assert.IsTrue(mediaEvents[2] is RemoteVideoReadyEvent);
+            Assert.IsTrue(mediaEvents[0] is LocalVideoViewSizeChangedEvent);
             //Assert.IsTrue(mediaEvents[3] is RemoteVideoViewSizeChangedEvent);
         }
 

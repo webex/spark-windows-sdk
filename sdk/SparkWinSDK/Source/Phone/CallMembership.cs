@@ -145,14 +145,24 @@ namespace SparkSDK
         public bool IsSendingAudio { get; set; }
 
         /// <summary>
-        /// True if the CallMembership is sending  share. Otherwise, false.
+        /// True if the CallMembership is sending share. Otherwise, false.
         /// </summary>
         /// <remarks>Since: 0.1.0</remarks>
         public bool IsSendingShare { get; set; }
 
+        /// <summary>
+        /// True if CallMembership is the active speaker now. Otherwise, false.
+        /// </summary>
+        /// <remarks>Since: 2.0.0</remarks>
+        public bool IsActiveSpeaker
+        {
+            get
+            {
+                return (currentCall?.ActiveSpeaker?.PersonId == this.PersonId);
+            }
+        }
 
         internal bool IsSelf { get; set; }
-
         internal List<Device> Devices { get; set; }
 
         internal class Device
@@ -162,6 +172,11 @@ namespace SparkSDK
             public string state;
             public string url;
         }
-
+        private Call currentCall;
+        internal CallMembership() { }
+        internal CallMembership(Call currentCall) : base()
+        {
+            this.currentCall = currentCall;
+        }
     }
 }

@@ -48,21 +48,22 @@ namespace SparkSDK
         private Phone phone;
         private SparkNet.CoreFramework m_core;
         private SparkNet.TelephonyService m_core_telephoneService;
-        private bool isSendingVideo;
-        private bool isSendingAudio;
+        internal bool isSendingVideo;
+        internal bool isSendingAudio;
         private bool isReceivingVideo;
         private bool isReceivingAudio;
         private bool isReceivingShare;
         private bool isRemoteSendingVideo;
         private bool isRemoteSendingAudio;
         private bool isRemoteSendingShare;
-        private bool isSendingShare;
+        internal bool isSendingShare;
         private VideoDimensions localVideoViewSize;
         private VideoDimensions remoteVideoViewSize;
         private VideoDimensions remoteShareViewSize;
         private CallStatus status;
         private CallDirection direction;
         private List<CallMembership> memberships;
+        internal int RemoteVideosCount { get; set; }
 
 
 
@@ -83,11 +84,11 @@ namespace SparkSDK
             status = CallStatus.Disconnected;
             isSendingVideo = false;
             isSendingAudio = false;
-            isReceivingVideo = false;
-            isReceivingAudio = false;
+            isReceivingVideo = true;
+            isReceivingAudio = true;
             isRemoteSendingVideo = false;
             isRemoteSendingAudio = false;
-            isReceivingShare = false;
+            isReceivingShare = true;
             memberships = new List<CallMembership>();
             IsLocalRejectOrEndCall = false;
             IsGroup = false;
@@ -241,7 +242,7 @@ namespace SparkSDK
             {
                 return isRemoteSendingVideo;
             }
-            private set { isRemoteSendingVideo = value; }
+            internal set { isRemoteSendingVideo = value; }
         }
 
         /// <summary>
@@ -257,7 +258,7 @@ namespace SparkSDK
             {
                 return isRemoteSendingAudio;
             }
-            private set { isRemoteSendingAudio = value; }
+            internal set { isRemoteSendingAudio = value; }
         }
 
         /// <summary>
@@ -371,7 +372,7 @@ namespace SparkSDK
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether [the local party of this call is receiving  share].
+        /// Gets or sets a value indicating whether [the local party of this call is receiving share].
         /// </summary>
         /// <value>
         ///   <c>true</c> if [receiving  share]; otherwise, <c>false</c>.
@@ -438,7 +439,10 @@ namespace SparkSDK
                 return remoteShareViewSize;
             }
         }
-
+        /// <summary>
+        /// Gets the acitve speaker in this call. It would be changed dynamically in the meeting.
+        /// </summary>
+        /// <remarks>Since: 2.0.0</remarks>
         public CallMembership ActiveSpeaker
         {
             get
@@ -745,9 +749,18 @@ namespace SparkSDK
             m_core_telephoneService.updateView(this.CallId, handle, TrackType.RemoteShare);
         }
 
-        internal int RemoteVideosCount { get; set; }
-
+        /// <summary>
+        /// Gets the list of RemoteAuxVideo which has been subscribed.
+        /// </summary>
+        /// <remarks>Since: 2.0.0</remarks>
         public List<RemoteAuxVideo> RemoteAuxVideos { get; internal set; }
+
+        /// <summary>
+        /// Subscribe a new remote auxiliary video with a view handle. The Maximum is 4.
+        /// </summary>
+        /// <param name="handle">the remote auxiliary dispaly window handle</param>
+        /// <returns>The subscribed remote auxiliary video instance. Returen null if subscribing failed or exceeding the limited count.</returns>
+        /// <remarks>Since: 2.0.0</remarks>
         public RemoteAuxVideo SubscribeRemoteAuxVideo(IntPtr handle)
         {
             if (RemoteAuxVideos.Count >= 4)
@@ -762,6 +775,12 @@ namespace SparkSDK
             RemoteAuxVideos.Add(newRemoteAuxView);
             return newRemoteAuxView;
         }
+
+        /// <summary>
+        /// Unsubscribe the indicated remote auxiliary video.
+        /// </summary>
+        /// <param name="remoteAuxVideo"> The indicated remote auxiliary video.</param>
+        /// <remarks>Since: 2.0.0</remarks>
         public void UnsubscribeRemoteAuxVideo(RemoteAuxVideo remoteAuxVideo)
         {
             m_core_telephoneService.unSubscribeAuxVideo(this.CallId, remoteAuxVideo.track);
@@ -866,19 +885,8 @@ namespace SparkSDK
         internal void TrigerOnMediaChanged(MediaChangedEvent mediaChangedEvent)
         {
             SDKLogger.Instance.Debug($"trigerOnMediaChanged: {mediaChangedEvent.GetType().Name}");
-            if (mediaChangedEvent is LocalVideoReadyEvent)
-            {
-                isSendingVideo = true;
-                isSendingAudio = true;
-            }
-            else if (mediaChangedEvent is RemoteVideoReadyEvent)
-            {
-                IsRemoteSendingVideo = true;
-                IsRemoteSendingAudio = true;
-                isReceivingVideo = true;
-                isReceivingAudio = true;
-            }
-            else if (mediaChangedEvent is ReceivingVideoEvent)
+
+            if (mediaChangedEvent is ReceivingVideoEvent)
             {
                 isReceivingVideo = ((ReceivingVideoEvent)mediaChangedEvent).IsReceiving;
             }
@@ -888,7 +896,6 @@ namespace SparkSDK
             }
             else if (mediaChangedEvent is SendingVideoEvent)
             {
-
                 isSendingVideo = ((SendingVideoEvent)mediaChangedEvent).IsSending;
             }
             else if (mediaChangedEvent is SendingAudioEvent)
@@ -954,12 +961,21 @@ namespace SparkSDK
         }
 
         /// <summary>
-        /// A RemoteAuxVideo represents a remote auxiliary video.
+        /// A RemoteAuxVideo instance represents a remote auxiliary video.
         /// </summary>
+        /// <remarks>Since: 2.0.0</remarks>
         public class RemoteAuxVideo
         {
+            /// <summary>
+            /// Gets the list of view handle.
+            /// </summary>
+            /// <remarks>Since: 2.0.0</remarks>
             public List<IntPtr> HandleList { get; internal set; }
 
+            /// <summary>
+            /// Add a remote auxiliary video view.
+            /// </summary>
+            /// <param name="handle">The view handle.</param>
             public void AddViewHandle(IntPtr handle)
             {
                 if (!HandleList.Contains(handle))
@@ -969,9 +985,12 @@ namespace SparkSDK
                     {
                         this.currentCall?.m_core_telephoneService.setView(currentCall.CallId, handle, (SparkNet.TrackType)track);
                     }
-                    
                 }
             }
+            /// <summary>
+            /// Remove the remote auxiliary video view.
+            /// </summary>
+            /// <param name="handle">The view handle.</param>
             public void RemoveViewHandle(IntPtr handle)
             {
                 if (HandleList.Contains(handle))
@@ -983,6 +1002,11 @@ namespace SparkSDK
                     }
                 }
             }
+
+            /// <summary>
+            /// Update the remote auxiliary video view.
+            /// </summary>
+            /// <param name="handle">The view handle.</param>
             public void UpdateViewHandle(IntPtr handle)
             {
                 if (HandleList.Contains(handle))
@@ -993,6 +1017,11 @@ namespace SparkSDK
                     }
                 }
             }
+
+            /// <summary>
+            /// Gets the person represented this auxiliary video.
+            /// </summary>
+            /// <remarks>Since: 2.0.0</remarks>
             public CallMembership Person
             {
                 get
@@ -1012,7 +1041,14 @@ namespace SparkSDK
                 }
             }
 
-            private bool isSendingVideo;
+            private bool isSendingVideo = false;
+            /// <summary>
+            /// Gets a value indicating whether [this remote auxiliary video is sending video].
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if [remote auxiliary video is sending video]; otherwise, <c>false</c>.
+            /// </value>
+            /// <remarks>Since: 2.0.0</remarks>
             public bool IsSendingVideo
             {
                 get
@@ -1025,7 +1061,14 @@ namespace SparkSDK
                 }
             }
 
-            private bool isReceivingVideo = false;
+            internal bool isReceivingVideo = true;
+            /// <summary>
+            /// Gets or sets a value indicating whether [the remote auxiliary video is receiving video].
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if [receiving video]; otherwise, <c>false</c>.
+            /// </value>
+            /// <remarks>Since: 2.0.0</remarks>
             public bool IsReceivingVideo
             {
                 get
@@ -1040,16 +1083,21 @@ namespace SparkSDK
                 }
             }
 
-            private VideoDimensions remoteVideoVideoSize;
+
+            private VideoDimensions remoteAuxVideoSize;
+            /// <summary>
+            /// Gets the remote auxiliary video view dimensions (points) of this call.
+            /// </summary>
+            /// <remarks>Since: 2.0.0</remarks>
             public VideoDimensions RemoteAuxVideoSize
             {
                 get
                 {
-                    if (this.currentCall.m_core_telephoneService?.getVideoSize(this.currentCall.CallId, (TrackType)track, ref remoteVideoVideoSize.Width, ref remoteVideoVideoSize.Height) != true)
+                    if (this.currentCall.m_core_telephoneService?.getVideoSize(this.currentCall.CallId, (TrackType)track, ref remoteAuxVideoSize.Width, ref remoteAuxVideoSize.Height) != true)
                     {
                         SDKLogger.Instance.Error($"get remote track[{track}] video view size error.");
                     }
-                    return remoteVideoVideoSize;
+                    return remoteAuxVideoSize;
                 }
             }
 
@@ -1063,8 +1111,6 @@ namespace SparkSDK
                 this.currentCall = currentCall;
                 HandleList = new List<IntPtr>();
             }
-
-
         }
     }
 }
