@@ -762,6 +762,12 @@ namespace SparkSDK
         /// <remarks>Since: 2.0.0</remarks>
         public RemoteAuxVideo SubscribeRemoteAuxVideo(IntPtr handle)
         {
+            if (status != CallStatus.Connected)
+            {
+                SDKLogger.Instance.Error("subscribe remote auxiliary video only can be invoked when call is connected");
+                return null;
+            }
+
             if (RemoteAuxVideos.Count >= 4)
             {
                 SDKLogger.Instance.Error("max count of remote auxiliary view is 4");
@@ -782,7 +788,18 @@ namespace SparkSDK
         /// <remarks>Since: 2.0.0</remarks>
         public void UnsubscribeRemoteAuxVideo(RemoteAuxVideo remoteAuxVideo)
         {
-            m_core_telephoneService.unSubscribeAuxVideo(this.CallId, remoteAuxVideo.track);
+            if (remoteAuxVideo == null)
+            {
+                SDKLogger.Instance.Error($"input parameter invalid. remoteAuxVideo is null.");
+                return;
+            }
+            RemoteAuxVideos.Remove(remoteAuxVideo);
+
+            SDKLogger.Instance.Error($"unsubscribe track[{remoteAuxVideo?.track}]");
+            if (remoteAuxVideo.track >= TrackType.RemoteAux1 && remoteAuxVideo.track <= TrackType.RemoteAux4)
+            {
+                m_core_telephoneService.unSubscribeAuxVideo(this.CallId, remoteAuxVideo.track);
+            }
         }
 
 
@@ -977,6 +994,11 @@ namespace SparkSDK
             /// <param name="handle">The view handle.</param>
             public void AddViewHandle(IntPtr handle)
             {
+                if (handle == IntPtr.Zero)
+                {
+                    return;
+                }
+
                 if (!HandleList.Contains(handle))
                 {
                     HandleList.Add(handle);
@@ -992,6 +1014,11 @@ namespace SparkSDK
             /// <param name="handle">The view handle.</param>
             public void RemoveViewHandle(IntPtr handle)
             {
+                if (handle == IntPtr.Zero)
+                {
+                    return;
+                }
+
                 if (HandleList.Contains(handle))
                 {
                     HandleList.Remove(handle);
@@ -1008,6 +1035,11 @@ namespace SparkSDK
             /// <param name="handle">The view handle.</param>
             public void UpdateViewHandle(IntPtr handle)
             {
+                if (handle == IntPtr.Zero)
+                {
+                    return;
+                }
+
                 if (HandleList.Contains(handle))
                 {
                     if (track > TrackType.Unknown)
