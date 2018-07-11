@@ -911,6 +911,10 @@ namespace SparkSDK.Tests
                 if (r.IsSuccess)
                 {
                     currentCall = r.Data;
+
+                    //mute self cause there is only one camera which should be used by callee part.
+                    currentCall.IsSendingVideo = false;
+
                     currentCall.OnDisconnected += (call) =>
                     {
                         Console.WriteLine("onDisconnected");
@@ -963,6 +967,10 @@ namespace SparkSDK.Tests
                 if (r.IsSuccess)
                 {
                     currentCall = r.Data;
+
+                    //mute self cause there is only one camera which should be used by callee part.
+                    currentCall.IsSendingVideo = false;
+
                     currentCall.OnDisconnected += (call) =>
                     {
                         Console.WriteLine("onDisconnected");

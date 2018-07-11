@@ -304,7 +304,6 @@ namespace SparkSDK
             {
                 SDKLogger.Instance.Info($"{value}");
                 m_core_telephoneService?.muteVideo(CallId, !value);
-                isSendingVideo = value;
             }
         }
 
