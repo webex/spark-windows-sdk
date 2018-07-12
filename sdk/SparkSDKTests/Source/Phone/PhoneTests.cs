@@ -1001,7 +1001,7 @@ namespace SparkSDK.Tests
 
             MessageHelper.RunDispatcherLoop();
 
-            Assert.AreEqual(3, mediaEvents.Count);
+            Assert.IsTrue(mediaEvents.Count >= 3);
             var mediaevent = mediaEvents[0] as RemoteSendingVideoEvent;
             Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsSending);
@@ -1012,7 +1012,7 @@ namespace SparkSDK.Tests
             Assert.IsNotNull(mediaevent);
             Assert.IsTrue(mediaevent.IsSending);
 
-            Assert.AreEqual(3, callData.listIsRemoteSendingVideo.Count);
+            Assert.IsTrue(callData.listIsRemoteSendingVideo.Count >= 3);
             Assert.IsTrue(callData.listIsRemoteSendingVideo[0]);
             Assert.IsFalse(callData.listIsRemoteSendingVideo[1]);
             Assert.IsTrue(callData.listIsRemoteSendingVideo[2]);
@@ -2492,6 +2492,7 @@ namespace SparkSDK.Tests
             currentCall = null;
             List<Call.RemoteAuxVideo> remoteAuxVideos = new List<Call.RemoteAuxVideo>();
             List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+            List<bool> remoteAuxSendingVideos = new List<bool>();
 
             phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
             {
@@ -2523,6 +2524,8 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is RemoteAuxSendingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            var remoteAuxSendingVideoEvent = callMediaChangedEvent as RemoteAuxSendingVideoEvent;
+                            remoteAuxSendingVideos.Add(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
                         }
                     };
                 }
@@ -2539,10 +2542,7 @@ namespace SparkSDK.Tests
 
             Assert.AreEqual(4, remoteAuxVideos.Count);
             Assert.IsTrue(mediaEvents.Count > 0);
-            var remoteAuxSendingVideoEvent = mediaEvents[0] as RemoteAuxSendingVideoEvent;
-            Assert.IsNotNull(remoteAuxSendingVideoEvent);
-            Assert.IsTrue(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
-
+            Assert.IsTrue(remoteAuxSendingVideos[0]);
         }
 
         [TestMethod()]

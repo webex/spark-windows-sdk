@@ -755,30 +755,30 @@ namespace SparkSDK
         public List<RemoteAuxVideo> RemoteAuxVideos { get; internal set; }
 
         /// <summary>
-        /// Subscribe a new remote auxiliary video with a view handle. The Maximum is 4.
+        /// Subscribe a new remote auxiliary video with a view handle. The Maximum of auxiliary videos you can subscribe is 4 currently.
         /// </summary>
         /// <param name="handle">the remote auxiliary dispaly window handle</param>
         /// <returns>The subscribed remote auxiliary video instance. Returen null if subscribing failed or exceeding the limited count.</returns>
         /// <remarks>Since: 2.0.0</remarks>
         public RemoteAuxVideo SubscribeRemoteAuxVideo(IntPtr handle)
         {
-            if (RemoteVideosCount <= 0)
+            if (RemoteVideosCount > 0 || Status == CallStatus.Connected)
             {
-                SDKLogger.Instance.Error("subscribe remote auxiliary video only can be invoked when call is connected or receive RemoteAuxVideosCountChangedEvent event.");
-                return null;
+                if (RemoteAuxVideos.Count >= 4)
+                {
+                    SDKLogger.Instance.Error("max count of remote auxiliary view is 4");
+                    return null;
+                }
+                m_core_telephoneService.subscribeAuxVideo(this.CallId);
+
+                var newRemoteAuxView = new RemoteAuxVideo(this);
+                newRemoteAuxView.AddViewHandle(handle);
+                RemoteAuxVideos.Add(newRemoteAuxView);
+                return newRemoteAuxView;
             }
 
-            if (RemoteAuxVideos.Count >= 4)
-            {
-                SDKLogger.Instance.Error("max count of remote auxiliary view is 4");
-                return null;
-            }
-            m_core_telephoneService.subscribeAuxVideo(this.CallId);
-
-            var newRemoteAuxView = new RemoteAuxVideo(this);
-            newRemoteAuxView.AddViewHandle(handle);
-            RemoteAuxVideos.Add(newRemoteAuxView);
-            return newRemoteAuxView;
+            SDKLogger.Instance.Error("subscribe remote auxiliary video only can be invoked when call is connected or receive RemoteAuxVideosCountChangedEvent event.");
+            return null;
         }
 
         /// <summary>
