@@ -2600,8 +2600,9 @@ namespace SparkSDK.Tests
 
             MessageHelper.RunDispatcherLoop();
 
-            Assert.AreEqual(4, remoteAuxVideoCount);
-            Assert.AreEqual(0, mediaEvents.Count);// subscribing remote auxiliary video should be invoked when RemoteAuxVideosCountChangedEvent.
+            // subscribing remote auxiliary video should be invoked when RemoteAuxVideosCountChangedEvent.
+            Assert.AreEqual(0, remoteAuxVideoCount);
+            Assert.AreEqual(0, mediaEvents.Count);
         }
 
         [TestMethod()]
