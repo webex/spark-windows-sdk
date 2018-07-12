@@ -3023,6 +3023,145 @@ namespace SparkSDK.Tests
             Assert.IsTrue(remoteAuxSendingVideos[2]);
         }
 
+        [TestMethod()]
+        public void OutgoingMediaChangedReceivingAuxVideoEventMuteRemoteAuxTest()
+        {
+            //call scene：
+            //1. caller: callout
+            //2. callee: answer
+            //3. caller: mute remote aux1
+            //4. callee: hangup
+            MessageHelper.SetTestMode_CalleeAutoAnswerAndHangupAfter30Seconds(testFixtureApp);
+
+            currentCall = null;
+            List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+            List<bool> receivingAuxVideos = new List<bool>();
+
+            phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
+            {
+                if (r.IsSuccess)
+                {
+                    currentCall = r.Data;
+
+                    //mute local video, cause there is only one camera which should be used by callee part.
+                    currentCall.IsSendingVideo = false;
+
+                    currentCall.OnDisconnected += (call) =>
+                    {
+                        Console.WriteLine("onDisconnected");
+                        MessageHelper.BreakLoop();
+                    };
+                    currentCall.OnMediaChanged += (callMediaChangedEvent) =>
+                    {
+                        Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
+                        if (callMediaChangedEvent is RemoteAuxVideosCountChangedEvent)
+                        {
+                            currentCall.SubscribeRemoteAuxVideo(IntPtr.Zero);
+                        }
+                        if (callMediaChangedEvent is RemoteAuxSendingVideoEvent)
+                        {
+                            var remoteAuxSendingVideoEvent = callMediaChangedEvent as RemoteAuxSendingVideoEvent;
+                            if (remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo)
+                            {
+                                remoteAuxSendingVideoEvent.RemoteAuxVideo.IsReceivingVideo = false;
+                            }
+                        }
+                        if (callMediaChangedEvent is ReceivingAuxVideoEvent)
+                        {
+                            mediaEvents.Add(callMediaChangedEvent);
+                            var receivingAuxVideoEvent = callMediaChangedEvent as ReceivingAuxVideoEvent;
+                            receivingAuxVideos.Add(receivingAuxVideoEvent.RemoteAuxVideo.IsReceivingVideo);
+                        }
+                    };
+                }
+                else
+                {
+                    Console.WriteLine($"dial fail: {r.Error.ErrorCode}:{r.Error.Reason}");
+                    currentCall = r.Data;
+                    MessageHelper.BreakLoop();
+                }
+            });
+
+
+            MessageHelper.RunDispatcherLoop();
+
+            Assert.IsTrue(mediaEvents.Count > 0);
+            Assert.AreEqual(1, receivingAuxVideos.Count);
+            Assert.IsFalse(receivingAuxVideos[0]);
+        }
+        [TestMethod()]
+        public void OutgoingMediaChangedReceivingAuxVideoEventUnMuteRemoteAuxTest()
+        {
+            //call scene：
+            //1. caller: callout
+            //2. callee: answer
+            //3. caller: mute remote aux1
+            //4. caller: unmute remote aux1
+            //5. callee: hangup
+            MessageHelper.SetTestMode_CalleeAutoAnswerAndHangupAfter30Seconds(testFixtureApp);
+
+            currentCall = null;
+            List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+            List<bool> receivingAuxVideos = new List<bool>();
+
+            phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
+            {
+                if (r.IsSuccess)
+                {
+                    currentCall = r.Data;
+
+                    //mute local video, cause there is only one camera which should be used by callee part.
+                    currentCall.IsSendingVideo = false;
+
+                    currentCall.OnDisconnected += (call) =>
+                    {
+                        Console.WriteLine("onDisconnected");
+                        MessageHelper.BreakLoop();
+                    };
+                    currentCall.OnMediaChanged += (callMediaChangedEvent) =>
+                    {
+                        Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
+                        if (callMediaChangedEvent is RemoteAuxVideosCountChangedEvent)
+                        {
+                            currentCall.SubscribeRemoteAuxVideo(IntPtr.Zero);
+                        }
+                        if (callMediaChangedEvent is RemoteAuxSendingVideoEvent)
+                        {
+                            var remoteAuxSendingVideoEvent = callMediaChangedEvent as RemoteAuxSendingVideoEvent;
+                            if (remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo)
+                            {
+                                remoteAuxSendingVideoEvent.RemoteAuxVideo.IsReceivingVideo = false;
+                            }
+                        }
+                        if (callMediaChangedEvent is ReceivingAuxVideoEvent)
+                        {
+                            mediaEvents.Add(callMediaChangedEvent);
+                            var receivingAuxVideoEvent = callMediaChangedEvent as ReceivingAuxVideoEvent;
+                            receivingAuxVideos.Add(receivingAuxVideoEvent.RemoteAuxVideo.IsReceivingVideo);
+                            if(receivingAuxVideoEvent.RemoteAuxVideo.IsReceivingVideo ==  false)
+                            {
+                                receivingAuxVideoEvent.RemoteAuxVideo.IsReceivingVideo = true;
+                            }
+                        }
+                    };
+                }
+                else
+                {
+                    Console.WriteLine($"dial fail: {r.Error.ErrorCode}:{r.Error.Reason}");
+                    currentCall = r.Data;
+                    MessageHelper.BreakLoop();
+                }
+            });
+
+
+            MessageHelper.RunDispatcherLoop();
+
+            Assert.IsTrue(mediaEvents.Count > 0);
+            Assert.AreEqual(2, receivingAuxVideos.Count);
+            Assert.IsFalse(receivingAuxVideos[0]);
+            Assert.IsTrue(receivingAuxVideos[1]);
+        }
+
 
         [TestMethod()]
         public void OutgoingMediaChangedActiveSpeakerChangedEventTest()
