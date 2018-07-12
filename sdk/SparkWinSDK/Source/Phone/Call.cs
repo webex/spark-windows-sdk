@@ -762,9 +762,9 @@ namespace SparkSDK
         /// <remarks>Since: 2.0.0</remarks>
         public RemoteAuxVideo SubscribeRemoteAuxVideo(IntPtr handle)
         {
-            if (status != CallStatus.Connected)
+            if (RemoteVideosCount <= 0)
             {
-                SDKLogger.Instance.Error("subscribe remote auxiliary video only can be invoked when call is connected");
+                SDKLogger.Instance.Error("subscribe remote auxiliary video only can be invoked when call is connected or receive RemoteAuxVideosCountChangedEvent event.");
                 return null;
             }
 

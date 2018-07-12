@@ -743,7 +743,7 @@ namespace SparkSDK
                 SDKLogger.Instance.Debug("active speaker changed");
                 currentCall?.TrigerOnMediaChanged(new ActiveSpeakerChangedEvent(currentCall, currentCall.ActiveSpeaker));
             }
-            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.LocalShare)
             {
                 var find = currentCall?.RemoteAuxVideos.Find(x =>(x.track == trackType));
                 if (find != null)
@@ -758,7 +758,7 @@ namespace SparkSDK
         {
             bool isInUse = m_core_telephoneService.getIsVideoTrackInUse(callId, trackType);
             
-            if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.LocalShare)
             {
                 var find = currentCall?.RemoteAuxVideos.Find(x => (x.track == trackType));
                 if (find != null)
@@ -792,7 +792,7 @@ namespace SparkSDK
                     currentCall?.TrigerOnMediaChanged(new RemoteSendingVideoEvent(currentCall, isStreaming));
                 }
             }
-            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.LocalShare)
             {
                 var find = currentCall?.RemoteAuxVideos.Find(x => (x.track == trackType));
                 if (find != null && find.IsSendingVideo != isStreaming)
@@ -1166,7 +1166,7 @@ namespace SparkSDK
                             currentCall.SetRemoteView(currentCall.MediaOption.RemoteViewPtr.Value);
                         }
                     }
-                    else if (videoTrackType >= TrackType.RemoteAux1 && videoTrackType < TrackType.RemoteShare)
+                    else if (videoTrackType >= TrackType.RemoteAux1 && videoTrackType < TrackType.LocalShare)
                     {
                         int index = (int)videoTrackType - (int)TrackType.RemoteAux1;
                         var find = currentCall?.RemoteAuxVideos.Find(x =>(x.track == 0));
@@ -1207,7 +1207,7 @@ namespace SparkSDK
                     m_core_telephoneService.removeView(currentCall.CallId, currentCall.MediaOption.RemoteViewPtr.Value, trackType);
                 }
             }
-            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.LocalShare)
             {
                 var find = currentCall?.RemoteAuxVideos.Find(x =>(x.track == trackType));
                 if (find != null && currentCall.CallId != null)
@@ -1260,7 +1260,7 @@ namespace SparkSDK
                     currentCall?.TrigerOnMediaChanged(new RemoteSendingVideoEvent(currentCall, isSending));
                 }
             }
-            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.LocalShare)
             {
                 var find = currentCall?.RemoteAuxVideos.Find(x => (x.track == trackType));
                 if (find != null)
@@ -1286,7 +1286,7 @@ namespace SparkSDK
             {
                 currentCall?.TrigerOnMediaChanged(new ReceivingVideoEvent(currentCall, !(status == "muted")));
             }
-            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            else if (trackType >= TrackType.RemoteAux1 && trackType < TrackType.LocalShare)
             {
                 var find = currentCall?.RemoteAuxVideos.Find(x => (x.track == trackType));
                 if (find != null)
@@ -1311,7 +1311,7 @@ namespace SparkSDK
             {
                 currentCall?.TrigerOnMediaChanged(new RemoteVideoViewSizeChangedEvent(currentCall));
             }
-            else if(trackType >= TrackType.RemoteAux1 && trackType < TrackType.RemoteShare)
+            else if(trackType >= TrackType.RemoteAux1 && trackType < TrackType.LocalShare)
             {
                 var find = currentCall?.RemoteAuxVideos.Find(x =>(x.track == trackType));
                 if (find != null)

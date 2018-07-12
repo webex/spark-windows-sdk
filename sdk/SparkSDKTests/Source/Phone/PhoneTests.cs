@@ -2538,7 +2538,7 @@ namespace SparkSDK.Tests
             MessageHelper.RunDispatcherLoop();
 
             Assert.AreEqual(4, remoteAuxVideos.Count);
-            Assert.AreEqual(1, mediaEvents.Count);
+            Assert.IsTrue(mediaEvents.Count > 0);
             var remoteAuxSendingVideoEvent = mediaEvents[0] as RemoteAuxSendingVideoEvent;
             Assert.IsNotNull(remoteAuxSendingVideoEvent);
             Assert.IsTrue(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
@@ -2738,6 +2738,7 @@ namespace SparkSDK.Tests
 
             currentCall = null;
             List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+            CallMembership peroson = null;
 
             phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
             {
@@ -2756,10 +2757,14 @@ namespace SparkSDK.Tests
                     currentCall.OnMediaChanged += (callMediaChangedEvent) =>
                     {
                         Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
-
+                        if (callMediaChangedEvent is RemoteAuxVideosCountChangedEvent)
+                        {
+                            currentCall.SubscribeRemoteAuxVideo(IntPtr.Zero);
+                        }
                         if (callMediaChangedEvent is RemoteAuxVideoPersonChangedEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            peroson = ((RemoteAuxVideoPersonChangedEvent)callMediaChangedEvent).RemoteAuxVideo.Person;
                         }
                     };
                 }
@@ -2777,8 +2782,8 @@ namespace SparkSDK.Tests
             Assert.AreEqual(1, mediaEvents.Count);
 
             var remoteAuxVideoPersonChangedEvent = mediaEvents[0] as RemoteAuxVideoPersonChangedEvent;
-            Assert.IsNotNull(remoteAuxVideoPersonChangedEvent);
-            Assert.IsNotNull(remoteAuxVideoPersonChangedEvent.RemoteAuxVideo.Person.Email);
+            Assert.IsNotNull(peroson);
+            Assert.IsNotNull(peroson.Email);
         }
 
         [TestMethod()]
@@ -2810,7 +2815,10 @@ namespace SparkSDK.Tests
                     currentCall.OnMediaChanged += (callMediaChangedEvent) =>
                     {
                         Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
-
+                        if (callMediaChangedEvent is RemoteAuxVideosCountChangedEvent)
+                        {
+                            currentCall.SubscribeRemoteAuxVideo(IntPtr.Zero);
+                        }
                         if (callMediaChangedEvent is RemoteAuxVideoSizeChangedEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
@@ -2848,6 +2856,7 @@ namespace SparkSDK.Tests
 
             currentCall = null;
             List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+            List<bool> remoteAuxSendingVideos = new List<bool>();
 
             phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
             {
@@ -2866,10 +2875,15 @@ namespace SparkSDK.Tests
                     currentCall.OnMediaChanged += (callMediaChangedEvent) =>
                     {
                         Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
-
+                        if (callMediaChangedEvent is RemoteAuxVideosCountChangedEvent)
+                        {
+                            currentCall.SubscribeRemoteAuxVideo(IntPtr.Zero);
+                        }
                         if (callMediaChangedEvent is RemoteAuxSendingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            var remoteAuxSendingVideoEvent = callMediaChangedEvent as RemoteAuxSendingVideoEvent;
+                            remoteAuxSendingVideos.Add(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
                         }
                     };
                 }
@@ -2885,10 +2899,8 @@ namespace SparkSDK.Tests
             MessageHelper.RunDispatcherLoop();
 
             Assert.IsTrue(mediaEvents.Count > 0);
-
-            var remoteAuxSendingVideoEvent = mediaEvents[0] as RemoteAuxSendingVideoEvent;
-            Assert.IsNotNull(remoteAuxSendingVideoEvent);
-            Assert.IsTrue(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
+            Assert.IsTrue(remoteAuxSendingVideos.Count > 0);
+            Assert.IsTrue(remoteAuxSendingVideos[0]);
         }
 
         [TestMethod()]
@@ -2903,6 +2915,7 @@ namespace SparkSDK.Tests
 
             currentCall = null;
             List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+            List<bool> remoteAuxSendingVideos = new List<bool>();
 
             phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
             {
@@ -2921,10 +2934,15 @@ namespace SparkSDK.Tests
                     currentCall.OnMediaChanged += (callMediaChangedEvent) =>
                     {
                         Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
-
+                        if (callMediaChangedEvent is RemoteAuxVideosCountChangedEvent)
+                        {
+                            currentCall.SubscribeRemoteAuxVideo(IntPtr.Zero);
+                        }
                         if (callMediaChangedEvent is RemoteAuxSendingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            var remoteAuxSendingVideoEvent = callMediaChangedEvent as RemoteAuxSendingVideoEvent;
+                            remoteAuxSendingVideos.Add(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
                         }
                     };
                 }
@@ -2939,14 +2957,10 @@ namespace SparkSDK.Tests
 
             MessageHelper.RunDispatcherLoop();
 
-            Assert.IsTrue(mediaEvents.Count == 2);
-
-            var remoteAuxSendingVideoEvent = mediaEvents[0] as RemoteAuxSendingVideoEvent;
-            Assert.IsNotNull(remoteAuxSendingVideoEvent);
-            Assert.IsTrue(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
-            remoteAuxSendingVideoEvent = mediaEvents[1] as RemoteAuxSendingVideoEvent;
-            Assert.IsNotNull(remoteAuxSendingVideoEvent);
-            Assert.IsFalse(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
+            Assert.AreEqual(2, mediaEvents.Count);
+            Assert.AreEqual(2, remoteAuxSendingVideos.Count);
+            Assert.IsTrue(remoteAuxSendingVideos[0]);
+            Assert.IsFalse(remoteAuxSendingVideos[1]);
         }
         [TestMethod()]
         public void OutgoingMediaChangedRemoteAuxSendingVideoEventByRemoteUnMuteTest()
@@ -2960,6 +2974,7 @@ namespace SparkSDK.Tests
 
             currentCall = null;
             List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+            List<bool> remoteAuxSendingVideos = new List<bool>();
 
             phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
             {
@@ -2978,10 +2993,15 @@ namespace SparkSDK.Tests
                     currentCall.OnMediaChanged += (callMediaChangedEvent) =>
                     {
                         Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
-
+                        if (callMediaChangedEvent is RemoteAuxVideosCountChangedEvent)
+                        {
+                            currentCall.SubscribeRemoteAuxVideo(IntPtr.Zero);
+                        }
                         if (callMediaChangedEvent is RemoteAuxSendingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            var remoteAuxSendingVideoEvent = callMediaChangedEvent as RemoteAuxSendingVideoEvent;
+                            remoteAuxSendingVideos.Add(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
                         }
                     };
                 }
@@ -2996,17 +3016,11 @@ namespace SparkSDK.Tests
 
             MessageHelper.RunDispatcherLoop();
 
-            Assert.IsTrue(mediaEvents.Count == 3);
-
-            var remoteAuxSendingVideoEvent = mediaEvents[0] as RemoteAuxSendingVideoEvent;
-            Assert.IsNotNull(remoteAuxSendingVideoEvent);
-            Assert.IsTrue(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
-            remoteAuxSendingVideoEvent = mediaEvents[1] as RemoteAuxSendingVideoEvent;
-            Assert.IsNotNull(remoteAuxSendingVideoEvent);
-            Assert.IsFalse(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
-            remoteAuxSendingVideoEvent = mediaEvents[2] as RemoteAuxSendingVideoEvent;
-            Assert.IsNotNull(remoteAuxSendingVideoEvent);
-            Assert.IsTrue(remoteAuxSendingVideoEvent.RemoteAuxVideo.IsSendingVideo);
+            Assert.AreEqual(3, mediaEvents.Count);
+            Assert.AreEqual(3, remoteAuxSendingVideos.Count);
+            Assert.IsTrue(remoteAuxSendingVideos[0]);
+            Assert.IsFalse(remoteAuxSendingVideos[1]);
+            Assert.IsTrue(remoteAuxSendingVideos[2]);
         }
 
 
