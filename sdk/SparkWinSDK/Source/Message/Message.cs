@@ -242,7 +242,7 @@ namespace SparkSDK
         /// <summary>
         /// The constructor of the MentionPerson
         /// </summary>
-        /// <param name="personId"></param>
+        /// <param name="personId">The person ID.</param>
         public MentionPerson(string personId)
         {
             this.personId = personId;

@@ -78,6 +78,42 @@ namespace SparkSDK
     }
 
     /// <summary>
+    /// The remote auxiliary video changed event.
+    /// </summary>
+    /// <remarks>Since: 2.0.0</remarks>
+    public abstract class RemoteAuxVideoChangedEvent : MediaChangedEvent
+    {
+        /// <summary>
+        /// the remote auxiliary video.
+        /// </summary>
+        protected Call.RemoteAuxVideo remoteAuxVideo;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemoteAuxVideoChangedEvent"/> class.
+        /// </summary>
+        /// <param name="call">current call instance.</param>
+        /// <param name="remoteAuxVideo">the remote auxiliary video instance.</param>
+        /// <remarks>Since: 2.0.0</remarks>
+        protected RemoteAuxVideoChangedEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo)
+            : base(call)
+        {
+            this.remoteAuxVideo = remoteAuxVideo;
+        }
+
+        /// <summary>
+        /// Get the remote auxiliary video instance.
+        /// </summary>
+        /// <remarks>Since: 2.0.0</remarks>
+        public Call.RemoteAuxVideo RemoteAuxVideo
+        {
+            get
+            {
+                return this.remoteAuxVideo;
+            }
+        }
+    }
+
+
+    /// <summary>
     /// The call membership changed event.
     /// </summary>
     /// <remarks>Since: 0.1.0</remarks>
@@ -142,27 +178,64 @@ namespace SparkSDK
     }
 
     /// <summary>
-    /// This is triggered when ready for show remote video. 
-    /// If you haven't set the remote view handle, you can set it by calling <see cref="Call.SetRemoteView(IntPtr)"/> now.
+    /// The active speaker is changed.
     /// </summary>
-    /// <remarks>Since: 0.1.0</remarks>
-    public class RemoteVideoReadyEvent : MediaChangedEvent
+    /// <remarks>Since: 2.0.0</remarks>
+    public class ActiveSpeakerChangedEvent : MediaChangedEvent
     {
-        internal RemoteVideoReadyEvent(Call call)
+        private CallMembership activeSpeaker;
+        internal ActiveSpeakerChangedEvent(Call call, CallMembership activeSpeaker)
             : base(call)
         {
+            this.activeSpeaker = activeSpeaker;
+        }
+
+        /// <summary>
+        /// The active speaker now.
+        /// </summary>
+        /// <remarks>Since: 2.0.0</remarks>
+        public CallMembership ActiveSpeaker
+        {
+            get
+            {
+                return this.activeSpeaker;
+            }
+        }
+    }
+    /// <summary>
+    /// The available remote auxiliary video count is changed. You can subuscribe or unsubscribe auxiliary videos when this event.
+    /// </summary>
+    /// <remarks>Since: 2.0.0</remarks>
+    public class RemoteAuxVideosCountChangedEvent : MediaChangedEvent
+    {
+        private int count;
+        internal RemoteAuxVideosCountChangedEvent(Call call, int count)
+            : base(call)
+        {
+            this.count = count;
+        }
+
+        /// <summary>
+        /// The availiable remote auxliary video count.
+        /// </summary>
+        /// <remarks>Since: 2.0.0</remarks>
+        public int Count
+        {
+            get
+            {
+                return this.count;
+            }
         }
     }
 
     /// <summary>
-    /// This is triggered when ready for show local video. 
-    /// If you haven't set the local view handle, you can set it by calling <see cref="Call.SetLocalView(IntPtr)"/> now.
+    /// The person represented this auxiliary video is changed.
     /// </summary>
-    /// <remarks>Since: 0.1.0</remarks>
-    public class LocalVideoReadyEvent : MediaChangedEvent
+    /// <remarks>Since: 2.0.0</remarks>
+    public class RemoteAuxVideoPersonChangedEvent : RemoteAuxVideoChangedEvent
     {
-        internal LocalVideoReadyEvent(Call call)
-            : base(call)
+        internal RemoteAuxVideoPersonChangedEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo)
+            : base(call, remoteAuxVideo)
         {
         }
     }
@@ -263,7 +336,7 @@ namespace SparkSDK
     }
 
     /// <summary>
-    /// This might be triggered when the local party muted or unmuted the video.
+    /// This might be triggered when the local party muted or unmuted the remote video.
     /// </summary>
     /// <remarks>Since: 0.1.0</remarks>
     public class ReceivingVideoEvent : MediaChangedEvent
@@ -282,6 +355,18 @@ namespace SparkSDK
         public bool IsReceiving
         {
             get { return isReceiving; }
+        }
+    }
+
+    /// <summary>
+    /// This might be triggered when the local party muted or unmuted the remote auxiliary video.
+    /// </summary>
+    /// <remarks>Since: 2.0.0</remarks>
+    public class ReceivingAuxVideoEvent : RemoteAuxVideoChangedEvent
+    {
+        internal ReceivingAuxVideoEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo)
+            : base(call, remoteAuxVideo)
+        {
         }
     }
 
@@ -386,6 +471,30 @@ namespace SparkSDK
     {
         internal RemoteShareViewSizeChangedEvent(Call call)
             : base(call)
+        {
+        }
+    }
+
+    /// <summary>
+    /// Remote auxiliary video view size has changed.
+    /// </summary>
+    /// <remarks>Since: 2.0.0</remarks>
+    public class RemoteAuxVideoSizeChangedEvent : RemoteAuxVideoChangedEvent
+    {
+        internal RemoteAuxVideoSizeChangedEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo)
+            : base(call, remoteAuxVideo)
+        {
+        }
+    }
+
+    /// <summary>
+    /// This might be triggered when the network is unstable or the represented person muted or unmuted his video.
+    /// </summary>
+    /// <remarks>Since: 2.0.0</remarks>
+    public class RemoteAuxSendingVideoEvent : RemoteAuxVideoChangedEvent
+    {
+        internal RemoteAuxSendingVideoEvent(Call call, Call.RemoteAuxVideo remoteAuxVideo)
+            : base(call, remoteAuxVideo)
         {
         }
     }
