@@ -917,12 +917,12 @@ namespace SparkSDK.Tests
 
                     currentCall.OnDisconnected += (call) =>
                     {
-                        Console.WriteLine("onDisconnected");
+                        Console.WriteLine($"{DateTime.Now} onDisconnected");
                         MessageHelper.BreakLoop();
                     };
                     currentCall.OnMediaChanged += (callMediaChangedEvent) =>
                     {
-                        Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
+                        Console.WriteLine($"{DateTime.Now} event:{callMediaChangedEvent.GetType().Name}");
                         if (callMediaChangedEvent is RemoteSendingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
@@ -978,12 +978,12 @@ namespace SparkSDK.Tests
 
                     currentCall.OnDisconnected += (call) =>
                     {
-                        Console.WriteLine("onDisconnected");
+                        Console.WriteLine($"{DateTime.Now} onDisconnected");
                         MessageHelper.BreakLoop();
                     };
                     currentCall.OnMediaChanged += (callMediaChangedEvent) =>
                     {
-                        Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
+                        Console.WriteLine($"{DateTime.Now} event:{callMediaChangedEvent.GetType().Name}");
                         if (callMediaChangedEvent is RemoteSendingVideoEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
@@ -2928,12 +2928,12 @@ namespace SparkSDK.Tests
 
                     currentCall.OnDisconnected += (call) =>
                     {
-                        Console.WriteLine("onDisconnected");
+                        Console.WriteLine($"{DateTime.Now} onDisconnected");
                         MessageHelper.BreakLoop();
                     };
                     currentCall.OnMediaChanged += (callMediaChangedEvent) =>
                     {
-                        Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
+                        Console.WriteLine($"{DateTime.Now} event:{callMediaChangedEvent.GetType().Name}");
                         if (callMediaChangedEvent is RemoteAuxVideosCountChangedEvent)
                         {
                             currentCall.SubscribeRemoteAuxVideo(IntPtr.Zero);
@@ -2987,12 +2987,12 @@ namespace SparkSDK.Tests
 
                     currentCall.OnDisconnected += (call) =>
                     {
-                        Console.WriteLine("onDisconnected");
+                        Console.WriteLine($"{DateTime.Now} onDisconnected");
                         MessageHelper.BreakLoop();
                     };
                     currentCall.OnMediaChanged += (callMediaChangedEvent) =>
                     {
-                        Console.WriteLine($"event:{callMediaChangedEvent.GetType().Name}");
+                        Console.WriteLine($"{DateTime.Now} event:{callMediaChangedEvent.GetType().Name}");
                         if (callMediaChangedEvent is RemoteAuxVideosCountChangedEvent)
                         {
                             currentCall.SubscribeRemoteAuxVideo(IntPtr.Zero);
