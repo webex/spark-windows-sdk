@@ -748,15 +748,15 @@ namespace SparkSDK.Tests
             MessageHelper.SendMessage(windowName, "Enable");
             MessageHelper.SendMessage(windowName, "AutoAnswer");
             MessageHelper.SendMessage(windowName, "MuteVideo");
-            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
+            MessageHelper.SendMessage(windowName, "ConversationTimer:50000");
         }
 
         public static void SetTestMode_CalleeAutoAnswerAndMuteVideoAndUnMuteVideoAndHangupAfter30Seconds(string windowName)
         {
             MessageHelper.SendMessage(windowName, "Enable");
             MessageHelper.SendMessage(windowName, "AutoAnswer");
-            MessageHelper.SendMessage(windowName, "MuteVideo:5000");
-            MessageHelper.SendMessage(windowName, "ConversationTimer:30000");
+            MessageHelper.SendMessage(windowName, "MuteVideo:10000");
+            MessageHelper.SendMessage(windowName, "ConversationTimer:50000");
         }
 
         public static void SetTestMode_CalleeAutoAnswerAndMuteAudioAndHangupAfter30Seconds(string windowName)
