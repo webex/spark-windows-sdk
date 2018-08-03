@@ -3174,6 +3174,7 @@ namespace SparkSDK.Tests
 
             currentCall = null;
             List<MediaChangedEvent> mediaEvents = new List<MediaChangedEvent>();
+            bool isActiveSpeaker = false;
 
             phone.Dial(calleeAddress, MediaOption.AudioVideoShare(), r =>
             {
@@ -3196,6 +3197,7 @@ namespace SparkSDK.Tests
                         if (callMediaChangedEvent is ActiveSpeakerChangedEvent)
                         {
                             mediaEvents.Add(callMediaChangedEvent);
+                            isActiveSpeaker = currentCall.To.IsActiveSpeaker;
                         }
                     };
                 }
@@ -3215,6 +3217,7 @@ namespace SparkSDK.Tests
             var activeSpeakerChangedEvent = mediaEvents[0] as ActiveSpeakerChangedEvent;
             Assert.IsNotNull(activeSpeakerChangedEvent);
             Assert.IsNotNull(activeSpeakerChangedEvent.ActiveSpeaker);
+            Assert.IsTrue(isActiveSpeaker);
         }
 
         [TestMethod()]
