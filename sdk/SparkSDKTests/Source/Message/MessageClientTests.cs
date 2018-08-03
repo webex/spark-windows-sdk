@@ -122,7 +122,7 @@ namespace SparkSDK.Tests
             messages.OnEvent -= ReceiveMessageEvent;
             recvedMessage = null;
             deletedMessageId = null;
-    }
+        }
 
         [TestMethod()]
         public void ListTest()
@@ -150,6 +150,9 @@ namespace SparkSDK.Tests
         [TestMethod()]
         public void ListPersistMsgTest()
         {
+            PostMsg(null, calleePersonId, text);
+            PostMsg(null, calleePersonId, text);
+            PostMsg(null, calleePersonId, text);
             var msg = PostMsg(null, calleePersonId, text);
             Validate(msg);
 
